@@ -1,0 +1,66 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "home",
+				"navigationStyle": "custom" //custom for no navigation bar on top
+			}
+		},
+		{
+			"path": "pages/download/index",
+			"style": {
+				"navigationBarTitleText": "download",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/promotion/index",
+			"style": {
+				"navigationBarTitleText": "promotion",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/webview/index",
+			"style": {
+				"navigationBarTitleText": "webview",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "login",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"backgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#000",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"list": [
+			{
+				"text": "%tab.Home%",
+				"iconPath": "./static/logo.png",
+				"pagePath": "pages/home/index"
+			},
+			{
+				"text": "Promotion",
+				"iconPath": "./static/logo.png",
+				"pagePath": "pages/promotion/index"
+			},
+			{
+				"text": "Download",
+				"iconPath": "./static/logo.png",
+				"pagePath": "pages/download/index"
+			}
+		]
+		
+	}
+}
