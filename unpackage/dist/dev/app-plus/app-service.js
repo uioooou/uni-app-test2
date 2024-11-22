@@ -1280,7 +1280,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_4$2 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$l], ["__scopeId", "data-v-d31e1c47"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const __easycom_4$2 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$l], ["__scopeId", "data-v-d31e1c47"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   const _sfc_main$l = {
     name: "UniNoticeBar",
     emits: ["click", "getmore", "close"],
@@ -1517,7 +1517,7 @@ if (uni.restoreGlobal) {
       /* STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$k], ["__scopeId", "data-v-c3453ea3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$k], ["__scopeId", "data-v-c3453ea3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
   const _imports_0 = "/assets/bg_top.84172c45.png";
   const _sfc_main$k = {
     data() {
@@ -1549,7 +1549,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$j], ["__scopeId", "data-v-db9577a6"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/components/announcement/announcement.vue"]]);
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$j], ["__scopeId", "data-v-db9577a6"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/announcement/announcement.vue"]]);
   const ComponentClass$1 = "uni-col";
   const _sfc_main$j = {
     name: "uniCol",
@@ -1672,7 +1672,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__scopeId", "data-v-28ff6624"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-row/components/uni-col/uni-col.vue"]]);
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__scopeId", "data-v-28ff6624"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-row/components/uni-col/uni-col.vue"]]);
   const ComponentClass = "uni-row";
   const modifierSeparator = "--";
   const _sfc_main$i = {
@@ -1732,7 +1732,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-097353af"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-row/components/uni-row/uni-row.vue"]]);
+  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-097353af"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-row/components/uni-row/uni-row.vue"]]);
   class MPAnimation {
     constructor(options, _this) {
       this.options = options;
@@ -2102,7 +2102,7 @@ if (uni.restoreGlobal) {
       vue.renderSlot(_ctx.$slots, "default")
     ], 14, ["animation"])) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
   const _sfc_main$g = {
     name: "uniPopup",
     components: {},
@@ -2491,7 +2491,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_4$1 = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__scopeId", "data-v-4dd3c44b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
+  const __easycom_4$1 = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__scopeId", "data-v-4dd3c44b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
   const _sfc_main$f = {
     props: ["open", "popuptext"],
     methods: {
@@ -2555,7 +2555,7 @@ if (uni.restoreGlobal) {
       /* NEED_PATCH */
     );
   }
-  const __easycom_4 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__scopeId", "data-v-0ff762a3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/components/customPopUp/customPopUp.vue"]]);
+  const __easycom_4 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__scopeId", "data-v-0ff762a3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/customPopUp/customPopUp.vue"]]);
   function obj2strClass(obj) {
     let classess = "";
     for (let key in obj) {
@@ -3012,7 +3012,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__scopeId", "data-v-09fd5285"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__scopeId", "data-v-09fd5285"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
   const _sfc_main$d = {
     name: "uniFormsItem",
     options: {
@@ -3404,7 +3404,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-462874dd"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue"]]);
+  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-462874dd"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue"]]);
   var pattern = {
     email: /^\S+?@\S+?\.\S+?$/,
     idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
@@ -4272,7 +4272,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__scopeId", "data-v-9a1e3c32"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-forms/components/uni-forms/uni-forms.vue"]]);
+  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__scopeId", "data-v-9a1e3c32"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-forms/components/uni-forms/uni-forms.vue"]]);
   function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
   }
@@ -8985,7 +8985,7 @@ ${codeFrame}` : message);
       }, 8, ["onMaskClick"])
     ]);
   }
-  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__scopeId", "data-v-f57cd194"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/components/loginPopUp/loginPopUp.vue"]]);
+  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__scopeId", "data-v-f57cd194"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/loginPopUp/loginPopUp.vue"]]);
   const _sfc_main$a = {
     name: "UniDrawer",
     components: {},
@@ -9094,7 +9094,7 @@ ${codeFrame}` : message);
       /* CLASS, NEED_HYDRATION */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__scopeId", "data-v-f7c32d22"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue"]]);
+  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__scopeId", "data-v-f7c32d22"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue"]]);
   const _sfc_main$9 = {
     data() {
       return {
@@ -9273,7 +9273,7 @@ ${codeFrame}` : message);
       ])
     ]);
   }
-  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__scopeId", "data-v-9bb2cc18"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/components/customTabBar/customTabBar.vue"]]);
+  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__scopeId", "data-v-9bb2cc18"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/customTabBar/customTabBar.vue"]]);
   const _sfc_main$8 = {
     components: {
       Announcement: __easycom_0$3,
@@ -9520,7 +9520,7 @@ ${codeFrame}` : message);
       vue.createVNode(_component_customTabBar)
     ]);
   }
-  const layout = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-083a11c5"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/layout/layout.vue"]]);
+  const layout = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-083a11c5"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/layout/layout.vue"]]);
   function request(options) {
     ({
       "token": uni.getStorageSync("token")
@@ -12240,7 +12240,7 @@ ${codeFrame}` : message);
       /* STABLE */
     });
   }
-  const PagesHomeIndex = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/pages/home/index.vue"]]);
+  const PagesHomeIndex = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/home/index.vue"]]);
   const _sfc_main$6 = {
     data() {
       return {
@@ -12355,7 +12355,7 @@ ${codeFrame}` : message);
       /* STABLE */
     });
   }
-  const PagesDownloadIndex = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/pages/download/index.vue"]]);
+  const PagesDownloadIndex = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/download/index.vue"]]);
   const _sfc_main$5 = {
     data() {
       return {
@@ -12437,7 +12437,7 @@ ${codeFrame}` : message);
       )
     ]);
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-2f492593"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/components/imageCollapse/imageCollapse.vue"]]);
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-2f492593"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/imageCollapse/imageCollapse.vue"]]);
   const _sfc_main$4 = {
     data() {
       return {
@@ -12537,7 +12537,7 @@ ${codeFrame}` : message);
       /* STABLE */
     });
   }
-  const PagesPromotionIndex = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/pages/promotion/index.vue"]]);
+  const PagesPromotionIndex = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/promotion/index.vue"]]);
   const _sfc_main$3 = {
     data() {
       return {
@@ -12558,7 +12558,7 @@ ${codeFrame}` : message);
       vue.createElementVNode("web-view", { src: $data.url }, null, 8, ["src"])
     ]);
   }
-  const PagesWebviewIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/pages/webview/index.vue"]]);
+  const PagesWebviewIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/webview/index.vue"]]);
   const _sfc_main$2 = {
     name: "UniSection",
     emits: ["click"],
@@ -12675,7 +12675,7 @@ ${codeFrame}` : message);
       )
     ]);
   }
-  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__scopeId", "data-v-637fd36b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__scopeId", "data-v-637fd36b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
   const _sfc_main$1 = {
     data() {
       return {
@@ -12811,7 +12811,7 @@ ${codeFrame}` : message);
       }, null, 8, ["onClick"])
     ]);
   }
-  const PagesLoginIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/pages/login/index.vue"]]);
+  const PagesLoginIndex = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/login/index.vue"]]);
   __definePage("pages/home/index", PagesHomeIndex);
   __definePage("pages/download/index", PagesDownloadIndex);
   __definePage("pages/promotion/index", PagesPromotionIndex);
@@ -12831,7 +12831,7 @@ ${codeFrame}` : message);
       formatAppLog("log", "at App.vue:13", "App Hide");
     }
   };
-  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/new-app/App.vue"]]);
+  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/App.vue"]]);
   var r = function(r2) {
     return /* @__PURE__ */ function(r3) {
       return !!r3 && "object" == typeof r3;
