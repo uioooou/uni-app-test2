@@ -1,9 +1,7 @@
 import request from "./request";
-import apiCaller from "./axois.service";
 import { config } from "../constant/config";
-let path = "product";
-let publicUrl = "/public";
 let apiURL = config.apiURL
+let path = "product";
 
 export const getApiData = (params) => {
 	return request({

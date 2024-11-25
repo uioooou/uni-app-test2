@@ -1,23 +1,11 @@
 <template>
 	<view class="tabBar">
 		<view class="tab-bar">
-			<view class="tab-item" @click="navigateTo('/pages/home/index')">
-<!-- 				<image class="tab-icon" src="../../static/logo.png" /> -->
-				<uni-icons type="home" size="60" :color="sharedColor"></uni-icons>
-				<text class="tab-text">{{$i18n.t('tab.Home')}}</text>
-			</view>
-			<view class="tab-item" @click="navigateTo('/pages/promotion/index')">
-				<!-- <image class="tab-icon" src="../../static/logo.png" /> -->
-				<uni-icons type="gift" size="60" :color="sharedColor"></uni-icons>
-				<text class="tab-text">{{$i18n.t('tab.Promotion')}}</text>
-			</view>
-			<view class="tab-item" @click="navigateTo('/pages/download/index')">
-				<!-- <image class="tab-icon" src="../../static/logo.png" /> -->
-				<uni-icons type="download" size="60" :color="sharedColor"></uni-icons>
-				<text class="tab-text">{{$i18n.t('tab.Download')}}</text>
+			<view v-for="(item,index) in pageRoute" class="tab-item" @click="navigateTo(item.route)">
+				<uni-icons :type="item.icon" size="60" :color="sharedColor"></uni-icons>
+				<text class="tab-text">{{$i18n.t(item.name)}}</text>
 			</view>
 			<view class="tab-item" @click="showSupportPopup">
-				<!-- <image class="tab-icon" src="../../static/logo.png" /> -->
 				<uni-icons type="help" size="60" :color="sharedColor"></uni-icons>
 				<text class="tab-text">{{$i18n.t('tab.Support')}}</text>
 			</view>
@@ -30,7 +18,8 @@
 							<view class="support-title">{{$i18n.t("Customer Support")}}</view>
 						</uni-col>
 						<uni-col>
-							<button @click="handleOpenAppStore()" class="button" type="primary">{{$i18n.t("Telegram")}}</button>
+							<button @click="handleOpenAppStore()" class="button"
+								type="primary">{{$i18n.t("Telegram")}}</button>
 						</uni-col>
 					</uni-row>
 				</view>
@@ -40,15 +29,32 @@
 </template>
 
 <script>
+	import {
+		computed
+	} from 'vue';
+	import {
+		useStore
+	} from 'vuex';
+	import route from "../../constant/route";
 	export default {
-		data(){
-			return{
-				sharedColor:"#007aff"
+		data() {
+			return {
+				sharedColor: "#007aff",
+				pageRoute:route,
+				urlTest1: "/pages/webview/index?url=https://web.telegram.org/",
+				urlTest2:'https://play.google.com/store/games?device=windows'
 			}
 		},
+		setup() {
+			const store = useStore()
+
+			return {
+				
+			}
+		},
+
 		methods: {
 			navigateTo(url) {
-				console.log(url)
 				uni.switchTab({
 					url
 				});
@@ -59,19 +65,20 @@
 			closePopup() {
 				this.$refs.supportPopup.close();
 			},
+			//open telegram page in application page
 			handleOpenTelegram() {
 				uni.navigateTo({
-					url:"/pages/webview/index?url=https://web.telegram.org/"
+					url:this.urlTest1
 				})
 			},
-			//open to playstore
-			handleOpenAppStore(){
-				if(plus.os.name === "Android"){
-					var url = 'https://play.google.com/store/games?device=windows';
-					try{
+			//redirect to new web page in browser
+			handleOpenAppStore() {
+				if (plus.os.name === "Android") {
+					var url = this.urlTest2;
+					try {
 						plus.runtime.openURL(url);
-					}catch(e){
-						console.log("error",e)
+					} catch (e) {
+						console.log("error", e)
 					}
 				}
 			}
@@ -123,23 +130,25 @@
 	.popup-row {
 		width: 100%;
 	}
-	.pop-up :deep(.uni-popup__wrapper){
+
+	.pop-up :deep(.uni-popup__wrapper) {
 		max-width: 80%;
 		min-width: 80%;
 	}
-	.button{
+
+	.button {
 		margin-top: 20rpx;
 		width: 80%;
 	}
-	.support-title{
+
+	.support-title {
 		border-bottom: 1px solid $black;
 		padding: 15rpx;
 	}
-	.content{
+
+	.content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
-	
-	
 </style>

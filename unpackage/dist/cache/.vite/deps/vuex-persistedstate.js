@@ -1,6 +1,4 @@
-import "./chunk-CSAU5B4Q.js";
-
-// ../../../../../Documents/HBuilderProjects/new-app/node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js
+// ../../../../../Documents/HBuilderProjects/uni-app-test2/node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js
 var r = function(r2) {
   return /* @__PURE__ */ function(r3) {
     return !!r3 && "object" == typeof r3;

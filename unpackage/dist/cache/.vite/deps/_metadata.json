@@ -1,25 +1,21 @@
 {
-  "hash": "cd01d18c",
-  "configHash": "f7f4a8eb",
-  "lockfileHash": "ea7147a8",
-  "browserHash": "ed6b2b2d",
+  "hash": "ac7927bf",
+  "configHash": "ae46a418",
+  "lockfileHash": "82628145",
+  "browserHash": "f0e64714",
   "optimized": {
-    "axios": {
-      "src": "../../../../../node_modules/axios/index.js",
-      "file": "axios.js",
-      "fileHash": "fdf5bd7b",
+    "bootstrap-vue-next": {
+      "src": "../../../../../node_modules/bootstrap-vue-next/dist/bootstrap-vue-next.mjs",
+      "file": "bootstrap-vue-next.js",
+      "fileHash": "7fd5f3ff",
       "needsInterop": false
     },
     "vuex-persistedstate": {
       "src": "../../../../../node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js",
       "file": "vuex-persistedstate.js",
-      "fileHash": "978bde72",
+      "fileHash": "35f45b0f",
       "needsInterop": false
     }
   },
-  "chunks": {
-    "chunk-CSAU5B4Q": {
-      "file": "chunk-CSAU5B4Q.js"
-    }
-  }
+  "chunks": {}
 }

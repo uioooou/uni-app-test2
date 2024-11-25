@@ -1,10 +1,18 @@
 body {
-		font-family: montserrat;
-		font-weight: 500;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-	
-::-webkit-scrollbar{
+	font-family: montserrat;
+	font-weight: 500;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+[data-theme='dark'] {
+	background-color: #000000;
+}
+
+[data-theme='light'] {
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
 	display: none !important;
 }

@@ -21,27 +21,12 @@
 
 <script>
 	import layout from '../../layout/layout.vue'
+	import { gameContentList,gameUrl } from './constant'
 	export default {
 		data() {
 			return {
-				url:"https://github.com/uioooou/uni-app-testing/tree/test",
-				gamelist: [{
-						gameTitle: "a",
-						gameImage: "../../static/square/a.png"
-					},
-					{
-						gameTitle: "b",
-						gameImage: "../../static/square/b.png"
-					},
-					{
-						gameTitle: "c",
-						gameImage: "../../static/square/c.png"
-					},
-					{
-						gameTitle: "d",
-						gameImage: "../../static/square/d.png"
-					}
-				]
+				url:gameUrl,
+				gamelist: gameContentList
 			}
 		},
 		onLoad() {
@@ -52,7 +37,6 @@
 		},
 		methods: {
 			navigateLink() {
-				console.log("hihi")
 				uni.navigateTo({
 					url:`/pages/webview/index?url=${this.url}`
 				})
@@ -60,41 +44,3 @@
 		}
 	}
 </script>
-
-<style>
-	.img {
-		width: 100%;
-		height: auto;
-		aspect-ratio: 1/1;
-		border-radius: 20rpx;
-		object-fit: cover;
-	}
-
-	.image-wrapper {
-		border-radius: 20rpx;
-	}
-
-	.download-wrapper {
-		display: flex;
-		flex-direction: column;
-		margin-top: 40rpx;
-		margin-bottom: 40rpx;
-		padding-left: 60rpx;
-		padding-right: 60rpx;
-	}
-
-	.download-button {
-		margin-top: 20rpx;
-		width: 100%;
-		font-size: 14rpx;
-	}
-	
-	.noData {
-		text-align: center;
-		height: 70vh;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-	}
-</style>

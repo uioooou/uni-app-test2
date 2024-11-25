@@ -1,0 +1,264 @@
+/* layout.vue */
+.layout {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.black-col {
+	background-color: $black;
+	height: 100%;
+}
+
+.main-content {
+	height: 0px;
+	flex: 1;
+}
+
+.menu {
+	margin: 20rpx;
+	display: flex;
+	flex-direction: row;
+}
+
+.fixedTop {
+	background-color: white;
+	top: 0;
+	z-index: 1;
+}
+
+.sidebar-content {
+	height: 100%;
+	background-color: white;
+}
+
+.drawer-content {
+	margin: 20rpx 40rpx;
+	height: 100%;
+}
+
+.drawer-header {
+	text-align: center;
+}
+
+.drawer-body {
+	text-align: center;
+	height: 50%;
+}
+
+.icon-img {
+	width: 100%;
+	aspect-ratio: 1/1;
+	height: auto;
+}
+
+.column {
+	background-color: $deep-blue;
+	width: 100%;
+	height: 100%;
+}
+
+.language-content {
+	width: 100%;
+	padding: 20rpx;
+	text-align: center;
+	background-color: white;
+	border-radius: 20rpx;
+	align-items: center;
+}
+
+.drawer-item {
+	margin-top: 20rpx;
+	margin-bottom: 20rpx;
+}
+
+.pop-up :deep(.uni-popup__wrapper) {
+	max-width: 80%;
+	min-width: 80%;
+}
+
+/*download*/
+
+.img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1/1;
+	border-radius: 20rpx;
+	object-fit: cover;
+}
+
+.image-wrapper {
+	border-radius: 20rpx;
+}
+
+.download-wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-top: 40rpx;
+	margin-bottom: 40rpx;
+	padding-left: 60rpx;
+	padding-right: 60rpx;
+}
+
+.download-button {
+	margin-top: 20rpx;
+	width: 100%;
+	font-size: 14rpx;
+}
+
+.noData {
+	text-align: center;
+	height: 70vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+/*home.vue*/
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.home-content {
+	width: 100%;
+}
+
+.text-area {
+	display: flex;
+	justify-content: center;
+}
+
+.title {
+	font-size: 36rpx;
+	color: $grey;
+}
+
+.mainContentWrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.subContentWrapper {
+	display: flex;
+	padding-left: 10rpx;
+	padding-right: 10rpx;
+	flex-direction: column;
+}
+
+.scrollView-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.category {
+	width: 100%;
+	aspect-ratio: 1/1;
+	height: auto;
+	background-color: white;
+	border: 1px solid $deep-blue;
+	color: $deep-blue;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	border-radius: 20rpx;
+	margin-bottom: 20rpx;
+}
+
+.gameContent {
+	width: 100%;
+	border-radius: 20rpx;
+	object-fit: cover;
+}
+
+.noDataHome {
+	text-align: center;
+	padding: 50rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+/*login*/
+
+.login-wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-content {
+	width: 80%;
+	border: 1px solid $blue;
+	padding: 40rpx;
+	border-radius: 30rpx;
+}
+.backButton {
+	position: absolute;
+	margin: 20rpx;
+	top: 0;
+	left: 0;
+}
+
+/*promotion*/
+
+.promotion-img-wrapper {
+	width: 100%;
+	border-top-right-radius: 20rpx;
+	border-top-left-radius: 20rpx;
+	position: relative;
+}
+
+.promotion-img {
+	width: 100%;
+	border-radius: 20rpx;
+	background-color: $black;
+}
+
+.promotion {
+	position: relative;
+}
+
+.promotion-icon {
+	position: absolute;
+	right: 5%;
+	top: 45%;
+}
+
+.promotion-desc {
+	padding: 20rpx;
+	padding-bottom: 50rpx;
+	border-bottom-left-radius: 20rpx;
+	border-bottom-right-radius: 20rpx;
+}
+
+.promotion-card{
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}
+
+.hidden {
+	display: none;
+}
+
+.show {
+	display: block;
+	background-color: $blue;
+}
+
+.bg-show {
+	background-color: $blue;
+}
+

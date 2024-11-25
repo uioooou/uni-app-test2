@@ -16,11 +16,12 @@
 	"English":"英语",
 	"Chinese":"华文",
 	"Login":"登录",
-	"Name":"名字",
-	"Password":"密码",
+	"name":"名字",
+	"password":"密码",
 	"Please enter your Name":"请输入名字",
 	"Please Enter your Password":"请输入密码",
 	"Name cannot be empty":"名字不能为空",
 	"Password cannot be empty":"密码不能为空",
-	"Telegram":"Telegram"
+	"Telegram":"Telegram",
+	"Taiwan":"Taiwan"
 }

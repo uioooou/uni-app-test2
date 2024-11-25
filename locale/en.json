@@ -16,11 +16,12 @@
 	"English":"English",
 	"Chinese":"Chinese",
 	"Login":"Login",
-	"Name":"Name",
-	"Password":"Password",
+	"name":"Name",
+	"password":"Password",
 	"Please enter your Name":"Please enter your Name",
 	"Please Enter your Password":"Please Enter your Password",
 	"Name cannot be empty":"Name cannot be empty",
 	"Password cannot be empty":"Password cannot be empty",
-	"Telegram":"Telegram"
+	"Telegram":"Telegram",
+	"Taiwan":"Taiwan"
 }

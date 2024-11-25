@@ -7,14 +7,13 @@
 						<h2>{{$i18n.t("Login")}}</h2>
 					</uni-col>
 					<uni-col>
-						<uni-forms ref="valiForm" :rules="rules" label-position="top" :modelValue="valiFormData">
-							<uni-forms-item :label="$i18n.t('Name')" required name="name">
-								<uni-easyinput v-model="valiFormData.name"
-									:placeholder="$i18n.t('Please enter your Name')" />
-							</uni-forms-item>
-							<uni-forms-item :label="$i18n.t('Password')" required name="password">
-								<uni-easyinput v-model="valiFormData.password" type="password"
-									:placeholder="$i18n.t('Please Enter your Password')" />
+						<uni-forms ref="valiForm" :rules="rules" label-position="top" :modelValue="validFormData">
+							<!-- //v-model does not support dynamic binding -->
+							<uni-forms-item v-for="(item,index) in formField" :label="$i18n.t(item.fieldName)"
+								:name="item.fieldName">
+								<uni-easyinput :value="validFormData[item.fieldName]"
+									@input="(value) => validFormData[item.fieldName] = value" :type="item.fieldType"
+									:placeholder="$i18n.t(item.placeholder)" />
 							</uni-forms-item>
 							<button type="primary" @click="handleLogin">{{$i18n.t("Login")}}</button>
 						</uni-forms>
@@ -34,11 +33,12 @@
 		useStore
 	} from 'vuex'
 	import i18n from '../../locale'
+	import loginForm from './form'
 	export default {
 		props: ['setOpenLogin'],
 		data() {
 			return {
-				valiFormData: {
+				validFormData: {
 					name: '',
 					password: '',
 				},
@@ -46,6 +46,7 @@
 					name: "LYP",
 					password: "admin"
 				},
+				formField: loginForm
 			}
 
 		},
@@ -65,7 +66,9 @@
 			}
 		},
 		setup() {
-			const {t} = i18n.global
+			const {
+				t
+			} = i18n.global
 			const store = useStore()
 			const rules = computed(() => ({
 				name: {
@@ -94,10 +97,11 @@
 			},
 			handleLogin() {
 				this.$refs.valiForm.validate().then(res => {
-					if (this.valiFormData.name === this.validLoginData.name && this.valiFormData.password === this
+					if (this.validFormData.name === this.validLoginData.name && this.validFormData.password ===
+						this
 						.validLoginData.password) {
 						console.log("login success")
-						this.loginAction(this.valiFormData)
+						this.loginAction(this.validFormData)
 						console.log(this.loginStatus)
 						this.handleMaskClick()
 					} else {

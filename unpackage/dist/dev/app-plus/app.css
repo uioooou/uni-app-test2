@@ -26,6 +26,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 /* Montserrat - Thin */
+/* Montserrat - Thin */
 @font-face {
     font-family: Montserrat;
     src: url('static/font/montserrat/Montserrat-Thin.ttf') format('truetype');
@@ -89,14 +90,540 @@
     font-style: normal;
 }
 body {
-		font-family: montserrat;
-		font-weight: 500;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
+	font-family: montserrat;
+	font-weight: 500;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
 }
-::-webkit-scrollbar{
+[data-theme='dark'] {
+	background-color: #000000;
+}
+[data-theme='light'] {
+	background-color: #ffffff;
+}
+::-webkit-scrollbar {
 	display: none !important;
 }
+/* layout.vue */
+.layout {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+.black-col {
+	background-color: $black;
+	height: 100%;
+}
+.main-content {
+	height: 0px;
+	flex: 1;
+}
+.menu {
+	margin: 0.625rem;
+	display: flex;
+	flex-direction: row;
+}
+.fixedTop {
+	background-color: white;
+	top: 0;
+	z-index: 1;
+}
+.sidebar-content {
+	height: 100%;
+	background-color: white;
+}
+.drawer-content {
+	margin: 0.625rem 1.25rem;
+	height: 100%;
+}
+.drawer-header {
+	text-align: center;
+}
+.drawer-body {
+	text-align: center;
+	height: 50%;
+}
+.icon-img {
+	width: 100%;
+	aspect-ratio: 1/1;
+	height: auto;
+}
+.column {
+	background-color: $deep-blue;
+	width: 100%;
+	height: 100%;
+}
+.language-content {
+	width: 100%;
+	padding: 0.625rem;
+	text-align: center;
+	background-color: white;
+	border-radius: 0.625rem;
+	align-items: center;
+}
+.drawer-item {
+	margin-top: 0.625rem;
+	margin-bottom: 0.625rem;
+}
+.pop-up .uni-popup__wrapper {
+	max-width: 80%;
+	min-width: 80%;
+}
+/*download*/
+.img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1/1;
+	border-radius: 0.625rem;
+	object-fit: cover;
+}
+.image-wrapper {
+	border-radius: 0.625rem;
+}
+.download-wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	padding-left: 1.875rem;
+	padding-right: 1.875rem;
+}
+.download-button {
+	margin-top: 0.625rem;
+	width: 100%;
+	font-size: 0.4375rem;
+}
+.noData {
+	text-align: center;
+	height: 70vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+/*home.vue*/
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.home-content {
+	width: 100%;
+}
+.text-area {
+	display: flex;
+	justify-content: center;
+}
+.title {
+	font-size: 1.125rem;
+	color: $grey;
+}
+.mainContentWrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+.subContentWrapper {
+	display: flex;
+	padding-left: 0.3125rem;
+	padding-right: 0.3125rem;
+	flex-direction: column;
+}
+.scrollView-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.category {
+	width: 100%;
+	aspect-ratio: 1/1;
+	height: auto;
+	background-color: white;
+	border: 1px solid $deep-blue;
+	color: $deep-blue;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	border-radius: 0.625rem;
+	margin-bottom: 0.625rem;
+}
+.gameContent {
+	width: 100%;
+	border-radius: 0.625rem;
+	object-fit: cover;
+}
+.noDataHome {
+	text-align: center;
+	padding: 1.5625rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+/*login*/
+.login-wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.login-content {
+	width: 80%;
+	border: 1px solid $blue;
+	padding: 1.25rem;
+	border-radius: 0.9375rem;
+}
+.backButton {
+	position: absolute;
+	margin: 0.625rem;
+	top: 0;
+	left: 0;
+}
+/*promotion*/
+.promotion-img-wrapper {
+	width: 100%;
+	border-top-right-radius: 0.625rem;
+	border-top-left-radius: 0.625rem;
+	position: relative;
+}
+.promotion-img {
+	width: 100%;
+	border-radius: 0.625rem;
+	background-color: $black;
+}
+.promotion {
+	position: relative;
+}
+.promotion-icon {
+	position: absolute;
+	right: 5%;
+	top: 45%;
+}
+.promotion-desc {
+	padding: 0.625rem;
+	padding-bottom: 1.5625rem;
+	border-bottom-left-radius: 0.625rem;
+	border-bottom-right-radius: 0.625rem;
+}
+.promotion-card{
+	margin-top: 0.3125rem;
+	margin-bottom: 0.3125rem;
+}
+.hidden {
+	display: none;
+}
+.show {
+	display: block;
+	background-color: $blue;
+}
+.bg-show {
+	background-color: $blue;
+}
 .adb{
-	background-color: black;
+	background-color: green;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+/* Montserrat - ExtraLight */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+/* Montserrat - Light */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+/* Montserrat - Regular (Normal) */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+/* Montserrat - Medium */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+/* Montserrat - SemiBold */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+/* Montserrat - Bold */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+/* Montserrat - ExtraBold */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+/* Montserrat - Black */
+@font-face {
+  font-family: Montserrat;
+  src: url("../font/montserrat/Montserrat-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+body {
+  font-family: montserrat;
+  font-weight: 500;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+[data-theme=dark] {
+  background-color: #000000;
+}
+[data-theme=light] {
+  background-color: #ffffff;
+}
+::-webkit-scrollbar {
+  display: none !important;
+}
+/* layout.vue */
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.black-col {
+  background-color: #000000;
+  height: 100%;
+}
+.main-content {
+  height: 0px;
+  flex: 1;
+}
+.menu {
+  margin: 0.625rem;
+  display: flex;
+  flex-direction: row;
+}
+.fixedTop {
+  background-color: white;
+  top: 0;
+  z-index: 1;
+}
+.sidebar-content {
+  height: 100%;
+  background-color: white;
+}
+.drawer-content {
+  margin: 0.625rem 1.25rem;
+  height: 100%;
+}
+.drawer-header {
+  text-align: center;
+}
+.drawer-body {
+  text-align: center;
+  height: 50%;
+}
+.icon-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  height: auto;
+}
+.column {
+  background-color: #007aff;
+  width: 100%;
+  height: 100%;
+}
+.language-content {
+  width: 100%;
+  padding: 0.625rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 0.625rem;
+  align-items: center;
+}
+.drawer-item {
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+.pop-up .uni-popup__wrapper {
+  max-width: 80%;
+  min-width: 80%;
+}
+/*download*/
+.img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 0.625rem;
+  object-fit: cover;
+}
+.image-wrapper {
+  border-radius: 0.625rem;
+}
+.download-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.875rem;
+  padding-right: 1.875rem;
+}
+.download-button {
+  margin-top: 0.625rem;
+  width: 100%;
+  font-size: 0.4375rem;
+}
+.noData {
+  text-align: center;
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/*home.vue*/
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.home-content {
+  width: 100%;
+}
+.text-area {
+  display: flex;
+  justify-content: center;
+}
+.title {
+  font-size: 1.125rem;
+  color: #dcdcdc;
+}
+.mainContentWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.subContentWrapper {
+  display: flex;
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
+  flex-direction: column;
+}
+.scrollView-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.category {
+  width: 100%;
+  aspect-ratio: 1/1;
+  height: auto;
+  background-color: white;
+  border: 1px solid #007aff;
+  color: #007aff;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+.gameContent {
+  width: 100%;
+  border-radius: 0.625rem;
+  object-fit: cover;
+}
+.noDataHome {
+  text-align: center;
+  padding: 1.5625rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/*login*/
+.login-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-content {
+  width: 80%;
+  border: 1px solid #84aee6;
+  padding: 1.25rem;
+  border-radius: 0.9375rem;
+}
+.backButton {
+  position: absolute;
+  margin: 0.625rem;
+  top: 0;
+  left: 0;
+}
+/*promotion*/
+.promotion-img-wrapper {
+  width: 100%;
+  border-top-right-radius: 0.625rem;
+  border-top-left-radius: 0.625rem;
+  position: relative;
+}
+.promotion-img {
+  width: 100%;
+  border-radius: 0.625rem;
+  background-color: #000000;
+}
+.promotion {
+  position: relative;
+}
+.promotion-icon {
+  position: absolute;
+  right: 5%;
+  top: 45%;
+}
+.promotion-desc {
+  padding: 0.625rem;
+  padding-bottom: 1.5625rem;
+  border-bottom-left-radius: 0.625rem;
+  border-bottom-right-radius: 0.625rem;
+}
+.promotion-card {
+  margin-top: 0.3125rem;
+  margin-bottom: 0.3125rem;
+}
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+  background-color: #84aee6;
+}
+.bg-show {
+  background-color: #84aee6;
+}
+.adb {
+  background-color: green;
 }

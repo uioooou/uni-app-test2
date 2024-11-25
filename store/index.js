@@ -3,15 +3,17 @@ import createPersistedState from "vuex-persistedstate"
 
 import user from "./user";
 import language from "./language";
+import theme from "./theme";
 
 const store =  createStore({
 	modules:{
 		user,
-		language
+		language,
+		theme
 	},
 	plugins:[
 		createPersistedState({
-			paths:['user'],
+			paths:['user','language','theme'],
 			storage:{
 				getItem: (key) => uni.getStorageSync(key),
 				setItem: (key, value) => uni.setStorageSync(key,value),

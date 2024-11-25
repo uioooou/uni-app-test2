@@ -15,6 +15,7 @@
 /* 颜色变量 */
 
 /* 行为相关颜色 */
+
 $uni-color-primary: #007aff;
 $uni-color-success: #4cd964;
 $uni-color-warning: #f0ad4e;
@@ -80,3 +81,10 @@ $black:#000000;
 $blue:#84aee6;
 $deep-blue:#007aff;
 $white:#ffffff;
+
+/* #ifdef APP-PLUS */
+@import '@/style/style.scss';
+/* #endif */
+
+
+

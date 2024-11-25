@@ -166,6 +166,7 @@
           "pagePath": "pages/home/index",
           "textLocales": {
             "en": "Home",
+            "tw": "Home",
             "zh": "首页"
           }
         },

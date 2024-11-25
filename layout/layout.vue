@@ -3,9 +3,13 @@
 		<view class="fixedTop">
 			<view class="menu">
 				<uni-icons type="bars" size="65" @click="onClickDrawer()"></uni-icons>
+				<uni-icons type="color" size="65" @click="handleChangeTheme()"></uni-icons>
 			</view>
 		</view>
-		<scroll-view scroll-y="true" class="main-content">
+		<scroll-view scroll-y="true" :data-theme="theme" class="main-content content-color" refresher-enabled="true"
+			:refresher-triggered="pullUpTriggered" :refresher-threshold="100" refresher-background="white"
+			@refresherpulling="onPulling" @refresherrefresh="onRefresh()" @refresherrestore="onRestore"
+			@refresherabort="onAbort">
 			<view>
 				<slot></slot>
 			</view>
@@ -20,7 +24,7 @@
 						{{userProfile}}
 					</uni-col>
 					<uni-col :span="24"><button type="primary" class="drawer-item"
-							@click="handleOpenLanguages">{{$i18n.t("Languages")}}</button></uni-col>
+							@click="handleOpenLanguages()">{{$i18n.t("Languages")}}</button></uni-col>
 					<uni-col :span="24"><button type="primary" class="drawer-item" v-if="this.loginStatus"
 							@click="handleLogoutAccount()">{{$i18n.t("Logout")}}</button></uni-col>
 					<uni-col :span="24"><button type="primary" class="drawer-item" v-if="!this.loginStatus"
@@ -30,13 +34,11 @@
 		</uni-drawer>
 		<uni-popup ref="languagePopup" class="pop-up" type="top">
 			<uni-row class="language-content" :gutter="10">
-				<uni-col :span="18">
+				<uni-col :span="24">
 					<h3>{{$i18n.t("Languages")}}</h3>
 				</uni-col>
-				<uni-col :span="18" style="margin-top: 20rpx;"><button @click='handleChangeLang("en")'
-						type="primary">{{$i18n.t("English")}}</button></uni-col>
-				<uni-col :span="18" style="margin-top: 20rpx;"><button @click='handleChangeLang("zh")'
-						type="primary">{{$i18n.t("Chinese")}}</button></uni-col>
+				<uni-col v-for="(item,index) in languageList" :span="24" style="margin-top: 20rpx;"><button
+						@click='handleChangeLang(item.value)' type="primary">{{$i18n.t(item.name)}}</button></uni-col>
 			</uni-row>
 		</uni-popup>
 		<customTabBar />
@@ -49,17 +51,24 @@
 	} from "vuex"
 	import Announcement from "../components/announcement/announcement.vue"
 	import CustomTabBar from "../components/customTabBar/customTabBar.vue"
+	import language from "./constant"
+	import {
+		getApiData,
+		getApiData2
+	} from "../api/home"
 	import {
 		computed
 	} from "vue"
 	export default {
 		components: {
 			Announcement,
-			CustomTabBar
+			CustomTabBar,
 		},
 		data() {
 			return {
-				userProfile: this.userProfile
+				userProfile: this.userProfile,
+				pullUpTriggered: false,
+				languageList: language
 			}
 		},
 		onLoad() {
@@ -69,12 +78,15 @@
 			const store = useStore()
 			const loginStatus = computed(() => store.getters.getLoginStatus)
 			const userProfile = computed(() => store.getters.getProfile || "null")
+			const theme = computed(() => store.getters.getTheme)
 
 			return {
 				changeLang: (lang) => store.commit("setLanguage", lang),
 				userProfile,
 				logout: () => store.dispatch("logoutAction"),
-				loginStatus
+				loginStatus,
+				theme,
+				setTheme: () => store.commit("setTheme")
 			}
 		},
 		methods: {
@@ -91,91 +103,46 @@
 			handleLogoutAccount() {
 				this.logout()
 			},
-			handleLoginAccount(){
+			handleLoginAccount() {
 				uni.navigateTo({
-					url:"/pages/login/index"
+					url: "/pages/login/index"
 				})
+			},
+			onPulling(e) {
+
+			},
+			onRefresh() {
+				console.log("refreshing")
+				var that = this;
+				if (!this.pullUpTriggered) {
+					//if pullUpTriggered is false, set pullUpTriggered true to display loading 
+					this.pullUpTriggered = true;
+					
+					//when api data load completed, set pullUpTriggered false to close the load screen 
+					Promise.all([this.getApiDataFunc(), this.getApiDataFunc2()]).then(res => {
+						that.pullUpTriggered = false;
+					})
+
+				}
+			},
+			onRestore() {
+				// this.pullUpTriggered = false;
+				console.log("onRestore");
+			},
+			onAbort() {
+				console.log("onAbort");
+			},
+			async getApiDataFunc() {
+				let result = await getApiData()
+				console.log(result)
+			},
+			async getApiDataFunc2() {
+				let result = await getApiData2()
+				console.log(result.data)
+			},
+			handleChangeTheme() {
+				this.setTheme()
 			}
 		}
 	}
 </script>
-
-<style lang="scss">
-	.layout {
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
-	}
-
-	.black-col {
-		background-color: $black;
-		height: 100%;
-	}
-
-	.main-content {
-		height: 0px;
-		flex: 1
-	}
-
-	.menu {
-		margin: 20rpx;
-	}
-
-	.fixedTop {
-		background-color: white;
-		top: 0;
-		z-index: 1;
-	}
-
-	.sidebar-content {
-		height: 100%;
-		background-color: white;
-	}
-
-	.drawer-content {
-		margin: 20rpx 40rpx;
-		height: 100%;
-	}
-
-	.drawer-header {
-		text-align: center;
-	}
-
-	.drawer-body {
-		text-align: center;
-		height: 50%;
-	}
-
-	.icon-img {
-		width: 100%;
-		aspect-ratio: 1/1;
-		height: auto;
-	}
-
-	.column {
-		background-color: $black;
-		width: 100%;
-		height: 100%;
-	}
-
-	.language-content {
-		width: 100%;
-		padding: 20rpx;
-		text-align: center;
-		background-color: white;
-		border-radius: 20rpx;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.drawer-item {
-		margin-top: 20rpx;
-		margin-bottom: 20rpx;
-	}
-
-	.pop-up :deep(.uni-popup__wrapper) {
-		max-width: 80%;
-		min-width: 80%;
-	}
-</style>

@@ -23,10 +23,8 @@
 		watch:{
 			open(newVal){
 				if(newVal){
-					console.log("pop up alrdy open")
 					this.handlePopUpOpen()
 				}else{
-					console.log("pop up not open")
 					this.handlePopUpClose()
 				}
 			}

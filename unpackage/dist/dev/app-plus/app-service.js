@@ -1537,7 +1537,7 @@ if (uni.restoreGlobal) {
           fontSize: 30
         })
       ]),
-      vue.createElementVNode("view", { class: "announcement-wrapper adb" }, [
+      vue.createElementVNode("view", { class: "announcement-wrapper" }, [
         vue.createElementVNode("image", {
           src: _imports_0,
           mode: "aspectFit",
@@ -2085,8 +2085,8 @@ if (uni.restoreGlobal) {
         };
       },
       // 驼峰转中横线
-      toLine(name) {
-        return name.replace(/([A-Z])/g, "-$1").toLowerCase();
+      toLine(name2) {
+        return name2.replace(/([A-Z])/g, "-$1").toLowerCase();
       }
     }
   };
@@ -2508,10 +2508,8 @@ if (uni.restoreGlobal) {
     watch: {
       open(newVal) {
         if (newVal) {
-          formatAppLog("log", "at components/customPopUp/customPopUp.vue:26", "pop up alrdy open");
           this.handlePopUpOpen();
         } else {
-          formatAppLog("log", "at components/customPopUp/customPopUp.vue:29", "pop up not open");
           this.handlePopUpClose();
         }
       }
@@ -3169,9 +3167,9 @@ if (uni.restoreGlobal) {
           _isRequiredField,
           _realName
         } = this.form;
-        const name = _realName(this.name);
+        const name2 = _realName(this.name);
         if (!value) {
-          value = this.form.formData[name];
+          value = this.form.formData[name2];
         }
         const ruleLen = this.itemRules.rules && this.itemRules.rules.length;
         if (!this.validator || !ruleLen || ruleLen === 0)
@@ -3181,7 +3179,7 @@ if (uni.restoreGlobal) {
         if (validateTrigger === "bind" || formtrigger) {
           result = await this.validator.validateUpdate(
             {
-              [name]: value
+              [name2]: value
             },
             formData
           );
@@ -3218,7 +3216,7 @@ if (uni.restoreGlobal) {
        */
       init(type = false) {
         const {
-          validator: validator2,
+          validator,
           formRules,
           childrens,
           formData,
@@ -3233,7 +3231,7 @@ if (uni.restoreGlobal) {
         this.localLabelPos = this._labelPosition();
         this.isRequired = this.required;
         this.form && type && childrens.push(this);
-        if (!validator2 || !formRules)
+        if (!validator || !formRules)
           return;
         if (!this.form.isFirstBorder) {
           this.form.isFirstBorder = true;
@@ -3246,17 +3244,17 @@ if (uni.restoreGlobal) {
           }
         }
         this.border = this.form.border;
-        const name = _realName(this.name);
+        const name2 = _realName(this.name);
         const itemRule = this.userRules || this.rules;
         if (typeof formRules === "object" && itemRule) {
-          formRules[name] = {
+          formRules[name2] = {
             rules: itemRule
           };
-          validator2.updateSchema(formRules);
+          validator.updateSchema(formRules);
         }
-        const itemRules = formRules[name] || {};
+        const itemRules = formRules[name2] || {};
         this.itemRules = itemRules;
-        this.validator = validator2;
+        this.validator = validator;
         this.itemSetValue(_getDataValue(this.name, localData));
         this.isRequired = this._isRequired();
       },
@@ -3277,10 +3275,10 @@ if (uni.restoreGlobal) {
       },
       // 设置item 的值
       itemSetValue(value) {
-        const name = this.form._realName(this.name);
+        const name2 = this.form._realName(this.name);
         const rules = this.itemRules.rules || [];
-        const val = this.form._getValue(name, value, rules);
-        this.form._setDataValue(name, this.form.formData, val);
+        const val = this.form._getValue(name2, value, rules);
+        this.form._setDataValue(name2, this.form.formData, val);
         return val;
       },
       /**
@@ -3838,11 +3836,11 @@ if (uni.restoreGlobal) {
       if (!value && value !== 0) {
         value = null;
       } else {
-        value = isNumber$2(Number(value)) ? Number(value) : value;
+        value = isNumber$1(Number(value)) ? Number(value) : value;
       }
     }
     if (!!isRuleBoolType) {
-      value = isBoolean$2(value) ? value : false;
+      value = isBoolean$1(value) ? value : false;
     }
     return value;
   };
@@ -3853,19 +3851,19 @@ if (uni.restoreGlobal) {
   const getDataValue = (field, data) => {
     return objGet(data, field);
   };
-  const realName = (name, data = {}) => {
-    const base_name = _basePath(name);
+  const realName = (name2, data = {}) => {
+    const base_name = _basePath(name2);
     if (typeof base_name === "object" && Array.isArray(base_name) && base_name.length > 1) {
       const realname = base_name.reduce((a2, b) => a2 += `#${b}`, "_formdata_");
       return realname;
     }
-    return base_name[0] || name;
+    return base_name[0] || name2;
   };
-  const isRealName = (name) => {
+  const isRealName = (name2) => {
     const reg = /^_formdata_#*/;
-    return reg.test(name);
+    return reg.test(name2);
   };
-  const rawData = (object = {}, name) => {
+  const rawData = (object = {}, name2) => {
     let newData = JSON.parse(JSON.stringify(object));
     let formData = {};
     for (let i2 in newData) {
@@ -3874,9 +3872,9 @@ if (uni.restoreGlobal) {
     }
     return formData;
   };
-  const name2arr = (name) => {
-    let field = name.replace("_formdata_#", "");
-    field = field.split("#").map((v) => isNumber$2(v) ? Number(v) : v);
+  const name2arr = (name2) => {
+    let field = name2.replace("_formdata_#", "");
+    field = field.split("#").map((v) => isNumber$1(v) ? Number(v) : v);
     return field;
   };
   const objSet = (object, path2, value) => {
@@ -3907,10 +3905,10 @@ if (uni.restoreGlobal) {
     }, object);
     return !val || val !== void 0 ? val : defaultVal;
   };
-  const isNumber$2 = (num) => {
+  const isNumber$1 = (num) => {
     return !isNaN(Number(num));
   };
-  const isBoolean$2 = (bool) => {
+  const isBoolean$1 = (bool) => {
     return typeof bool === "boolean";
   };
   const isRequiredField = (rules) => {
@@ -4070,9 +4068,9 @@ if (uni.restoreGlobal) {
     created() {
       let getbinddata = getApp().$vm.$.appContext.config.globalProperties.binddata;
       if (!getbinddata) {
-        getApp().$vm.$.appContext.config.globalProperties.binddata = function(name, value, formName) {
+        getApp().$vm.$.appContext.config.globalProperties.binddata = function(name2, value, formName) {
           if (formName) {
-            this.$refs[formName].setValue(name, value);
+            this.$refs[formName].setValue(name2, value);
           } else {
             let formVm;
             for (let i2 in this.$refs) {
@@ -4084,7 +4082,7 @@ if (uni.restoreGlobal) {
             }
             if (!formVm)
               return formatAppLog("error", "at uni_modules/uni-forms/components/uni-forms/uni-forms.vue:182", "当前 uni-froms 组件缺少 ref 属性");
-            formVm.setValue(name, value);
+            formVm.setValue(name2, value);
           }
         };
       }
@@ -4135,10 +4133,10 @@ if (uni.restoreGlobal) {
         props = [].concat(props);
         let invalidFields = {};
         this.childrens.forEach((item) => {
-          const name = realName(item.name);
-          if (props.indexOf(name) !== -1) {
+          const name2 = realName(item.name);
+          if (props.indexOf(name2) !== -1) {
             invalidFields = Object.assign({}, invalidFields, {
-              [name]: this.formData[name]
+              [name2]: this.formData[name2]
             });
           }
         });
@@ -4155,8 +4153,8 @@ if (uni.restoreGlobal) {
           if (props.length === 0) {
             item.errMsg = "";
           } else {
-            const name = realName(item.name);
-            if (props.indexOf(name) !== -1) {
+            const name2 = realName(item.name);
+            if (props.indexOf(name2) !== -1) {
               item.errMsg = "";
             }
           }
@@ -4209,8 +4207,8 @@ if (uni.restoreGlobal) {
         let tempFormData = JSON.parse(JSON.stringify(invalidFields));
         for (let i2 in childrens) {
           const child = childrens[i2];
-          let name = realName(child.name);
-          const result = await child.onFieldChange(tempFormData[name]);
+          let name2 = realName(child.name);
+          const result = await child.onFieldChange(tempFormData[name2]);
           if (result) {
             results.push(result);
             if (this.errShowType === "toast" || this.errShowType === "modal")
@@ -4409,7 +4407,7 @@ if (uni.restoreGlobal) {
       return fn(obj[key], key);
     });
   }
-  function isObject$3(obj) {
+  function isObject$2(obj) {
     return obj !== null && typeof obj === "object";
   }
   function isPromise(val) {
@@ -4661,7 +4659,7 @@ if (uni.restoreGlobal) {
     }, state);
   }
   function unifyObjectStyle(type, payload, options) {
-    if (isObject$3(type) && type.type) {
+    if (isObject$2(type) && type.type) {
       options = payload;
       payload = type;
       type = type.type;
@@ -5090,11 +5088,11 @@ if (uni.restoreGlobal) {
       if (!rawModule[key]) {
         return;
       }
-      var assertOptions2 = assertTypes[key];
+      var assertOptions = assertTypes[key];
       forEachValue(rawModule[key], function(value, type) {
         assert(
-          assertOptions2.assert(value),
-          makeAssertionMessage(path2, key, type, value, assertOptions2.expected)
+          assertOptions.assert(value),
+          makeAssertionMessage(path2, key, type, value, assertOptions.expected)
         );
       });
     });
@@ -5330,87 +5328,134 @@ if (uni.restoreGlobal) {
     this._committing = committing;
   };
   Object.defineProperties(Store.prototype, prototypeAccessors);
-  const SLOT$1 = "SLOT";
-  const LIVE$1 = "LIVE";
-  const FISH$1 = "FISH";
-  const SPORT$1 = "SPORT";
-  const HOT$1 = "HOT";
-  const Download$1 = "Download";
-  const Close$1 = "Close";
-  const Languages$1 = "Languages";
-  const Logout$1 = "Logout";
-  const English$1 = "English";
-  const Chinese$1 = "Chinese";
-  const Login$1 = "Login";
-  const Name$1 = "Name";
-  const Password$1 = "Password";
-  const Telegram$1 = "Telegram";
+  const SLOT$2 = "SLOT";
+  const LIVE$2 = "LIVE";
+  const FISH$2 = "FISH";
+  const SPORT$2 = "SPORT";
+  const HOT$2 = "HOT";
+  const Download$2 = "Download";
+  const Close$2 = "Close";
+  const Languages$2 = "Languages";
+  const Logout$2 = "Logout";
+  const English$2 = "English";
+  const Chinese$2 = "Chinese";
+  const Login$2 = "Login";
+  const name$2 = "Name";
+  const password$2 = "Password";
+  const Telegram$2 = "Telegram";
+  const Taiwan$2 = "Taiwan";
   const en = {
     "tab.Home": "Home",
     "tab.Promotion": "Promotion",
     "tab.Download": "Download",
     "tab.Support": "Support",
+    SLOT: SLOT$2,
+    LIVE: LIVE$2,
+    FISH: FISH$2,
+    SPORT: SPORT$2,
+    HOT: HOT$2,
+    Download: Download$2,
+    "Customer Support": "Customer Support",
+    Close: Close$2,
+    Languages: Languages$2,
+    Logout: Logout$2,
+    English: English$2,
+    Chinese: Chinese$2,
+    Login: Login$2,
+    name: name$2,
+    password: password$2,
+    "Please enter your Name": "Please enter your Name",
+    "Please Enter your Password": "Please Enter your Password",
+    "Name cannot be empty": "Name cannot be empty",
+    "Password cannot be empty": "Password cannot be empty",
+    Telegram: Telegram$2,
+    Taiwan: Taiwan$2
+  };
+  const SLOT$1 = "讲";
+  const LIVE$1 = "直播";
+  const FISH$1 = "鱼";
+  const SPORT$1 = "运动";
+  const HOT$1 = "热";
+  const Download$1 = "下载";
+  const Close$1 = "关闭";
+  const Languages$1 = "语言";
+  const Logout$1 = "登出";
+  const English$1 = "英语";
+  const Chinese$1 = "华文";
+  const Login$1 = "登录";
+  const name$1 = "名字";
+  const password$1 = "密码";
+  const Telegram$1 = "Telegram";
+  const Taiwan$1 = "Taiwan";
+  const zh = {
+    "tab.Home": "首页",
+    "tab.Promotion": "推荐",
+    "tab.Download": "下载",
+    "tab.Support": "支持",
     SLOT: SLOT$1,
     LIVE: LIVE$1,
     FISH: FISH$1,
     SPORT: SPORT$1,
     HOT: HOT$1,
     Download: Download$1,
-    "Customer Support": "Customer Support",
+    "Customer Support": "客户帮助",
     Close: Close$1,
     Languages: Languages$1,
     Logout: Logout$1,
     English: English$1,
     Chinese: Chinese$1,
     Login: Login$1,
-    Name: Name$1,
-    Password: Password$1,
-    "Please enter your Name": "Please enter your Name",
-    "Please Enter your Password": "Please Enter your Password",
-    "Name cannot be empty": "Name cannot be empty",
-    "Password cannot be empty": "Password cannot be empty",
-    Telegram: Telegram$1
+    name: name$1,
+    password: password$1,
+    "Please enter your Name": "请输入名字",
+    "Please Enter your Password": "请输入密码",
+    "Name cannot be empty": "名字不能为空",
+    "Password cannot be empty": "密码不能为空",
+    Telegram: Telegram$1,
+    Taiwan: Taiwan$1
   };
-  const SLOT = "讲";
-  const LIVE = "直播";
-  const FISH = "鱼";
-  const SPORT = "运动";
-  const HOT = "热";
-  const Download = "下载";
-  const Close = "关闭";
-  const Languages = "语言";
-  const Logout = "登出";
-  const English = "英语";
-  const Chinese = "华文";
-  const Login = "登录";
-  const Name = "名字";
-  const Password = "密码";
+  const SLOT = "SLOT";
+  const LIVE = "LIVE";
+  const FISH = "nihao";
+  const SPORT = "SPORT";
+  const HOT = "HOT";
+  const Download = "Download";
+  const Close = "Close";
+  const Languages = "Languages";
+  const Logout = "Logout";
+  const English = "English";
+  const Chinese = "Chinese";
+  const Login = "Login";
+  const name = "Name";
+  const password = "Password";
   const Telegram = "Telegram";
-  const zh = {
-    "tab.Home": "首页",
-    "tab.Promotion": "推荐",
-    "tab.Download": "下载",
-    "tab.Support": "支持",
+  const Taiwan = "Taiwan";
+  const tw = {
+    "tab.Home": "Home",
+    "tab.Promotion": "Promotion",
+    "tab.Download": "Download",
+    "tab.Support": "Support",
     SLOT,
     LIVE,
     FISH,
     SPORT,
     HOT,
     Download,
-    "Customer Support": "客户帮助",
+    "Customer Support": "Customer Support",
     Close,
     Languages,
     Logout,
     English,
     Chinese,
     Login,
-    Name,
-    Password,
-    "Please enter your Name": "请输入名字",
-    "Please Enter your Password": "请输入密码",
-    "Name cannot be empty": "名字不能为空",
-    "Password cannot be empty": "密码不能为空",
-    Telegram
+    name,
+    password,
+    "Please enter your Name": "Please enter your Name",
+    "Please Enter your Password": "Please Enter your Password",
+    "Name cannot be empty": "Name cannot be empty",
+    "Password cannot be empty": "Password cannot be empty",
+    Telegram,
+    Taiwan
   };
   /*!
     * @intlify/shared v9.1.9
@@ -5424,8 +5469,8 @@ if (uni.restoreGlobal) {
     const perf = inBrowser && window.performance;
     if (perf && perf.mark && perf.measure && perf.clearMarks && perf.clearMeasures) {
       mark = (tag) => perf.mark(tag);
-      measure = (name, startTag, endTag) => {
-        perf.measure(name, startTag, endTag);
+      measure = (name2, startTag, endTag) => {
+        perf.measure(name2, startTag, endTag);
         perf.clearMarks(startTag);
         perf.clearMarks(endTag);
       };
@@ -5433,7 +5478,7 @@ if (uni.restoreGlobal) {
   }
   const RE_ARGS = /\{([0-9a-zA-Z]+)\}/g;
   function format(message, ...args) {
-    if (args.length === 1 && isObject$2(args[0])) {
+    if (args.length === 1 && isObject$1(args[0])) {
       args = args[0];
     }
     if (!args || !args.hasOwnProperty) {
@@ -5444,13 +5489,13 @@ if (uni.restoreGlobal) {
     });
   }
   const hasSymbol = typeof Symbol === "function" && typeof Symbol.toStringTag === "symbol";
-  const makeSymbol = (name) => hasSymbol ? Symbol(name) : name;
+  const makeSymbol = (name2) => hasSymbol ? Symbol(name2) : name2;
   const generateFormatCacheKey = (locale, key, source) => friendlyJSONstringify({ l: locale, k: key, s: source });
   const friendlyJSONstringify = (json) => JSON.stringify(json).replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029").replace(/\u0027/g, "\\u0027");
-  const isNumber$1 = (val) => typeof val === "number" && isFinite(val);
-  const isDate$1 = (val) => toTypeString(val) === "[object Date]";
-  const isRegExp$1 = (val) => toTypeString(val) === "[object RegExp]";
-  const isEmptyObject = (val) => isPlainObject$1(val) && Object.keys(val).length === 0;
+  const isNumber = (val) => typeof val === "number" && isFinite(val);
+  const isDate = (val) => toTypeString(val) === "[object Date]";
+  const isRegExp = (val) => toTypeString(val) === "[object RegExp]";
+  const isEmptyObject = (val) => isPlainObject(val) && Object.keys(val).length === 0;
   function warn(msg, err) {
     if (typeof console !== "undefined") {
       console.warn(`[intlify] ` + msg);
@@ -5467,23 +5512,23 @@ if (uni.restoreGlobal) {
   function escapeHtml(rawText) {
     return rawText.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
   }
-  const hasOwnProperty$2 = Object.prototype.hasOwnProperty;
+  const hasOwnProperty$1 = Object.prototype.hasOwnProperty;
   function hasOwn$1(obj, key) {
-    return hasOwnProperty$2.call(obj, key);
+    return hasOwnProperty$1.call(obj, key);
   }
-  const isArray$1 = Array.isArray;
-  const isFunction$1 = (val) => typeof val === "function";
-  const isString$1 = (val) => typeof val === "string";
-  const isBoolean$1 = (val) => typeof val === "boolean";
-  const isObject$2 = (val) => (
+  const isArray = Array.isArray;
+  const isFunction = (val) => typeof val === "function";
+  const isString = (val) => typeof val === "string";
+  const isBoolean = (val) => typeof val === "boolean";
+  const isObject$1 = (val) => (
     // eslint-disable-line
     val !== null && typeof val === "object"
   );
   const objectToString = Object.prototype.toString;
   const toTypeString = (value) => objectToString.call(value);
-  const isPlainObject$1 = (val) => toTypeString(val) === "[object Object]";
+  const isPlainObject = (val) => toTypeString(val) === "[object Object]";
   const toDisplayString = (val) => {
-    return val == null ? "" : isArray$1(val) || isPlainObject$1(val) && val.toString === objectToString ? JSON.stringify(val, null, 2) : String(val);
+    return val == null ? "" : isArray(val) || isPlainObject(val) && val.toString === objectToString ? JSON.stringify(val, null, 2) : String(val);
   };
   const RANGE = 2;
   function generateCodeFrame(source, start = 0, end = source.length) {
@@ -5545,11 +5590,11 @@ if (uni.restoreGlobal) {
     * (c) 2021 kazuya kawaguchi
     * Released under the MIT License.
     */
-  const hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+  const hasOwnProperty = Object.prototype.hasOwnProperty;
   function hasOwn(obj, key) {
-    return hasOwnProperty$1.call(obj, key);
+    return hasOwnProperty.call(obj, key);
   }
-  const isObject$1 = (val) => (
+  const isObject = (val) => (
     // eslint-disable-line
     val !== null && typeof val === "object"
   );
@@ -5957,7 +6002,7 @@ if (uni.restoreGlobal) {
   }
   const cache = /* @__PURE__ */ new Map();
   function resolveValue(obj, path2) {
-    if (!isObject$1(obj)) {
+    if (!isObject(obj)) {
       return null;
     }
     let hit = cache.get(path2);
@@ -5984,7 +6029,7 @@ if (uni.restoreGlobal) {
     return last;
   }
   function handleFlatJson(obj) {
-    if (!isObject$1(obj)) {
+    if (!isObject(obj)) {
       return obj;
     }
     for (const key in obj) {
@@ -5995,7 +6040,7 @@ if (uni.restoreGlobal) {
         "."
         /* DOT */
       )) {
-        if (isObject$1(obj[key])) {
+        if (isObject(obj[key])) {
           handleFlatJson(obj[key]);
         }
       } else {
@@ -6013,7 +6058,7 @@ if (uni.restoreGlobal) {
         }
         currentObj[subKeys[lastIndex]] = obj[key];
         delete obj[key];
-        if (isObject$1(currentObj[subKeys[lastIndex]])) {
+        if (isObject(currentObj[subKeys[lastIndex]])) {
           handleFlatJson(currentObj[subKeys[lastIndex]]);
         }
       }
@@ -6038,8 +6083,8 @@ if (uni.restoreGlobal) {
     return choice ? Math.min(choice, 2) : 0;
   }
   function getPluralIndex(options) {
-    const index = isNumber$1(options.pluralIndex) ? options.pluralIndex : -1;
-    return options.named && (isNumber$1(options.named.count) || isNumber$1(options.named.n)) ? isNumber$1(options.named.count) ? options.named.count : isNumber$1(options.named.n) ? options.named.n : index : index;
+    const index = isNumber(options.pluralIndex) ? options.pluralIndex : -1;
+    return options.named && (isNumber(options.named.count) || isNumber(options.named.n)) ? isNumber(options.named.count) ? options.named.count : isNumber(options.named.n) ? options.named.n : index : index;
   }
   function normalizeNamed(pluralIndex, props) {
     if (!props.count) {
@@ -6052,22 +6097,22 @@ if (uni.restoreGlobal) {
   function createMessageContext(options = {}) {
     const locale = options.locale;
     const pluralIndex = getPluralIndex(options);
-    const pluralRule = isObject$2(options.pluralRules) && isString$1(locale) && isFunction$1(options.pluralRules[locale]) ? options.pluralRules[locale] : pluralDefault;
-    const orgPluralRule = isObject$2(options.pluralRules) && isString$1(locale) && isFunction$1(options.pluralRules[locale]) ? pluralDefault : void 0;
+    const pluralRule = isObject$1(options.pluralRules) && isString(locale) && isFunction(options.pluralRules[locale]) ? options.pluralRules[locale] : pluralDefault;
+    const orgPluralRule = isObject$1(options.pluralRules) && isString(locale) && isFunction(options.pluralRules[locale]) ? pluralDefault : void 0;
     const plural = (messages) => messages[pluralRule(pluralIndex, messages.length, orgPluralRule)];
     const _list = options.list || [];
     const list = (index) => _list[index];
     const _named = options.named || {};
-    isNumber$1(options.pluralIndex) && normalizeNamed(pluralIndex, _named);
+    isNumber(options.pluralIndex) && normalizeNamed(pluralIndex, _named);
     const named = (key) => _named[key];
     function message(key) {
-      const msg = isFunction$1(options.messages) ? options.messages(key) : isObject$2(options.messages) ? options.messages[key] : false;
+      const msg = isFunction(options.messages) ? options.messages(key) : isObject$1(options.messages) ? options.messages[key] : false;
       return !msg ? options.parent ? options.parent.message(key) : DEFAULT_MESSAGE : msg;
     }
-    const _modifier = (name) => options.modifiers ? options.modifiers[name] : DEFAULT_MODIFIER;
-    const normalize = isPlainObject$1(options.processor) && isFunction$1(options.processor.normalize) ? options.processor.normalize : DEFAULT_NORMALIZE;
-    const interpolate = isPlainObject$1(options.processor) && isFunction$1(options.processor.interpolate) ? options.processor.interpolate : DEFAULT_INTERPOLATE;
-    const type = isPlainObject$1(options.processor) && isString$1(options.processor.type) ? options.processor.type : DEFAULT_MESSAGE_DATA_TYPE;
+    const _modifier = (name2) => options.modifiers ? options.modifiers[name2] : DEFAULT_MODIFIER;
+    const normalize = isPlainObject(options.processor) && isFunction(options.processor.normalize) ? options.processor.normalize : DEFAULT_NORMALIZE;
+    const interpolate = isPlainObject(options.processor) && isFunction(options.processor.interpolate) ? options.processor.interpolate : DEFAULT_INTERPOLATE;
+    const type = isPlainObject(options.processor) && isString(options.processor.type) ? options.processor.type : DEFAULT_MESSAGE_DATA_TYPE;
     const ctx = {
       [
         "list"
@@ -6086,7 +6131,7 @@ if (uni.restoreGlobal) {
         /* LINKED */
       ]: (key, modifier) => {
         const msg = message(key)(ctx);
-        return isString$1(modifier) ? _modifier(modifier)(msg) : msg;
+        return isString(modifier) ? _modifier(modifier)(msg) : msg;
       },
       [
         "message"
@@ -6242,15 +6287,15 @@ if (uni.restoreGlobal) {
   function getWarnMessage$1(code, ...args) {
     return format(warnMessages$1[code], ...args);
   }
-  const VERSION$2 = "9.1.9";
+  const VERSION$1 = "9.1.9";
   const NOT_REOSLVED = -1;
   const MISSING_RESOLVE_VALUE = "";
   function getDefaultLinkedModifiers() {
     return {
-      upper: (val) => isString$1(val) ? val.toUpperCase() : val,
-      lower: (val) => isString$1(val) ? val.toLowerCase() : val,
+      upper: (val) => isString(val) ? val.toUpperCase() : val,
+      lower: (val) => isString(val) ? val.toLowerCase() : val,
       // prettier-ignore
-      capitalize: (val) => isString$1(val) ? `${val.charAt(0).toLocaleUpperCase()}${val.substr(1)}` : val
+      capitalize: (val) => isString(val) ? `${val.charAt(0).toLocaleUpperCase()}${val.substr(1)}` : val
     };
   }
   let _compiler;
@@ -6261,29 +6306,29 @@ if (uni.restoreGlobal) {
   const getAdditionalMeta = () => _additionalMeta;
   let _cid = 0;
   function createCoreContext(options = {}) {
-    const version = isString$1(options.version) ? options.version : VERSION$2;
-    const locale = isString$1(options.locale) ? options.locale : "en-US";
-    const fallbackLocale = isArray$1(options.fallbackLocale) || isPlainObject$1(options.fallbackLocale) || isString$1(options.fallbackLocale) || options.fallbackLocale === false ? options.fallbackLocale : locale;
-    const messages = isPlainObject$1(options.messages) ? options.messages : { [locale]: {} };
-    const datetimeFormats = isPlainObject$1(options.datetimeFormats) ? options.datetimeFormats : { [locale]: {} };
-    const numberFormats = isPlainObject$1(options.numberFormats) ? options.numberFormats : { [locale]: {} };
+    const version = isString(options.version) ? options.version : VERSION$1;
+    const locale = isString(options.locale) ? options.locale : "en-US";
+    const fallbackLocale = isArray(options.fallbackLocale) || isPlainObject(options.fallbackLocale) || isString(options.fallbackLocale) || options.fallbackLocale === false ? options.fallbackLocale : locale;
+    const messages = isPlainObject(options.messages) ? options.messages : { [locale]: {} };
+    const datetimeFormats = isPlainObject(options.datetimeFormats) ? options.datetimeFormats : { [locale]: {} };
+    const numberFormats = isPlainObject(options.numberFormats) ? options.numberFormats : { [locale]: {} };
     const modifiers = assign({}, options.modifiers || {}, getDefaultLinkedModifiers());
     const pluralRules = options.pluralRules || {};
-    const missing = isFunction$1(options.missing) ? options.missing : null;
-    const missingWarn = isBoolean$1(options.missingWarn) || isRegExp$1(options.missingWarn) ? options.missingWarn : true;
-    const fallbackWarn = isBoolean$1(options.fallbackWarn) || isRegExp$1(options.fallbackWarn) ? options.fallbackWarn : true;
+    const missing = isFunction(options.missing) ? options.missing : null;
+    const missingWarn = isBoolean(options.missingWarn) || isRegExp(options.missingWarn) ? options.missingWarn : true;
+    const fallbackWarn = isBoolean(options.fallbackWarn) || isRegExp(options.fallbackWarn) ? options.fallbackWarn : true;
     const fallbackFormat = !!options.fallbackFormat;
     const unresolving = !!options.unresolving;
-    const postTranslation = isFunction$1(options.postTranslation) ? options.postTranslation : null;
-    const processor = isPlainObject$1(options.processor) ? options.processor : null;
-    const warnHtmlMessage = isBoolean$1(options.warnHtmlMessage) ? options.warnHtmlMessage : true;
+    const postTranslation = isFunction(options.postTranslation) ? options.postTranslation : null;
+    const processor = isPlainObject(options.processor) ? options.processor : null;
+    const warnHtmlMessage = isBoolean(options.warnHtmlMessage) ? options.warnHtmlMessage : true;
     const escapeParameter = !!options.escapeParameter;
-    const messageCompiler = isFunction$1(options.messageCompiler) ? options.messageCompiler : _compiler;
-    const onWarn = isFunction$1(options.onWarn) ? options.onWarn : warn;
+    const messageCompiler = isFunction(options.messageCompiler) ? options.messageCompiler : _compiler;
+    const onWarn = isFunction(options.onWarn) ? options.onWarn : warn;
     const internalOptions = options;
-    const __datetimeFormatters = isObject$2(internalOptions.__datetimeFormatters) ? internalOptions.__datetimeFormatters : /* @__PURE__ */ new Map();
-    const __numberFormatters = isObject$2(internalOptions.__numberFormatters) ? internalOptions.__numberFormatters : /* @__PURE__ */ new Map();
-    const __meta = isObject$2(internalOptions.__meta) ? internalOptions.__meta : {};
+    const __datetimeFormatters = isObject$1(internalOptions.__datetimeFormatters) ? internalOptions.__datetimeFormatters : /* @__PURE__ */ new Map();
+    const __numberFormatters = isObject$1(internalOptions.__numberFormatters) ? internalOptions.__numberFormatters : /* @__PURE__ */ new Map();
+    const __meta = isObject$1(internalOptions.__meta) ? internalOptions.__meta : {};
     _cid++;
     const context = {
       version,
@@ -6339,7 +6384,7 @@ if (uni.restoreGlobal) {
     }
     if (missing !== null) {
       const ret = missing(context, locale, key, type);
-      return isString$1(ret) ? ret : key;
+      return isString(ret) ? ret : key;
     } else {
       if (isTranslateMissingWarn(missingWarn, key)) {
         onWarn(getWarnMessage$1(0, { key, locale }));
@@ -6356,12 +6401,12 @@ if (uni.restoreGlobal) {
     if (!chain) {
       chain = [];
       let block = [start];
-      while (isArray$1(block)) {
+      while (isArray(block)) {
         block = appendBlockToChain(chain, block, fallback);
       }
-      const defaults2 = isArray$1(fallback) ? fallback : isPlainObject$1(fallback) ? fallback["default"] ? fallback["default"] : null : fallback;
-      block = isString$1(defaults2) ? [defaults2] : defaults2;
-      if (isArray$1(block)) {
+      const defaults = isArray(fallback) ? fallback : isPlainObject(fallback) ? fallback["default"] ? fallback["default"] : null : fallback;
+      block = isString(defaults) ? [defaults] : defaults;
+      if (isArray(block)) {
         appendBlockToChain(chain, block, false);
       }
       context.__localeChainCache.set(start, chain);
@@ -6370,9 +6415,9 @@ if (uni.restoreGlobal) {
   }
   function appendBlockToChain(chain, block, blocks) {
     let follow = true;
-    for (let i2 = 0; i2 < block.length && isBoolean$1(follow); i2++) {
+    for (let i2 = 0; i2 < block.length && isBoolean(follow); i2++) {
       const locale = block[i2];
-      if (isString$1(locale)) {
+      if (isString(locale)) {
         follow = appendLocaleToChain(chain, block[i2], blocks);
       }
     }
@@ -6396,7 +6441,7 @@ if (uni.restoreGlobal) {
         follow = target[target.length - 1] !== "!";
         const locale = target.replace(/!/g, "");
         chain.push(locale);
-        if ((isArray$1(blocks) || isPlainObject$1(blocks)) && blocks[locale]) {
+        if ((isArray(blocks) || isPlainObject(blocks)) && blocks[locale]) {
           follow = blocks[locale];
         }
       }
@@ -6426,17 +6471,17 @@ if (uni.restoreGlobal) {
     ]: "The argument provided is not a valid ISO date string"
   };
   const NOOP_MESSAGE_FUNCTION = () => "";
-  const isMessageFunction = (val) => isFunction$1(val);
+  const isMessageFunction = (val) => isFunction(val);
   function translate(context, ...args) {
     const { fallbackFormat, postTranslation, unresolving, fallbackLocale, messages } = context;
     const [key, options] = parseTranslateArgs(...args);
-    const missingWarn = isBoolean$1(options.missingWarn) ? options.missingWarn : context.missingWarn;
-    const fallbackWarn = isBoolean$1(options.fallbackWarn) ? options.fallbackWarn : context.fallbackWarn;
-    const escapeParameter = isBoolean$1(options.escapeParameter) ? options.escapeParameter : context.escapeParameter;
+    const missingWarn = isBoolean(options.missingWarn) ? options.missingWarn : context.missingWarn;
+    const fallbackWarn = isBoolean(options.fallbackWarn) ? options.fallbackWarn : context.fallbackWarn;
+    const escapeParameter = isBoolean(options.escapeParameter) ? options.escapeParameter : context.escapeParameter;
     const resolvedMessage = !!options.resolvedMessage;
-    const defaultMsgOrKey = isString$1(options.default) || isBoolean$1(options.default) ? !isBoolean$1(options.default) ? options.default : key : fallbackFormat ? key : "";
+    const defaultMsgOrKey = isString(options.default) || isBoolean(options.default) ? !isBoolean(options.default) ? options.default : key : fallbackFormat ? key : "";
     const enableDefaultMsg = fallbackFormat || defaultMsgOrKey !== "";
-    const locale = isString$1(options.locale) ? options.locale : context.locale;
+    const locale = isString(options.locale) ? options.locale : context.locale;
     escapeParameter && escapeParams(options);
     let [format2, targetLocale, message] = !resolvedMessage ? resolveMessageFormat(context, key, locale, fallbackLocale, fallbackWarn, missingWarn) : [
       key,
@@ -6444,16 +6489,16 @@ if (uni.restoreGlobal) {
       messages[locale] || {}
     ];
     let cacheBaseKey = key;
-    if (!resolvedMessage && !(isString$1(format2) || isMessageFunction(format2))) {
+    if (!resolvedMessage && !(isString(format2) || isMessageFunction(format2))) {
       if (enableDefaultMsg) {
         format2 = defaultMsgOrKey;
         cacheBaseKey = format2;
       }
     }
-    if (!resolvedMessage && (!(isString$1(format2) || isMessageFunction(format2)) || !isString$1(targetLocale))) {
+    if (!resolvedMessage && (!(isString(format2) || isMessageFunction(format2)) || !isString(targetLocale))) {
       return unresolving ? NOT_REOSLVED : key;
     }
-    if (isString$1(format2) && context.messageCompiler == null) {
+    if (isString(format2) && context.messageCompiler == null) {
       warn(`The message format compilation is not supported in this build. Because message compiler isn't included. You need to pre-compilation all message format. So translate function return '${key}'.`);
       return key;
     }
@@ -6472,9 +6517,9 @@ if (uni.restoreGlobal) {
     {
       const payloads = {
         timestamp: Date.now(),
-        key: isString$1(key) ? key : isMessageFunction(format2) ? format2.key : "",
+        key: isString(key) ? key : isMessageFunction(format2) ? format2.key : "",
         locale: targetLocale || (isMessageFunction(format2) ? format2.locale : ""),
-        format: isString$1(format2) ? format2 : isMessageFunction(format2) ? format2.source : "",
+        format: isString(format2) ? format2 : isMessageFunction(format2) ? format2.source : "",
         message: ret
       };
       payloads.meta = assign({}, context.__meta, getAdditionalMeta() || {});
@@ -6483,11 +6528,11 @@ if (uni.restoreGlobal) {
     return ret;
   }
   function escapeParams(options) {
-    if (isArray$1(options.list)) {
-      options.list = options.list.map((item) => isString$1(item) ? escapeHtml(item) : item);
-    } else if (isObject$2(options.named)) {
+    if (isArray(options.list)) {
+      options.list = options.list.map((item) => isString(item) ? escapeHtml(item) : item);
+    } else if (isObject$1(options.named)) {
       Object.keys(options.named).forEach((key) => {
-        if (isString$1(options.named[key])) {
+        if (isString(options.named[key])) {
           options.named[key] = escapeHtml(options.named[key]);
         }
       });
@@ -6552,7 +6597,7 @@ if (uni.restoreGlobal) {
           measure("intlify message resolve", startTag, endTag);
         }
       }
-      if (isString$1(format2) || isFunction$1(format2))
+      if (isString(format2) || isFunction(format2))
         break;
       const missingRet = handleMissing(context, key, targetLocale, missingWarn, type);
       if (missingRet !== key) {
@@ -6633,27 +6678,27 @@ if (uni.restoreGlobal) {
   function parseTranslateArgs(...args) {
     const [arg1, arg2, arg3] = args;
     const options = {};
-    if (!isString$1(arg1) && !isNumber$1(arg1) && !isMessageFunction(arg1)) {
+    if (!isString(arg1) && !isNumber(arg1) && !isMessageFunction(arg1)) {
       throw createCoreError(
         14
         /* INVALID_ARGUMENT */
       );
     }
-    const key = isNumber$1(arg1) ? String(arg1) : isMessageFunction(arg1) ? arg1 : arg1;
-    if (isNumber$1(arg2)) {
+    const key = isNumber(arg1) ? String(arg1) : isMessageFunction(arg1) ? arg1 : arg1;
+    if (isNumber(arg2)) {
       options.plural = arg2;
-    } else if (isString$1(arg2)) {
+    } else if (isString(arg2)) {
       options.default = arg2;
-    } else if (isPlainObject$1(arg2) && !isEmptyObject(arg2)) {
+    } else if (isPlainObject(arg2) && !isEmptyObject(arg2)) {
       options.named = arg2;
-    } else if (isArray$1(arg2)) {
+    } else if (isArray(arg2)) {
       options.list = arg2;
     }
-    if (isNumber$1(arg3)) {
+    if (isNumber(arg3)) {
       options.plural = arg3;
-    } else if (isString$1(arg3)) {
+    } else if (isString(arg3)) {
       options.default = arg3;
-    } else if (isPlainObject$1(arg3)) {
+    } else if (isPlainObject(arg3)) {
       assign(options, arg3);
     }
     return [key, options];
@@ -6687,7 +6732,7 @@ ${codeFrame}` : message);
     const { modifiers, pluralRules } = context;
     const resolveMessage = (key) => {
       const val = resolveValue(message, key);
-      if (isString$1(val)) {
+      if (isString(val)) {
         let occurred = false;
         const errorDetector = () => {
           occurred = true;
@@ -6715,7 +6760,7 @@ ${codeFrame}` : message);
     if (options.named) {
       ctxOptions.named = options.named;
     }
-    if (isNumber$1(options.plural)) {
+    if (isNumber(options.plural)) {
       ctxOptions.pluralIndex = options.plural;
     }
     return ctxOptions;
@@ -6736,12 +6781,12 @@ ${codeFrame}` : message);
       return MISSING_RESOLVE_VALUE;
     }
     const [key, value, options, overrides] = parseDateTimeArgs(...args);
-    const missingWarn = isBoolean$1(options.missingWarn) ? options.missingWarn : context.missingWarn;
-    const fallbackWarn = isBoolean$1(options.fallbackWarn) ? options.fallbackWarn : context.fallbackWarn;
+    const missingWarn = isBoolean(options.missingWarn) ? options.missingWarn : context.missingWarn;
+    const fallbackWarn = isBoolean(options.fallbackWarn) ? options.fallbackWarn : context.fallbackWarn;
     const part = !!options.part;
-    const locale = isString$1(options.locale) ? options.locale : context.locale;
+    const locale = isString(options.locale) ? options.locale : context.locale;
     const locales = getLocaleChain(context, fallbackLocale, locale);
-    if (!isString$1(key) || key === "") {
+    if (!isString(key) || key === "") {
       return new Intl.DateTimeFormat(locale).format(value);
     }
     let datetimeFormat = {};
@@ -6772,12 +6817,12 @@ ${codeFrame}` : message);
       }
       datetimeFormat = datetimeFormats[targetLocale] || {};
       format2 = datetimeFormat[key];
-      if (isPlainObject$1(format2))
+      if (isPlainObject(format2))
         break;
       handleMissing(context, key, targetLocale, missingWarn, type);
       from = to;
     }
-    if (!isPlainObject$1(format2) || !isString$1(targetLocale)) {
+    if (!isPlainObject(format2) || !isString(targetLocale)) {
       return unresolving ? NOT_REOSLVED : key;
     }
     let id = `${targetLocale}__${key}`;
@@ -6796,7 +6841,7 @@ ${codeFrame}` : message);
     let options = {};
     let overrides = {};
     let value;
-    if (isString$1(arg1)) {
+    if (isString(arg1)) {
       if (!/\d{4}-\d{2}-\d{2}(T.*)?/.test(arg1)) {
         throw createCoreError(
           16
@@ -6812,7 +6857,7 @@ ${codeFrame}` : message);
           /* INVALID_ISO_DATE_ARGUMENT */
         );
       }
-    } else if (isDate$1(arg1)) {
+    } else if (isDate(arg1)) {
       if (isNaN(arg1.getTime())) {
         throw createCoreError(
           15
@@ -6820,7 +6865,7 @@ ${codeFrame}` : message);
         );
       }
       value = arg1;
-    } else if (isNumber$1(arg1)) {
+    } else if (isNumber(arg1)) {
       value = arg1;
     } else {
       throw createCoreError(
@@ -6828,17 +6873,17 @@ ${codeFrame}` : message);
         /* INVALID_ARGUMENT */
       );
     }
-    if (isString$1(arg2)) {
+    if (isString(arg2)) {
       options.key = arg2;
-    } else if (isPlainObject$1(arg2)) {
+    } else if (isPlainObject(arg2)) {
       options = arg2;
     }
-    if (isString$1(arg3)) {
+    if (isString(arg3)) {
       options.locale = arg3;
-    } else if (isPlainObject$1(arg3)) {
+    } else if (isPlainObject(arg3)) {
       overrides = arg3;
     }
-    if (isPlainObject$1(arg4)) {
+    if (isPlainObject(arg4)) {
       overrides = arg4;
     }
     return [options.key || "", value, options, overrides];
@@ -6864,12 +6909,12 @@ ${codeFrame}` : message);
       return MISSING_RESOLVE_VALUE;
     }
     const [key, value, options, overrides] = parseNumberArgs(...args);
-    const missingWarn = isBoolean$1(options.missingWarn) ? options.missingWarn : context.missingWarn;
-    const fallbackWarn = isBoolean$1(options.fallbackWarn) ? options.fallbackWarn : context.fallbackWarn;
+    const missingWarn = isBoolean(options.missingWarn) ? options.missingWarn : context.missingWarn;
+    const fallbackWarn = isBoolean(options.fallbackWarn) ? options.fallbackWarn : context.fallbackWarn;
     const part = !!options.part;
-    const locale = isString$1(options.locale) ? options.locale : context.locale;
+    const locale = isString(options.locale) ? options.locale : context.locale;
     const locales = getLocaleChain(context, fallbackLocale, locale);
-    if (!isString$1(key) || key === "") {
+    if (!isString(key) || key === "") {
       return new Intl.NumberFormat(locale).format(value);
     }
     let numberFormat = {};
@@ -6900,12 +6945,12 @@ ${codeFrame}` : message);
       }
       numberFormat = numberFormats[targetLocale] || {};
       format2 = numberFormat[key];
-      if (isPlainObject$1(format2))
+      if (isPlainObject(format2))
         break;
       handleMissing(context, key, targetLocale, missingWarn, type);
       from = to;
     }
-    if (!isPlainObject$1(format2) || !isString$1(targetLocale)) {
+    if (!isPlainObject(format2) || !isString(targetLocale)) {
       return unresolving ? NOT_REOSLVED : key;
     }
     let id = `${targetLocale}__${key}`;
@@ -6923,24 +6968,24 @@ ${codeFrame}` : message);
     const [arg1, arg2, arg3, arg4] = args;
     let options = {};
     let overrides = {};
-    if (!isNumber$1(arg1)) {
+    if (!isNumber(arg1)) {
       throw createCoreError(
         14
         /* INVALID_ARGUMENT */
       );
     }
     const value = arg1;
-    if (isString$1(arg2)) {
+    if (isString(arg2)) {
       options.key = arg2;
-    } else if (isPlainObject$1(arg2)) {
+    } else if (isPlainObject(arg2)) {
       options = arg2;
     }
-    if (isString$1(arg3)) {
+    if (isString(arg3)) {
       options.locale = arg3;
-    } else if (isPlainObject$1(arg3)) {
+    } else if (isPlainObject(arg3)) {
       overrides = arg3;
     }
-    if (isPlainObject$1(arg4)) {
+    if (isPlainObject(arg4)) {
       overrides = arg4;
     }
     return [options.key || "", value, options, overrides];
@@ -6991,7 +7036,7 @@ ${codeFrame}` : message);
     * (c) 2022 kazuya kawaguchi
     * Released under the MIT License.
     */
-  const VERSION$1 = "9.1.9";
+  const VERSION = "9.1.9";
   function initFeatureFlags() {
     let needWarn = false;
     {
@@ -7091,8 +7136,8 @@ ${codeFrame}` : message);
   }
   function getLocaleMessages(locale, options) {
     const { messages, __i18n } = options;
-    const ret = isPlainObject$1(messages) ? messages : isArray$1(__i18n) ? {} : { [locale]: {} };
-    if (isArray$1(__i18n)) {
+    const ret = isPlainObject(messages) ? messages : isArray(__i18n) ? {} : { [locale]: {} };
+    if (isArray(__i18n)) {
       __i18n.forEach(({ locale: locale2, resource }) => {
         if (locale2) {
           ret[locale2] = ret[locale2] || {};
@@ -7111,7 +7156,7 @@ ${codeFrame}` : message);
     }
     return ret;
   }
-  const isNotObjectOrIsArray = (val) => !isObject$2(val) || isArray$1(val);
+  const isNotObjectOrIsArray = (val) => !isObject$1(val) || isArray(val);
   function deepCopy(src, des) {
     if (isNotObjectOrIsArray(src) || isNotObjectOrIsArray(des)) {
       throw createI18nError(
@@ -7136,33 +7181,33 @@ ${codeFrame}` : message);
   function createComposer(options = {}) {
     const { __root } = options;
     const _isGlobal = __root === void 0;
-    let _inheritLocale = isBoolean$1(options.inheritLocale) ? options.inheritLocale : true;
+    let _inheritLocale = isBoolean(options.inheritLocale) ? options.inheritLocale : true;
     const _locale = vue.ref(
       // prettier-ignore
-      __root && _inheritLocale ? __root.locale.value : isString$1(options.locale) ? options.locale : "en-US"
+      __root && _inheritLocale ? __root.locale.value : isString(options.locale) ? options.locale : "en-US"
     );
     const _fallbackLocale = vue.ref(
       // prettier-ignore
-      __root && _inheritLocale ? __root.fallbackLocale.value : isString$1(options.fallbackLocale) || isArray$1(options.fallbackLocale) || isPlainObject$1(options.fallbackLocale) || options.fallbackLocale === false ? options.fallbackLocale : _locale.value
+      __root && _inheritLocale ? __root.fallbackLocale.value : isString(options.fallbackLocale) || isArray(options.fallbackLocale) || isPlainObject(options.fallbackLocale) || options.fallbackLocale === false ? options.fallbackLocale : _locale.value
     );
     const _messages = vue.ref(getLocaleMessages(_locale.value, options));
-    const _datetimeFormats = vue.ref(isPlainObject$1(options.datetimeFormats) ? options.datetimeFormats : { [_locale.value]: {} });
-    const _numberFormats = vue.ref(isPlainObject$1(options.numberFormats) ? options.numberFormats : { [_locale.value]: {} });
-    let _missingWarn = __root ? __root.missingWarn : isBoolean$1(options.missingWarn) || isRegExp$1(options.missingWarn) ? options.missingWarn : true;
-    let _fallbackWarn = __root ? __root.fallbackWarn : isBoolean$1(options.fallbackWarn) || isRegExp$1(options.fallbackWarn) ? options.fallbackWarn : true;
-    let _fallbackRoot = __root ? __root.fallbackRoot : isBoolean$1(options.fallbackRoot) ? options.fallbackRoot : true;
+    const _datetimeFormats = vue.ref(isPlainObject(options.datetimeFormats) ? options.datetimeFormats : { [_locale.value]: {} });
+    const _numberFormats = vue.ref(isPlainObject(options.numberFormats) ? options.numberFormats : { [_locale.value]: {} });
+    let _missingWarn = __root ? __root.missingWarn : isBoolean(options.missingWarn) || isRegExp(options.missingWarn) ? options.missingWarn : true;
+    let _fallbackWarn = __root ? __root.fallbackWarn : isBoolean(options.fallbackWarn) || isRegExp(options.fallbackWarn) ? options.fallbackWarn : true;
+    let _fallbackRoot = __root ? __root.fallbackRoot : isBoolean(options.fallbackRoot) ? options.fallbackRoot : true;
     let _fallbackFormat = !!options.fallbackFormat;
-    let _missing = isFunction$1(options.missing) ? options.missing : null;
-    let _runtimeMissing = isFunction$1(options.missing) ? defineCoreMissingHandler(options.missing) : null;
-    let _postTranslation = isFunction$1(options.postTranslation) ? options.postTranslation : null;
-    let _warnHtmlMessage = isBoolean$1(options.warnHtmlMessage) ? options.warnHtmlMessage : true;
+    let _missing = isFunction(options.missing) ? options.missing : null;
+    let _runtimeMissing = isFunction(options.missing) ? defineCoreMissingHandler(options.missing) : null;
+    let _postTranslation = isFunction(options.postTranslation) ? options.postTranslation : null;
+    let _warnHtmlMessage = isBoolean(options.warnHtmlMessage) ? options.warnHtmlMessage : true;
     let _escapeParameter = !!options.escapeParameter;
-    const _modifiers = __root ? __root.modifiers : isPlainObject$1(options.modifiers) ? options.modifiers : {};
+    const _modifiers = __root ? __root.modifiers : isPlainObject(options.modifiers) ? options.modifiers : {};
     let _pluralRules = options.pluralRules || __root && __root.pluralRules;
     let _context;
     function getCoreContext() {
       return createCoreContext({
-        version: VERSION$1,
+        version: VERSION,
         locale: _locale.value,
         fallbackLocale: _fallbackLocale.value,
         messages: _messages.value,
@@ -7183,9 +7228,9 @@ ${codeFrame}` : message);
         postTranslation: _postTranslation === null ? void 0 : _postTranslation,
         warnHtmlMessage: _warnHtmlMessage,
         escapeParameter: _escapeParameter,
-        __datetimeFormatters: isPlainObject$1(_context) ? _context.__datetimeFormatters : void 0,
-        __numberFormatters: isPlainObject$1(_context) ? _context.__numberFormatters : void 0,
-        __v_emitter: isPlainObject$1(_context) ? _context.__v_emitter : void 0,
+        __datetimeFormatters: isPlainObject(_context) ? _context.__datetimeFormatters : void 0,
+        __numberFormatters: isPlainObject(_context) ? _context.__numberFormatters : void 0,
+        __v_emitter: isPlainObject(_context) ? _context.__v_emitter : void 0,
         __meta: { framework: "vue" }
       });
     }
@@ -7219,7 +7264,7 @@ ${codeFrame}` : message);
     const datetimeFormats = vue.computed(() => _datetimeFormats.value);
     const numberFormats = vue.computed(() => _numberFormats.value);
     function getPostTranslationHandler() {
-      return isFunction$1(_postTranslation) ? _postTranslation : null;
+      return isFunction(_postTranslation) ? _postTranslation : null;
     }
     function setPostTranslationHandler(handler) {
       _postTranslation = handler;
@@ -7249,9 +7294,9 @@ ${codeFrame}` : message);
           setAdditionalMeta(null);
         }
       }
-      if (isNumber$1(ret) && ret === NOT_REOSLVED) {
+      if (isNumber(ret) && ret === NOT_REOSLVED) {
         const [key, arg2] = argumentParser();
-        if (__root && isString$1(key) && isResolvedTranslateMessage(warnType, arg2)) {
+        if (__root && isString(key) && isResolvedTranslateMessage(warnType, arg2)) {
           if (_fallbackRoot && (isTranslateFallbackWarn(_fallbackWarn, key) || isTranslateMissingWarn(_missingWarn, key))) {
             warn(getWarnMessage(6, {
               key,
@@ -7281,11 +7326,11 @@ ${codeFrame}` : message);
       }
     }
     function t2(...args) {
-      return wrapWithDeps((context) => translate(context, ...args), () => parseTranslateArgs(...args), "translate", (root) => root.t(...args), (key) => key, (val) => isString$1(val));
+      return wrapWithDeps((context) => translate(context, ...args), () => parseTranslateArgs(...args), "translate", (root) => root.t(...args), (key) => key, (val) => isString(val));
     }
     function rt(...args) {
       const [arg1, arg2, arg3] = args;
-      if (arg3 && !isObject$2(arg3)) {
+      if (arg3 && !isObject$1(arg3)) {
         throw createI18nError(
           15
           /* INVALID_ARGUMENT */
@@ -7294,13 +7339,13 @@ ${codeFrame}` : message);
       return t2(...[arg1, arg2, assign({ resolvedMessage: true }, arg3 || {})]);
     }
     function d(...args) {
-      return wrapWithDeps((context) => datetime(context, ...args), () => parseDateTimeArgs(...args), "datetime format", (root) => root.d(...args), () => MISSING_RESOLVE_VALUE, (val) => isString$1(val));
+      return wrapWithDeps((context) => datetime(context, ...args), () => parseDateTimeArgs(...args), "datetime format", (root) => root.d(...args), () => MISSING_RESOLVE_VALUE, (val) => isString(val));
     }
     function n2(...args) {
-      return wrapWithDeps((context) => number(context, ...args), () => parseNumberArgs(...args), "number format", (root) => root.n(...args), () => MISSING_RESOLVE_VALUE, (val) => isString$1(val));
+      return wrapWithDeps((context) => number(context, ...args), () => parseNumberArgs(...args), "number format", (root) => root.n(...args), () => MISSING_RESOLVE_VALUE, (val) => isString(val));
     }
     function normalize(values) {
-      return values.map((val) => isString$1(val) ? vue.createVNode(vue.Text, null, val, 0) : val);
+      return values.map((val) => isString(val) ? vue.createVNode(vue.Text, null, val, 0) : val);
     }
     const interpolate = (val) => val;
     const processor = {
@@ -7326,7 +7371,7 @@ ${codeFrame}` : message);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (root) => root[TransrateVNodeSymbol](...args),
         (key) => [vue.createVNode(vue.Text, null, key, 0)],
-        (val) => isArray$1(val)
+        (val) => isArray(val)
       );
     }
     function numberParts(...args) {
@@ -7337,7 +7382,7 @@ ${codeFrame}` : message);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (root) => root[NumberPartsSymbol](...args),
         () => [],
-        (val) => isString$1(val) || isArray$1(val)
+        (val) => isString(val) || isArray(val)
       );
     }
     function datetimeParts(...args) {
@@ -7348,7 +7393,7 @@ ${codeFrame}` : message);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (root) => root[DatetimePartsSymbol](...args),
         () => [],
-        (val) => isString$1(val) || isArray$1(val)
+        (val) => isString(val) || isArray(val)
       );
     }
     function setPluralRules(rules) {
@@ -7356,7 +7401,7 @@ ${codeFrame}` : message);
       _context.pluralRules = _pluralRules;
     }
     function te(key, locale2) {
-      const targetLocale = isString$1(locale2) ? locale2 : _locale.value;
+      const targetLocale = isString(locale2) ? locale2 : _locale.value;
       const message = getLocaleMessage(targetLocale);
       return resolveValue(message, key) !== null;
     }
@@ -7540,19 +7585,19 @@ ${codeFrame}` : message);
     return composer;
   }
   function convertComposerOptions(options) {
-    const locale = isString$1(options.locale) ? options.locale : "en-US";
-    const fallbackLocale = isString$1(options.fallbackLocale) || isArray$1(options.fallbackLocale) || isPlainObject$1(options.fallbackLocale) || options.fallbackLocale === false ? options.fallbackLocale : locale;
-    const missing = isFunction$1(options.missing) ? options.missing : void 0;
-    const missingWarn = isBoolean$1(options.silentTranslationWarn) || isRegExp$1(options.silentTranslationWarn) ? !options.silentTranslationWarn : true;
-    const fallbackWarn = isBoolean$1(options.silentFallbackWarn) || isRegExp$1(options.silentFallbackWarn) ? !options.silentFallbackWarn : true;
-    const fallbackRoot = isBoolean$1(options.fallbackRoot) ? options.fallbackRoot : true;
+    const locale = isString(options.locale) ? options.locale : "en-US";
+    const fallbackLocale = isString(options.fallbackLocale) || isArray(options.fallbackLocale) || isPlainObject(options.fallbackLocale) || options.fallbackLocale === false ? options.fallbackLocale : locale;
+    const missing = isFunction(options.missing) ? options.missing : void 0;
+    const missingWarn = isBoolean(options.silentTranslationWarn) || isRegExp(options.silentTranslationWarn) ? !options.silentTranslationWarn : true;
+    const fallbackWarn = isBoolean(options.silentFallbackWarn) || isRegExp(options.silentFallbackWarn) ? !options.silentFallbackWarn : true;
+    const fallbackRoot = isBoolean(options.fallbackRoot) ? options.fallbackRoot : true;
     const fallbackFormat = !!options.formatFallbackMessages;
-    const modifiers = isPlainObject$1(options.modifiers) ? options.modifiers : {};
+    const modifiers = isPlainObject(options.modifiers) ? options.modifiers : {};
     const pluralizationRules = options.pluralizationRules;
-    const postTranslation = isFunction$1(options.postTranslation) ? options.postTranslation : void 0;
-    const warnHtmlMessage = isString$1(options.warnHtmlInMessage) ? options.warnHtmlInMessage !== "off" : true;
+    const postTranslation = isFunction(options.postTranslation) ? options.postTranslation : void 0;
+    const warnHtmlMessage = isString(options.warnHtmlInMessage) ? options.warnHtmlInMessage !== "off" : true;
     const escapeParameter = !!options.escapeParameterHtml;
-    const inheritLocale = isBoolean$1(options.sync) ? options.sync : true;
+    const inheritLocale = isBoolean(options.sync) ? options.sync : true;
     if (options.formatter) {
       warn(getWarnMessage(
         8
@@ -7566,7 +7611,7 @@ ${codeFrame}` : message);
       ));
     }
     let messages = options.messages;
-    if (isPlainObject$1(options.sharedMessages)) {
+    if (isPlainObject(options.sharedMessages)) {
       const sharedMessages = options.sharedMessages;
       const locales = Object.keys(sharedMessages);
       messages = locales.reduce((messages2, locale2) => {
@@ -7664,17 +7709,17 @@ ${codeFrame}` : message);
       },
       // silentTranslationWarn
       get silentTranslationWarn() {
-        return isBoolean$1(composer.missingWarn) ? !composer.missingWarn : composer.missingWarn;
+        return isBoolean(composer.missingWarn) ? !composer.missingWarn : composer.missingWarn;
       },
       set silentTranslationWarn(val) {
-        composer.missingWarn = isBoolean$1(val) ? !val : val;
+        composer.missingWarn = isBoolean(val) ? !val : val;
       },
       // silentFallbackWarn
       get silentFallbackWarn() {
-        return isBoolean$1(composer.fallbackWarn) ? !composer.fallbackWarn : composer.fallbackWarn;
+        return isBoolean(composer.fallbackWarn) ? !composer.fallbackWarn : composer.fallbackWarn;
       },
       set silentFallbackWarn(val) {
-        composer.fallbackWarn = isBoolean$1(val) ? !val : val;
+        composer.fallbackWarn = isBoolean(val) ? !val : val;
       },
       // modifiers
       get modifiers() {
@@ -7741,23 +7786,23 @@ ${codeFrame}` : message);
         const options2 = {};
         let list = null;
         let named = null;
-        if (!isString$1(arg1)) {
+        if (!isString(arg1)) {
           throw createI18nError(
             15
             /* INVALID_ARGUMENT */
           );
         }
         const key = arg1;
-        if (isString$1(arg2)) {
+        if (isString(arg2)) {
           options2.locale = arg2;
-        } else if (isArray$1(arg2)) {
+        } else if (isArray(arg2)) {
           list = arg2;
-        } else if (isPlainObject$1(arg2)) {
+        } else if (isPlainObject(arg2)) {
           named = arg2;
         }
-        if (isArray$1(arg3)) {
+        if (isArray(arg3)) {
           list = arg3;
-        } else if (isPlainObject$1(arg3)) {
+        } else if (isPlainObject(arg3)) {
           named = arg3;
         }
         return composer.t(key, list || named || {}, options2);
@@ -7771,27 +7816,27 @@ ${codeFrame}` : message);
         const options2 = { plural: 1 };
         let list = null;
         let named = null;
-        if (!isString$1(arg1)) {
+        if (!isString(arg1)) {
           throw createI18nError(
             15
             /* INVALID_ARGUMENT */
           );
         }
         const key = arg1;
-        if (isString$1(arg2)) {
+        if (isString(arg2)) {
           options2.locale = arg2;
-        } else if (isNumber$1(arg2)) {
+        } else if (isNumber(arg2)) {
           options2.plural = arg2;
-        } else if (isArray$1(arg2)) {
+        } else if (isArray(arg2)) {
           list = arg2;
-        } else if (isPlainObject$1(arg2)) {
+        } else if (isPlainObject(arg2)) {
           named = arg2;
         }
-        if (isString$1(arg3)) {
+        if (isString(arg3)) {
           options2.locale = arg3;
-        } else if (isArray$1(arg3)) {
+        } else if (isArray(arg3)) {
           list = arg3;
-        } else if (isPlainObject$1(arg3)) {
+        } else if (isPlainObject(arg3)) {
           named = arg3;
         }
         return composer.t(key, list || named || {}, options2);
@@ -7904,7 +7949,7 @@ ${codeFrame}` : message);
       plural: {
         type: [Number, String],
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        validator: (val) => isNumber$1(val) || !isNaN(val)
+        validator: (val) => isNumber(val) || !isNaN(val)
       }
     }, baseFormatProps),
     /* eslint-enable */
@@ -7921,12 +7966,12 @@ ${codeFrame}` : message);
           options.locale = props.locale;
         }
         if (props.plural !== void 0) {
-          options.plural = isString$1(props.plural) ? +props.plural : props.plural;
+          options.plural = isString(props.plural) ? +props.plural : props.plural;
         }
         const arg = getInterpolateArg(context, keys);
         const children = i18n2[TransrateVNodeSymbol](props.keypath, arg, options);
         const assignedAttrs = assign({}, attrs);
-        return isString$1(props.tag) ? vue.h(props.tag, assignedAttrs, children) : isObject$2(props.tag) ? vue.h(props.tag, assignedAttrs, children) : vue.h(vue.Fragment, assignedAttrs, children);
+        return isString(props.tag) ? vue.h(props.tag, assignedAttrs, children) : isObject$1(props.tag) ? vue.h(props.tag, assignedAttrs, children) : vue.h(vue.Fragment, assignedAttrs, children);
       };
     }
   };
@@ -7951,10 +7996,10 @@ ${codeFrame}` : message);
       if (props.locale) {
         options.locale = props.locale;
       }
-      if (isString$1(props.format)) {
+      if (isString(props.format)) {
         options.key = props.format;
-      } else if (isObject$2(props.format)) {
-        if (isString$1(props.format.key)) {
+      } else if (isObject$1(props.format)) {
+        if (isString(props.format.key)) {
           options.key = props.format.key;
         }
         overrides = Object.keys(props.format).reduce((options2, prop) => {
@@ -7963,16 +8008,16 @@ ${codeFrame}` : message);
       }
       const parts = partFormatter(...[props.value, options, overrides]);
       let children = [options.key];
-      if (isArray$1(parts)) {
+      if (isArray(parts)) {
         children = parts.map((part, index) => {
           const slot = slots[part.type];
           return slot ? slot({ [part.type]: part.value, index, parts }) : [part.value];
         });
-      } else if (isString$1(parts)) {
+      } else if (isString(parts)) {
         children = [parts];
       }
       const assignedAttrs = assign({}, attrs);
-      return isString$1(props.tag) ? vue.h(props.tag, assignedAttrs, children) : isObject$2(props.tag) ? vue.h(props.tag, assignedAttrs, children) : vue.h(vue.Fragment, assignedAttrs, children);
+      return isString(props.tag) ? vue.h(props.tag, assignedAttrs, children) : isObject$1(props.tag) ? vue.h(props.tag, assignedAttrs, children) : vue.h(vue.Fragment, assignedAttrs, children);
     };
   }
   const NUMBER_FORMAT_KEYS = [
@@ -8066,7 +8111,7 @@ ${codeFrame}` : message);
     }
   }
   function vTDirective(i18n2) {
-    const bind2 = (el, { instance, value, modifiers }) => {
+    const bind = (el, { instance, value, modifiers }) => {
       if (!instance || !instance.$) {
         throw createI18nError(
           22
@@ -8084,14 +8129,14 @@ ${codeFrame}` : message);
       el.textContent = composer.t(...makeParams(parsedValue));
     };
     return {
-      beforeMount: bind2,
-      beforeUpdate: bind2
+      beforeMount: bind,
+      beforeUpdate: bind
     };
   }
   function parseValue(value) {
-    if (isString$1(value)) {
+    if (isString(value)) {
       return { path: value };
-    } else if (isPlainObject$1(value)) {
+    } else if (isPlainObject(value)) {
       if (!("path" in value)) {
         throw createI18nError(19, "path");
       }
@@ -8107,21 +8152,21 @@ ${codeFrame}` : message);
     const { path: path2, locale, args, choice, plural } = value;
     const options = {};
     const named = args || {};
-    if (isString$1(locale)) {
+    if (isString(locale)) {
       options.locale = locale;
     }
-    if (isNumber$1(choice)) {
+    if (isNumber(choice)) {
       options.plural = choice;
     }
-    if (isNumber$1(plural)) {
+    if (isNumber(plural)) {
       options.plural = plural;
     }
     return [path2, named, options];
   }
   function apply(app, i18n2, ...options) {
-    const pluginOptions = isPlainObject$1(options[0]) ? options[0] : {};
+    const pluginOptions = isPlainObject(options[0]) ? options[0] : {};
     const useI18nComponentName = !!pluginOptions.useI18nComponentName;
-    const globalInstall = isBoolean$1(pluginOptions.globalInstall) ? pluginOptions.globalInstall : true;
+    const globalInstall = isBoolean(pluginOptions.globalInstall) ? pluginOptions.globalInstall : true;
     if (globalInstall && useI18nComponentName) {
       warn(getWarnMessage(11, {
         name: Translation.name
@@ -8275,9 +8320,9 @@ ${codeFrame}` : message);
     const value = {};
     Object.keys(messages).forEach((key) => {
       const v = messages[key];
-      if (isFunction$1(v) && "source" in v) {
+      if (isFunction(v) && "source" in v) {
         value[key] = getMessageFunctionDetails(v);
-      } else if (isObject$2(v)) {
+      } else if (isObject$1(v)) {
         value[key] = getLocaleMessageValue(v);
       } else {
         value[key] = v;
@@ -8428,11 +8473,11 @@ ${codeFrame}` : message);
     const composer = getComposer$1(payload.nodeId, i18n2);
     if (composer) {
       const [field] = payload.path;
-      if (field === "locale" && isString$1(payload.state.value)) {
+      if (field === "locale" && isString(payload.state.value)) {
         composer.locale.value = payload.state.value;
-      } else if (field === "fallbackLocale" && (isString$1(payload.state.value) || isArray$1(payload.state.value) || isObject$2(payload.state.value))) {
+      } else if (field === "fallbackLocale" && (isString(payload.state.value) || isArray(payload.state.value) || isObject$1(payload.state.value))) {
         composer.fallbackLocale.value = payload.state.value;
-      } else if (field === "inheritLocale" && isBoolean$1(payload.state.value)) {
+      } else if (field === "inheritLocale" && isBoolean(payload.state.value)) {
         composer.inheritLocale = payload.state.value;
       }
     }
@@ -8547,7 +8592,7 @@ ${codeFrame}` : message);
     return root;
   }
   function createI18n(options = {}) {
-    const __legacyMode = isBoolean$1(options.legacy) ? options.legacy : true;
+    const __legacyMode = isBoolean(options.legacy) ? options.legacy : true;
     const __globalInjection = !!options.globalInjection;
     const __instances = /* @__PURE__ */ new Map();
     const __global = __legacyMode ? createVueI18n(options) : createComposer(options);
@@ -8637,7 +8682,7 @@ ${codeFrame}` : message);
     const global2 = i18n2.mode === "composition" ? i18n2.global : i18n2.global.__composer;
     const scope = isEmptyObject(options) ? "__i18n" in instance.type ? "local" : "global" : !options.useScope ? "local" : options.useScope;
     if (scope === "global") {
-      let messages = isObject$2(options.messages) ? options.messages : {};
+      let messages = isObject$1(options.messages) ? options.messages : {};
       if ("__i18nGlobal" in instance.type) {
         messages = getLocaleMessages(global2.locale.value, {
           messages,
@@ -8650,7 +8695,7 @@ ${codeFrame}` : message);
           global2.mergeLocaleMessage(locale, messages[locale]);
         });
       }
-      if (isObject$2(options.datetimeFormats)) {
+      if (isObject$1(options.datetimeFormats)) {
         const locales2 = Object.keys(options.datetimeFormats);
         if (locales2.length) {
           locales2.forEach((locale) => {
@@ -8658,7 +8703,7 @@ ${codeFrame}` : message);
           });
         }
       }
-      if (isObject$2(options.numberFormats)) {
+      if (isObject$1(options.numberFormats)) {
         const locales2 = Object.keys(options.numberFormats);
         if (locales2.length) {
           locales2.forEach((locale) => {
@@ -8807,22 +8852,36 @@ ${codeFrame}` : message);
     locale: uni.getStorageSync("languages") || "en",
     messages: {
       "en": en,
-      "zh": zh
+      "zh": zh,
+      "tw": tw
     }
   };
   const i18n = createI18n(i18nConfig);
+  const loginForm$1 = [
+    {
+      fieldName: "name",
+      fieldType: "text",
+      placeholder: "Please enter your Name"
+    },
+    {
+      fieldName: "password",
+      fieldType: "password",
+      placeholder: "Please Enter your Password"
+    }
+  ];
   const _sfc_main$b = {
     props: ["setOpenLogin"],
     data() {
       return {
-        valiFormData: {
+        validFormData: {
           name: "",
           password: ""
         },
         validLoginData: {
           name: "LYP",
           password: "admin"
-        }
+        },
+        formField: loginForm$1
       };
     },
     watch: {
@@ -8835,13 +8894,15 @@ ${codeFrame}` : message);
       },
       valiFormData: {
         handler(newVal) {
-          formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:62", newVal);
+          formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:63", newVal);
         },
         deep: true
       }
     },
     setup() {
-      const { t: t2 } = i18n.global;
+      const {
+        t: t2
+      } = i18n.global;
       const store2 = useStore();
       const rules = vue.computed(() => ({
         name: {
@@ -8869,13 +8930,13 @@ ${codeFrame}` : message);
       },
       handleLogin() {
         this.$refs.valiForm.validate().then((res) => {
-          if (this.valiFormData.name === this.validLoginData.name && this.valiFormData.password === this.validLoginData.password) {
-            formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:99", "login success");
-            this.loginAction(this.valiFormData);
-            formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:101", this.loginStatus);
+          if (this.validFormData.name === this.validLoginData.name && this.validFormData.password === this.validLoginData.password) {
+            formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:103", "login success");
+            this.loginAction(this.validFormData);
+            formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:105", this.loginStatus);
             this.handleMaskClick();
           } else {
-            formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:104", "wrong");
+            formatAppLog("log", "at components/loginPopUp/loginPopUp.vue:108", "wrong");
           }
         });
       }
@@ -8922,45 +8983,38 @@ ${codeFrame}` : message);
                       ref: "valiForm",
                       rules: $setup.rules,
                       "label-position": "top",
-                      modelValue: $data.valiFormData
+                      modelValue: $data.validFormData
                     }, {
                       default: vue.withCtx(() => [
-                        vue.createVNode(_component_uni_forms_item, {
-                          label: _ctx.$i18n.t("Name"),
-                          required: "",
-                          name: "name"
-                        }, {
-                          default: vue.withCtx(() => [
-                            vue.createVNode(_component_uni_easyinput, {
-                              modelValue: $data.valiFormData.name,
-                              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.valiFormData.name = $event),
-                              placeholder: _ctx.$i18n.t("Please enter your Name")
-                            }, null, 8, ["modelValue", "placeholder"])
-                          ]),
-                          _: 1
-                          /* STABLE */
-                        }, 8, ["label"]),
-                        vue.createVNode(_component_uni_forms_item, {
-                          label: _ctx.$i18n.t("Password"),
-                          required: "",
-                          name: "password"
-                        }, {
-                          default: vue.withCtx(() => [
-                            vue.createVNode(_component_uni_easyinput, {
-                              modelValue: $data.valiFormData.password,
-                              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.valiFormData.password = $event),
-                              type: "password",
-                              placeholder: _ctx.$i18n.t("Please Enter your Password")
-                            }, null, 8, ["modelValue", "placeholder"])
-                          ]),
-                          _: 1
-                          /* STABLE */
-                        }, 8, ["label"]),
+                        vue.createCommentVNode(" //v-model does not support dynamic binding "),
+                        (vue.openBlock(true), vue.createElementBlock(
+                          vue.Fragment,
+                          null,
+                          vue.renderList($data.formField, (item, index) => {
+                            return vue.openBlock(), vue.createBlock(_component_uni_forms_item, {
+                              label: _ctx.$i18n.t(item.fieldName),
+                              name: item.fieldName
+                            }, {
+                              default: vue.withCtx(() => [
+                                vue.createVNode(_component_uni_easyinput, {
+                                  value: $data.validFormData[item.fieldName],
+                                  onInput: (value) => $data.validFormData[item.fieldName] = value,
+                                  type: item.fieldType,
+                                  placeholder: _ctx.$i18n.t(item.placeholder)
+                                }, null, 8, ["value", "onInput", "type", "placeholder"])
+                              ]),
+                              _: 2
+                              /* DYNAMIC */
+                            }, 1032, ["label", "name"]);
+                          }),
+                          256
+                          /* UNKEYED_FRAGMENT */
+                        )),
                         vue.createElementVNode(
                           "button",
                           {
                             type: "primary",
-                            onClick: _cache[2] || (_cache[2] = (...args) => $options.handleLogin && $options.handleLogin(...args))
+                            onClick: _cache[0] || (_cache[0] = (...args) => $options.handleLogin && $options.handleLogin(...args))
                           },
                           vue.toDisplayString(_ctx.$i18n.t("Login")),
                           1
@@ -9095,15 +9149,38 @@ ${codeFrame}` : message);
     )) : vue.createCommentVNode("v-if", true);
   }
   const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__scopeId", "data-v-f7c32d22"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue"]]);
+  const route = [
+    {
+      route: "/pages/home/index",
+      name: "tab.Home",
+      icon: "home"
+    },
+    {
+      route: "/pages/promotion/index",
+      name: "tab.Promotion",
+      icon: "gift"
+    },
+    {
+      route: "/pages/download/index",
+      name: "tab.Download",
+      icon: "download"
+    }
+  ];
   const _sfc_main$9 = {
     data() {
       return {
-        sharedColor: "#007aff"
+        sharedColor: "#007aff",
+        pageRoute: route,
+        urlTest1: "/pages/webview/index?url=https://web.telegram.org/",
+        urlTest2: "https://play.google.com/store/games?device=windows"
       };
+    },
+    setup() {
+      useStore();
+      return {};
     },
     methods: {
       navigateTo(url) {
-        formatAppLog("log", "at components/customTabBar/customTabBar.vue:51", url);
         uni.switchTab({
           url
         });
@@ -9114,19 +9191,20 @@ ${codeFrame}` : message);
       closePopup() {
         this.$refs.supportPopup.close();
       },
+      //open telegram page in application page
       handleOpenTelegram() {
         uni.navigateTo({
-          url: "/pages/webview/index?url=https://web.telegram.org/"
+          url: this.urlTest1
         });
       },
-      //open to playstore
+      //redirect to new web page in browser
       handleOpenAppStore() {
         if (plus.os.name === "Android") {
-          var url = "https://play.google.com/store/games?device=windows";
+          var url = this.urlTest2;
           try {
             plus.runtime.openURL(url);
           } catch (e2) {
-            formatAppLog("log", "at components/customTabBar/customTabBar.vue:74", "error", e2);
+            formatAppLog("log", "at components/customTabBar/customTabBar.vue:81", "error", e2);
           }
         }
       }
@@ -9139,65 +9217,35 @@ ${codeFrame}` : message);
     const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_4$1);
     return vue.openBlock(), vue.createElementBlock("view", { class: "tabBar" }, [
       vue.createElementVNode("view", { class: "tab-bar" }, [
+        (vue.openBlock(true), vue.createElementBlock(
+          vue.Fragment,
+          null,
+          vue.renderList($data.pageRoute, (item, index) => {
+            return vue.openBlock(), vue.createElementBlock("view", {
+              class: "tab-item",
+              onClick: ($event) => $options.navigateTo(item.route)
+            }, [
+              vue.createVNode(_component_uni_icons, {
+                type: item.icon,
+                size: "60",
+                color: $data.sharedColor
+              }, null, 8, ["type", "color"]),
+              vue.createElementVNode(
+                "text",
+                { class: "tab-text" },
+                vue.toDisplayString(_ctx.$i18n.t(item.name)),
+                1
+                /* TEXT */
+              )
+            ], 8, ["onClick"]);
+          }),
+          256
+          /* UNKEYED_FRAGMENT */
+        )),
         vue.createElementVNode("view", {
           class: "tab-item",
-          onClick: _cache[0] || (_cache[0] = ($event) => $options.navigateTo("/pages/home/index"))
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.showSupportPopup && $options.showSupportPopup(...args))
         }, [
-          vue.createCommentVNode(' 				<image class="tab-icon" src="../../static/logo.png" /> '),
-          vue.createVNode(_component_uni_icons, {
-            type: "home",
-            size: "60",
-            color: $data.sharedColor
-          }, null, 8, ["color"]),
-          vue.createElementVNode(
-            "text",
-            { class: "tab-text" },
-            vue.toDisplayString(_ctx.$i18n.t("tab.Home")),
-            1
-            /* TEXT */
-          )
-        ]),
-        vue.createElementVNode("view", {
-          class: "tab-item",
-          onClick: _cache[1] || (_cache[1] = ($event) => $options.navigateTo("/pages/promotion/index"))
-        }, [
-          vue.createCommentVNode(' <image class="tab-icon" src="../../static/logo.png" /> '),
-          vue.createVNode(_component_uni_icons, {
-            type: "gift",
-            size: "60",
-            color: $data.sharedColor
-          }, null, 8, ["color"]),
-          vue.createElementVNode(
-            "text",
-            { class: "tab-text" },
-            vue.toDisplayString(_ctx.$i18n.t("tab.Promotion")),
-            1
-            /* TEXT */
-          )
-        ]),
-        vue.createElementVNode("view", {
-          class: "tab-item",
-          onClick: _cache[2] || (_cache[2] = ($event) => $options.navigateTo("/pages/download/index"))
-        }, [
-          vue.createCommentVNode(' <image class="tab-icon" src="../../static/logo.png" /> '),
-          vue.createVNode(_component_uni_icons, {
-            type: "download",
-            size: "60",
-            color: $data.sharedColor
-          }, null, 8, ["color"]),
-          vue.createElementVNode(
-            "text",
-            { class: "tab-text" },
-            vue.toDisplayString(_ctx.$i18n.t("tab.Download")),
-            1
-            /* TEXT */
-          )
-        ]),
-        vue.createElementVNode("view", {
-          class: "tab-item",
-          onClick: _cache[3] || (_cache[3] = (...args) => $options.showSupportPopup && $options.showSupportPopup(...args))
-        }, [
-          vue.createCommentVNode(' <image class="tab-icon" src="../../static/logo.png" /> '),
           vue.createVNode(_component_uni_icons, {
             type: "help",
             size: "60",
@@ -9246,7 +9294,7 @@ ${codeFrame}` : message);
                         vue.createElementVNode(
                           "button",
                           {
-                            onClick: _cache[4] || (_cache[4] = ($event) => $options.handleOpenAppStore()),
+                            onClick: _cache[1] || (_cache[1] = ($event) => $options.handleOpenAppStore()),
                             class: "button",
                             type: "primary"
                           },
@@ -9274,6 +9322,75 @@ ${codeFrame}` : message);
     ]);
   }
   const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__scopeId", "data-v-9bb2cc18"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/customTabBar/customTabBar.vue"]]);
+  const language$1 = [
+    {
+      name: "English",
+      value: "en"
+    },
+    {
+      name: "Chinese",
+      value: "zh"
+    },
+    {
+      name: "Taiwan",
+      value: "tw"
+    }
+  ];
+  function request(options) {
+    ({
+      "token": uni.getStorageSync("token")
+    });
+    if (options.params) {
+      options.data = option.params;
+    }
+    return new Promise((resolve, reject) => {
+      uni.request({
+        url: options.url,
+        data: options.data,
+        method: options.method || "GET",
+        header: {
+          ...options.header
+        },
+        success: (res) => {
+          if (res.statusCode && res.statusCode !== 200) {
+            uni.showToast({
+              icon: "error",
+              title: "API error" + res.errMsg
+            });
+          } else {
+            resolve(res.data);
+          }
+        },
+        fail: (err) => {
+          uni.showToast({
+            icon: "error",
+            title: "API fail" + err
+          });
+          reject(err);
+        }
+      });
+    });
+  }
+  const config = {
+    ossLink: "https://lienheng-sit.oss-ap-southeast-1.aliyuncs.com/",
+    apiURL: "http://192.168.1.104:8002/api"
+  };
+  let apiURL = config.apiURL;
+  let path = "product";
+  const getApiData = (params) => {
+    return request({
+      url: `https://dummyjson.com/${path}`
+      // method:"GET",
+      // params
+    });
+  };
+  const getApiData2 = (params) => {
+    return request({
+      url: `${apiURL}/public/getTop10Token`,
+      method: "POST"
+      // params
+    });
+  };
   const _sfc_main$8 = {
     components: {
       Announcement: __easycom_0$3,
@@ -9281,7 +9398,9 @@ ${codeFrame}` : message);
     },
     data() {
       return {
-        userProfile: this.userProfile
+        userProfile: this.userProfile,
+        pullUpTriggered: false,
+        languageList: language$1
       };
     },
     onLoad() {
@@ -9291,11 +9410,14 @@ ${codeFrame}` : message);
       const store2 = useStore();
       const loginStatus = vue.computed(() => store2.getters.getLoginStatus);
       const userProfile = vue.computed(() => store2.getters.getProfile || "null");
+      const theme2 = vue.computed(() => store2.getters.getTheme);
       return {
         changeLang: (lang) => store2.commit("setLanguage", lang),
         userProfile,
         logout: () => store2.dispatch("logoutAction"),
-        loginStatus
+        loginStatus,
+        theme: theme2,
+        setTheme: () => store2.commit("setTheme")
       };
     },
     methods: {
@@ -9316,6 +9438,35 @@ ${codeFrame}` : message);
         uni.navigateTo({
           url: "/pages/login/index"
         });
+      },
+      onPulling(e2) {
+      },
+      onRefresh() {
+        formatAppLog("log", "at layout/layout.vue:115", "refreshing");
+        var that = this;
+        if (!this.pullUpTriggered) {
+          this.pullUpTriggered = true;
+          Promise.all([this.getApiDataFunc(), this.getApiDataFunc2()]).then((res) => {
+            that.pullUpTriggered = false;
+          });
+        }
+      },
+      onRestore() {
+        formatAppLog("log", "at layout/layout.vue:130", "onRestore");
+      },
+      onAbort() {
+        formatAppLog("log", "at layout/layout.vue:133", "onAbort");
+      },
+      async getApiDataFunc() {
+        let result = await getApiData();
+        formatAppLog("log", "at layout/layout.vue:137", result);
+      },
+      async getApiDataFunc2() {
+        let result = await getApiData2();
+        formatAppLog("log", "at layout/layout.vue:141", result.data);
+      },
+      handleChangeTheme() {
+        this.setTheme();
       }
     }
   };
@@ -9333,17 +9484,31 @@ ${codeFrame}` : message);
             type: "bars",
             size: "65",
             onClick: _cache[0] || (_cache[0] = ($event) => $options.onClickDrawer())
+          }),
+          vue.createVNode(_component_uni_icons, {
+            type: "color",
+            size: "65",
+            onClick: _cache[1] || (_cache[1] = ($event) => $options.handleChangeTheme())
           })
         ])
       ]),
       vue.createElementVNode("scroll-view", {
         "scroll-y": "true",
-        class: "main-content"
+        "data-theme": $setup.theme,
+        class: "main-content content-color",
+        "refresher-enabled": "true",
+        "refresher-triggered": $data.pullUpTriggered,
+        "refresher-threshold": 100,
+        "refresher-background": "white",
+        onRefresherpulling: _cache[2] || (_cache[2] = (...args) => $options.onPulling && $options.onPulling(...args)),
+        onRefresherrefresh: _cache[3] || (_cache[3] = ($event) => $options.onRefresh()),
+        onRefresherrestore: _cache[4] || (_cache[4] = (...args) => $options.onRestore && $options.onRestore(...args)),
+        onRefresherabort: _cache[5] || (_cache[5] = (...args) => $options.onAbort && $options.onAbort(...args))
       }, [
         vue.createElementVNode("view", null, [
-          vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
+          vue.renderSlot(_ctx.$slots, "default")
         ])
-      ]),
+      ], 40, ["data-theme", "refresher-triggered"]),
       vue.createVNode(
         _component_uni_drawer,
         {
@@ -9383,7 +9548,7 @@ ${codeFrame}` : message);
                         {
                           type: "primary",
                           class: "drawer-item",
-                          onClick: _cache[1] || (_cache[1] = (...args) => $options.handleOpenLanguages && $options.handleOpenLanguages(...args))
+                          onClick: _cache[6] || (_cache[6] = ($event) => $options.handleOpenLanguages())
                         },
                         vue.toDisplayString(_ctx.$i18n.t("Languages")),
                         1
@@ -9401,7 +9566,7 @@ ${codeFrame}` : message);
                           key: 0,
                           type: "primary",
                           class: "drawer-item",
-                          onClick: _cache[2] || (_cache[2] = ($event) => $options.handleLogoutAccount())
+                          onClick: _cache[7] || (_cache[7] = ($event) => $options.handleLogoutAccount())
                         },
                         vue.toDisplayString(_ctx.$i18n.t("Logout")),
                         1
@@ -9419,7 +9584,7 @@ ${codeFrame}` : message);
                           key: 0,
                           type: "primary",
                           class: "drawer-item",
-                          onClick: _cache[3] || (_cache[3] = ($event) => $options.handleLoginAccount())
+                          onClick: _cache[8] || (_cache[8] = ($event) => $options.handleLoginAccount())
                         },
                         vue.toDisplayString(_ctx.$i18n.t("Login")),
                         1
@@ -9455,7 +9620,7 @@ ${codeFrame}` : message);
               gutter: 10
             }, {
               default: vue.withCtx(() => [
-                vue.createVNode(_component_uni_col, { span: 18 }, {
+                vue.createVNode(_component_uni_col, { span: 24 }, {
                   default: vue.withCtx(() => [
                     vue.createElementVNode(
                       "h3",
@@ -9468,44 +9633,33 @@ ${codeFrame}` : message);
                   _: 1
                   /* STABLE */
                 }),
-                vue.createVNode(_component_uni_col, {
-                  span: 18,
-                  style: { "margin-top": "20rpx" }
-                }, {
-                  default: vue.withCtx(() => [
-                    vue.createElementVNode(
-                      "button",
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.languageList, (item, index) => {
+                    return vue.openBlock(), vue.createBlock(
+                      _component_uni_col,
                       {
-                        onClick: _cache[4] || (_cache[4] = ($event) => $options.handleChangeLang("en")),
-                        type: "primary"
+                        span: 24,
+                        style: { "margin-top": "20rpx" }
                       },
-                      vue.toDisplayString(_ctx.$i18n.t("English")),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  _: 1
-                  /* STABLE */
-                }),
-                vue.createVNode(_component_uni_col, {
-                  span: 18,
-                  style: { "margin-top": "20rpx" }
-                }, {
-                  default: vue.withCtx(() => [
-                    vue.createElementVNode(
-                      "button",
                       {
-                        onClick: _cache[5] || (_cache[5] = ($event) => $options.handleChangeLang("zh")),
-                        type: "primary"
+                        default: vue.withCtx(() => [
+                          vue.createElementVNode("button", {
+                            onClick: ($event) => $options.handleChangeLang(item.value),
+                            type: "primary"
+                          }, vue.toDisplayString(_ctx.$i18n.t(item.name)), 9, ["onClick"])
+                        ]),
+                        _: 2
+                        /* DYNAMIC */
                       },
-                      vue.toDisplayString(_ctx.$i18n.t("Chinese")),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  _: 1
-                  /* STABLE */
-                })
+                      1024
+                      /* DYNAMIC_SLOTS */
+                    );
+                  }),
+                  256
+                  /* UNKEYED_FRAGMENT */
+                ))
               ]),
               _: 1
               /* STABLE */
@@ -9520,2463 +9674,56 @@ ${codeFrame}` : message);
       vue.createVNode(_component_customTabBar)
     ]);
   }
-  const layout = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-083a11c5"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/layout/layout.vue"]]);
-  function request(options) {
-    ({
-      "token": uni.getStorageSync("token")
-    });
-    if (options.params) {
-      options.data = option.params;
-    }
-    return new Promise((resolve, reject) => {
-      uni.request({
-        url: options.url,
-        data: options.data,
-        method: options.method || "GET",
-        header: {
-          ...options.header
-        },
-        success: (res) => {
-          if (res.statusCode && res.statusCode !== 200) {
-            uni.showToast({
-              icon: "error",
-              title: "API error" + res.errMsg
-            });
-          } else {
-            resolve(res.data);
-          }
-        },
-        fail: (err) => {
-          uni.showToast({
-            icon: "error",
-            title: "API fail" + err
-          });
-          reject(err);
-        }
-      });
-    });
-  }
-  function bind(fn, thisArg) {
-    return function wrap() {
-      return fn.apply(thisArg, arguments);
-    };
-  }
-  const { toString: toString$1 } = Object.prototype;
-  const { getPrototypeOf } = Object;
-  const kindOf = /* @__PURE__ */ ((cache2) => (thing) => {
-    const str = toString$1.call(thing);
-    return cache2[str] || (cache2[str] = str.slice(8, -1).toLowerCase());
-  })(/* @__PURE__ */ Object.create(null));
-  const kindOfTest = (type) => {
-    type = type.toLowerCase();
-    return (thing) => kindOf(thing) === type;
+  const layout = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/layout/layout.vue"]]);
+  const global$1 = {
+    widthSpan: 8
   };
-  const typeOfTest = (type) => (thing) => typeof thing === type;
-  const { isArray } = Array;
-  const isUndefined = typeOfTest("undefined");
-  function isBuffer(val) {
-    return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && isFunction(val.constructor.isBuffer) && val.constructor.isBuffer(val);
-  }
-  const isArrayBuffer = kindOfTest("ArrayBuffer");
-  function isArrayBufferView(val) {
-    let result;
-    if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) {
-      result = ArrayBuffer.isView(val);
-    } else {
-      result = val && val.buffer && isArrayBuffer(val.buffer);
-    }
-    return result;
-  }
-  const isString = typeOfTest("string");
-  const isFunction = typeOfTest("function");
-  const isNumber = typeOfTest("number");
-  const isObject = (thing) => thing !== null && typeof thing === "object";
-  const isBoolean = (thing) => thing === true || thing === false;
-  const isPlainObject = (val) => {
-    if (kindOf(val) !== "object") {
-      return false;
-    }
-    const prototype2 = getPrototypeOf(val);
-    return (prototype2 === null || prototype2 === Object.prototype || Object.getPrototypeOf(prototype2) === null) && !(Symbol.toStringTag in val) && !(Symbol.iterator in val);
-  };
-  const isDate = kindOfTest("Date");
-  const isFile = kindOfTest("File");
-  const isBlob = kindOfTest("Blob");
-  const isFileList = kindOfTest("FileList");
-  const isStream = (val) => isObject(val) && isFunction(val.pipe);
-  const isFormData = (thing) => {
-    let kind;
-    return thing && (typeof FormData === "function" && thing instanceof FormData || isFunction(thing.append) && ((kind = kindOf(thing)) === "formdata" || // detect form-data instance
-    kind === "object" && isFunction(thing.toString) && thing.toString() === "[object FormData]"));
-  };
-  const isURLSearchParams = kindOfTest("URLSearchParams");
-  const [isReadableStream, isRequest, isResponse, isHeaders] = ["ReadableStream", "Request", "Response", "Headers"].map(kindOfTest);
-  const trim = (str) => str.trim ? str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
-  function forEach(obj, fn, { allOwnKeys = false } = {}) {
-    if (obj === null || typeof obj === "undefined") {
-      return;
-    }
-    let i2;
-    let l;
-    if (typeof obj !== "object") {
-      obj = [obj];
-    }
-    if (isArray(obj)) {
-      for (i2 = 0, l = obj.length; i2 < l; i2++) {
-        fn.call(null, obj[i2], i2, obj);
-      }
-    } else {
-      const keys = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
-      const len = keys.length;
-      let key;
-      for (i2 = 0; i2 < len; i2++) {
-        key = keys[i2];
-        fn.call(null, obj[key], key, obj);
-      }
-    }
-  }
-  function findKey(obj, key) {
-    key = key.toLowerCase();
-    const keys = Object.keys(obj);
-    let i2 = keys.length;
-    let _key;
-    while (i2-- > 0) {
-      _key = keys[i2];
-      if (key === _key.toLowerCase()) {
-        return _key;
-      }
-    }
-    return null;
-  }
-  const _global = (() => {
-    if (typeof globalThis !== "undefined")
-      return globalThis;
-    return typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : global;
-  })();
-  const isContextDefined = (context) => !isUndefined(context) && context !== _global;
-  function merge() {
-    const { caseless } = isContextDefined(this) && this || {};
-    const result = {};
-    const assignValue = (val, key) => {
-      const targetKey = caseless && findKey(result, key) || key;
-      if (isPlainObject(result[targetKey]) && isPlainObject(val)) {
-        result[targetKey] = merge(result[targetKey], val);
-      } else if (isPlainObject(val)) {
-        result[targetKey] = merge({}, val);
-      } else if (isArray(val)) {
-        result[targetKey] = val.slice();
-      } else {
-        result[targetKey] = val;
-      }
-    };
-    for (let i2 = 0, l = arguments.length; i2 < l; i2++) {
-      arguments[i2] && forEach(arguments[i2], assignValue);
-    }
-    return result;
-  }
-  const extend = (a2, b, thisArg, { allOwnKeys } = {}) => {
-    forEach(b, (val, key) => {
-      if (thisArg && isFunction(val)) {
-        a2[key] = bind(val, thisArg);
-      } else {
-        a2[key] = val;
-      }
-    }, { allOwnKeys });
-    return a2;
-  };
-  const stripBOM = (content) => {
-    if (content.charCodeAt(0) === 65279) {
-      content = content.slice(1);
-    }
-    return content;
-  };
-  const inherits = (constructor, superConstructor, props, descriptors2) => {
-    constructor.prototype = Object.create(superConstructor.prototype, descriptors2);
-    constructor.prototype.constructor = constructor;
-    Object.defineProperty(constructor, "super", {
-      value: superConstructor.prototype
-    });
-    props && Object.assign(constructor.prototype, props);
-  };
-  const toFlatObject = (sourceObj, destObj, filter, propFilter) => {
-    let props;
-    let i2;
-    let prop;
-    const merged = {};
-    destObj = destObj || {};
-    if (sourceObj == null)
-      return destObj;
-    do {
-      props = Object.getOwnPropertyNames(sourceObj);
-      i2 = props.length;
-      while (i2-- > 0) {
-        prop = props[i2];
-        if ((!propFilter || propFilter(prop, sourceObj, destObj)) && !merged[prop]) {
-          destObj[prop] = sourceObj[prop];
-          merged[prop] = true;
-        }
-      }
-      sourceObj = filter !== false && getPrototypeOf(sourceObj);
-    } while (sourceObj && (!filter || filter(sourceObj, destObj)) && sourceObj !== Object.prototype);
-    return destObj;
-  };
-  const endsWith = (str, searchString, position) => {
-    str = String(str);
-    if (position === void 0 || position > str.length) {
-      position = str.length;
-    }
-    position -= searchString.length;
-    const lastIndex = str.indexOf(searchString, position);
-    return lastIndex !== -1 && lastIndex === position;
-  };
-  const toArray = (thing) => {
-    if (!thing)
-      return null;
-    if (isArray(thing))
-      return thing;
-    let i2 = thing.length;
-    if (!isNumber(i2))
-      return null;
-    const arr = new Array(i2);
-    while (i2-- > 0) {
-      arr[i2] = thing[i2];
-    }
-    return arr;
-  };
-  const isTypedArray = /* @__PURE__ */ ((TypedArray) => {
-    return (thing) => {
-      return TypedArray && thing instanceof TypedArray;
-    };
-  })(typeof Uint8Array !== "undefined" && getPrototypeOf(Uint8Array));
-  const forEachEntry = (obj, fn) => {
-    const generator = obj && obj[Symbol.iterator];
-    const iterator = generator.call(obj);
-    let result;
-    while ((result = iterator.next()) && !result.done) {
-      const pair = result.value;
-      fn.call(obj, pair[0], pair[1]);
-    }
-  };
-  const matchAll = (regExp, str) => {
-    let matches;
-    const arr = [];
-    while ((matches = regExp.exec(str)) !== null) {
-      arr.push(matches);
-    }
-    return arr;
-  };
-  const isHTMLForm = kindOfTest("HTMLFormElement");
-  const toCamelCase = (str) => {
-    return str.toLowerCase().replace(
-      /[-_\s]([a-z\d])(\w*)/g,
-      function replacer(m, p1, p2) {
-        return p1.toUpperCase() + p2;
-      }
-    );
-  };
-  const hasOwnProperty = (({ hasOwnProperty: hasOwnProperty2 }) => (obj, prop) => hasOwnProperty2.call(obj, prop))(Object.prototype);
-  const isRegExp = kindOfTest("RegExp");
-  const reduceDescriptors = (obj, reducer) => {
-    const descriptors2 = Object.getOwnPropertyDescriptors(obj);
-    const reducedDescriptors = {};
-    forEach(descriptors2, (descriptor, name) => {
-      let ret;
-      if ((ret = reducer(descriptor, name, obj)) !== false) {
-        reducedDescriptors[name] = ret || descriptor;
-      }
-    });
-    Object.defineProperties(obj, reducedDescriptors);
-  };
-  const freezeMethods = (obj) => {
-    reduceDescriptors(obj, (descriptor, name) => {
-      if (isFunction(obj) && ["arguments", "caller", "callee"].indexOf(name) !== -1) {
-        return false;
-      }
-      const value = obj[name];
-      if (!isFunction(value))
-        return;
-      descriptor.enumerable = false;
-      if ("writable" in descriptor) {
-        descriptor.writable = false;
-        return;
-      }
-      if (!descriptor.set) {
-        descriptor.set = () => {
-          throw Error("Can not rewrite read-only method '" + name + "'");
-        };
-      }
-    });
-  };
-  const toObjectSet = (arrayOrString, delimiter) => {
-    const obj = {};
-    const define = (arr) => {
-      arr.forEach((value) => {
-        obj[value] = true;
-      });
-    };
-    isArray(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter));
-    return obj;
-  };
-  const noop = () => {
-  };
-  const toFiniteNumber = (value, defaultValue) => {
-    return value != null && Number.isFinite(value = +value) ? value : defaultValue;
-  };
-  const ALPHA = "abcdefghijklmnopqrstuvwxyz";
-  const DIGIT = "0123456789";
-  const ALPHABET = {
-    DIGIT,
-    ALPHA,
-    ALPHA_DIGIT: ALPHA + ALPHA.toUpperCase() + DIGIT
-  };
-  const generateString = (size = 16, alphabet = ALPHABET.ALPHA_DIGIT) => {
-    let str = "";
-    const { length } = alphabet;
-    while (size--) {
-      str += alphabet[Math.random() * length | 0];
-    }
-    return str;
-  };
-  function isSpecCompliantForm(thing) {
-    return !!(thing && isFunction(thing.append) && thing[Symbol.toStringTag] === "FormData" && thing[Symbol.iterator]);
-  }
-  const toJSONObject = (obj) => {
-    const stack = new Array(10);
-    const visit = (source, i2) => {
-      if (isObject(source)) {
-        if (stack.indexOf(source) >= 0) {
-          return;
-        }
-        if (!("toJSON" in source)) {
-          stack[i2] = source;
-          const target = isArray(source) ? [] : {};
-          forEach(source, (value, key) => {
-            const reducedValue = visit(value, i2 + 1);
-            !isUndefined(reducedValue) && (target[key] = reducedValue);
-          });
-          stack[i2] = void 0;
-          return target;
-        }
-      }
-      return source;
-    };
-    return visit(obj, 0);
-  };
-  const isAsyncFn = kindOfTest("AsyncFunction");
-  const isThenable = (thing) => thing && (isObject(thing) || isFunction(thing)) && isFunction(thing.then) && isFunction(thing.catch);
-  const _setImmediate = ((setImmediateSupported, postMessageSupported) => {
-    if (setImmediateSupported) {
-      return setImmediate;
-    }
-    return postMessageSupported ? ((token, callbacks) => {
-      _global.addEventListener("message", ({ source, data }) => {
-        if (source === _global && data === token) {
-          callbacks.length && callbacks.shift()();
-        }
-      }, false);
-      return (cb) => {
-        callbacks.push(cb);
-        _global.postMessage(token, "*");
-      };
-    })(`axios@${Math.random()}`, []) : (cb) => setTimeout(cb);
-  })(
-    typeof setImmediate === "function",
-    isFunction(_global.postMessage)
-  );
-  const asap = typeof queueMicrotask !== "undefined" ? queueMicrotask.bind(_global) : typeof process !== "undefined" && process.nextTick || _setImmediate;
-  const utils$1 = {
-    isArray,
-    isArrayBuffer,
-    isBuffer,
-    isFormData,
-    isArrayBufferView,
-    isString,
-    isNumber,
-    isBoolean,
-    isObject,
-    isPlainObject,
-    isReadableStream,
-    isRequest,
-    isResponse,
-    isHeaders,
-    isUndefined,
-    isDate,
-    isFile,
-    isBlob,
-    isRegExp,
-    isFunction,
-    isStream,
-    isURLSearchParams,
-    isTypedArray,
-    isFileList,
-    forEach,
-    merge,
-    extend,
-    trim,
-    stripBOM,
-    inherits,
-    toFlatObject,
-    kindOf,
-    kindOfTest,
-    endsWith,
-    toArray,
-    forEachEntry,
-    matchAll,
-    isHTMLForm,
-    hasOwnProperty,
-    hasOwnProp: hasOwnProperty,
-    // an alias to avoid ESLint no-prototype-builtins detection
-    reduceDescriptors,
-    freezeMethods,
-    toObjectSet,
-    toCamelCase,
-    noop,
-    toFiniteNumber,
-    findKey,
-    global: _global,
-    isContextDefined,
-    ALPHABET,
-    generateString,
-    isSpecCompliantForm,
-    toJSONObject,
-    isAsyncFn,
-    isThenable,
-    setImmediate: _setImmediate,
-    asap
-  };
-  function AxiosError(message, code, config2, request2, response) {
-    Error.call(this);
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, this.constructor);
-    } else {
-      this.stack = new Error().stack;
-    }
-    this.message = message;
-    this.name = "AxiosError";
-    code && (this.code = code);
-    config2 && (this.config = config2);
-    request2 && (this.request = request2);
-    if (response) {
-      this.response = response;
-      this.status = response.status ? response.status : null;
-    }
-  }
-  utils$1.inherits(AxiosError, Error, {
-    toJSON: function toJSON() {
-      return {
-        // Standard
-        message: this.message,
-        name: this.name,
-        // Microsoft
-        description: this.description,
-        number: this.number,
-        // Mozilla
-        fileName: this.fileName,
-        lineNumber: this.lineNumber,
-        columnNumber: this.columnNumber,
-        stack: this.stack,
-        // Axios
-        config: utils$1.toJSONObject(this.config),
-        code: this.code,
-        status: this.status
-      };
-    }
-  });
-  const prototype$1 = AxiosError.prototype;
-  const descriptors = {};
-  [
-    "ERR_BAD_OPTION_VALUE",
-    "ERR_BAD_OPTION",
-    "ECONNABORTED",
-    "ETIMEDOUT",
-    "ERR_NETWORK",
-    "ERR_FR_TOO_MANY_REDIRECTS",
-    "ERR_DEPRECATED",
-    "ERR_BAD_RESPONSE",
-    "ERR_BAD_REQUEST",
-    "ERR_CANCELED",
-    "ERR_NOT_SUPPORT",
-    "ERR_INVALID_URL"
-    // eslint-disable-next-line func-names
-  ].forEach((code) => {
-    descriptors[code] = { value: code };
-  });
-  Object.defineProperties(AxiosError, descriptors);
-  Object.defineProperty(prototype$1, "isAxiosError", { value: true });
-  AxiosError.from = (error, code, config2, request2, response, customProps) => {
-    const axiosError = Object.create(prototype$1);
-    utils$1.toFlatObject(error, axiosError, function filter(obj) {
-      return obj !== Error.prototype;
-    }, (prop) => {
-      return prop !== "isAxiosError";
-    });
-    AxiosError.call(axiosError, error.message, code, config2, request2, response);
-    axiosError.cause = error;
-    axiosError.name = error.name;
-    customProps && Object.assign(axiosError, customProps);
-    return axiosError;
-  };
-  const httpAdapter = null;
-  function isVisitable(thing) {
-    return utils$1.isPlainObject(thing) || utils$1.isArray(thing);
-  }
-  function removeBrackets(key) {
-    return utils$1.endsWith(key, "[]") ? key.slice(0, -2) : key;
-  }
-  function renderKey(path2, key, dots) {
-    if (!path2)
-      return key;
-    return path2.concat(key).map(function each(token, i2) {
-      token = removeBrackets(token);
-      return !dots && i2 ? "[" + token + "]" : token;
-    }).join(dots ? "." : "");
-  }
-  function isFlatArray(arr) {
-    return utils$1.isArray(arr) && !arr.some(isVisitable);
-  }
-  const predicates = utils$1.toFlatObject(utils$1, {}, null, function filter(prop) {
-    return /^is[A-Z]/.test(prop);
-  });
-  function toFormData(obj, formData, options) {
-    if (!utils$1.isObject(obj)) {
-      throw new TypeError("target must be an object");
-    }
-    formData = formData || new FormData();
-    options = utils$1.toFlatObject(options, {
-      metaTokens: true,
-      dots: false,
-      indexes: false
-    }, false, function defined(option2, source) {
-      return !utils$1.isUndefined(source[option2]);
-    });
-    const metaTokens = options.metaTokens;
-    const visitor = options.visitor || defaultVisitor;
-    const dots = options.dots;
-    const indexes = options.indexes;
-    const _Blob = options.Blob || typeof Blob !== "undefined" && Blob;
-    const useBlob = _Blob && utils$1.isSpecCompliantForm(formData);
-    if (!utils$1.isFunction(visitor)) {
-      throw new TypeError("visitor must be a function");
-    }
-    function convertValue(value) {
-      if (value === null)
-        return "";
-      if (utils$1.isDate(value)) {
-        return value.toISOString();
-      }
-      if (!useBlob && utils$1.isBlob(value)) {
-        throw new AxiosError("Blob is not supported. Use a Buffer instead.");
-      }
-      if (utils$1.isArrayBuffer(value) || utils$1.isTypedArray(value)) {
-        return useBlob && typeof Blob === "function" ? new Blob([value]) : Buffer.from(value);
-      }
-      return value;
-    }
-    function defaultVisitor(value, key, path2) {
-      let arr = value;
-      if (value && !path2 && typeof value === "object") {
-        if (utils$1.endsWith(key, "{}")) {
-          key = metaTokens ? key : key.slice(0, -2);
-          value = JSON.stringify(value);
-        } else if (utils$1.isArray(value) && isFlatArray(value) || (utils$1.isFileList(value) || utils$1.endsWith(key, "[]")) && (arr = utils$1.toArray(value))) {
-          key = removeBrackets(key);
-          arr.forEach(function each(el, index) {
-            !(utils$1.isUndefined(el) || el === null) && formData.append(
-              // eslint-disable-next-line no-nested-ternary
-              indexes === true ? renderKey([key], index, dots) : indexes === null ? key : key + "[]",
-              convertValue(el)
-            );
-          });
-          return false;
-        }
-      }
-      if (isVisitable(value)) {
-        return true;
-      }
-      formData.append(renderKey(path2, key, dots), convertValue(value));
-      return false;
-    }
-    const stack = [];
-    const exposedHelpers = Object.assign(predicates, {
-      defaultVisitor,
-      convertValue,
-      isVisitable
-    });
-    function build(value, path2) {
-      if (utils$1.isUndefined(value))
-        return;
-      if (stack.indexOf(value) !== -1) {
-        throw Error("Circular reference detected in " + path2.join("."));
-      }
-      stack.push(value);
-      utils$1.forEach(value, function each(el, key) {
-        const result = !(utils$1.isUndefined(el) || el === null) && visitor.call(
-          formData,
-          el,
-          utils$1.isString(key) ? key.trim() : key,
-          path2,
-          exposedHelpers
-        );
-        if (result === true) {
-          build(el, path2 ? path2.concat(key) : [key]);
-        }
-      });
-      stack.pop();
-    }
-    if (!utils$1.isObject(obj)) {
-      throw new TypeError("data must be an object");
-    }
-    build(obj);
-    return formData;
-  }
-  function encode$1(str) {
-    const charMap = {
-      "!": "%21",
-      "'": "%27",
-      "(": "%28",
-      ")": "%29",
-      "~": "%7E",
-      "%20": "+",
-      "%00": "\0"
-    };
-    return encodeURIComponent(str).replace(/[!'()~]|%20|%00/g, function replacer(match) {
-      return charMap[match];
-    });
-  }
-  function AxiosURLSearchParams(params, options) {
-    this._pairs = [];
-    params && toFormData(params, this, options);
-  }
-  const prototype = AxiosURLSearchParams.prototype;
-  prototype.append = function append(name, value) {
-    this._pairs.push([name, value]);
-  };
-  prototype.toString = function toString2(encoder) {
-    const _encode = encoder ? function(value) {
-      return encoder.call(this, value, encode$1);
-    } : encode$1;
-    return this._pairs.map(function each(pair) {
-      return _encode(pair[0]) + "=" + _encode(pair[1]);
-    }, "").join("&");
-  };
-  function encode(val) {
-    return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
-  }
-  function buildURL(url, params, options) {
-    if (!params) {
-      return url;
-    }
-    const _encode = options && options.encode || encode;
-    const serializeFn = options && options.serialize;
-    let serializedParams;
-    if (serializeFn) {
-      serializedParams = serializeFn(params, options);
-    } else {
-      serializedParams = utils$1.isURLSearchParams(params) ? params.toString() : new AxiosURLSearchParams(params, options).toString(_encode);
-    }
-    if (serializedParams) {
-      const hashmarkIndex = url.indexOf("#");
-      if (hashmarkIndex !== -1) {
-        url = url.slice(0, hashmarkIndex);
-      }
-      url += (url.indexOf("?") === -1 ? "?" : "&") + serializedParams;
-    }
-    return url;
-  }
-  class InterceptorManager {
-    constructor() {
-      this.handlers = [];
-    }
-    /**
-     * Add a new interceptor to the stack
-     *
-     * @param {Function} fulfilled The function to handle `then` for a `Promise`
-     * @param {Function} rejected The function to handle `reject` for a `Promise`
-     *
-     * @return {Number} An ID used to remove interceptor later
-     */
-    use(fulfilled, rejected, options) {
-      this.handlers.push({
-        fulfilled,
-        rejected,
-        synchronous: options ? options.synchronous : false,
-        runWhen: options ? options.runWhen : null
-      });
-      return this.handlers.length - 1;
-    }
-    /**
-     * Remove an interceptor from the stack
-     *
-     * @param {Number} id The ID that was returned by `use`
-     *
-     * @returns {Boolean} `true` if the interceptor was removed, `false` otherwise
-     */
-    eject(id) {
-      if (this.handlers[id]) {
-        this.handlers[id] = null;
-      }
-    }
-    /**
-     * Clear all interceptors from the stack
-     *
-     * @returns {void}
-     */
-    clear() {
-      if (this.handlers) {
-        this.handlers = [];
-      }
-    }
-    /**
-     * Iterate over all the registered interceptors
-     *
-     * This method is particularly useful for skipping over any
-     * interceptors that may have become `null` calling `eject`.
-     *
-     * @param {Function} fn The function to call for each interceptor
-     *
-     * @returns {void}
-     */
-    forEach(fn) {
-      utils$1.forEach(this.handlers, function forEachHandler(h) {
-        if (h !== null) {
-          fn(h);
-        }
-      });
-    }
-  }
-  const transitionalDefaults = {
-    silentJSONParsing: true,
-    forcedJSONParsing: true,
-    clarifyTimeoutError: false
-  };
-  const URLSearchParams$1 = typeof URLSearchParams !== "undefined" ? URLSearchParams : AxiosURLSearchParams;
-  const FormData$1 = typeof FormData !== "undefined" ? FormData : null;
-  const Blob$1 = typeof Blob !== "undefined" ? Blob : null;
-  const platform$1 = {
-    isBrowser: true,
-    classes: {
-      URLSearchParams: URLSearchParams$1,
-      FormData: FormData$1,
-      Blob: Blob$1
-    },
-    protocols: ["http", "https", "file", "blob", "url", "data"]
-  };
-  const hasBrowserEnv = typeof window !== "undefined" && typeof document !== "undefined";
-  const _navigator = typeof navigator === "object" && navigator || void 0;
-  const hasStandardBrowserEnv = hasBrowserEnv && (!_navigator || ["ReactNative", "NativeScript", "NS"].indexOf(_navigator.product) < 0);
-  const hasStandardBrowserWebWorkerEnv = (() => {
-    return typeof WorkerGlobalScope !== "undefined" && // eslint-disable-next-line no-undef
-    self instanceof WorkerGlobalScope && typeof self.importScripts === "function";
-  })();
-  const origin = hasBrowserEnv && window.location.href || "http://localhost";
-  const utils = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-    __proto__: null,
-    hasBrowserEnv,
-    hasStandardBrowserEnv,
-    hasStandardBrowserWebWorkerEnv,
-    navigator: _navigator,
-    origin
-  }, Symbol.toStringTag, { value: "Module" }));
-  const platform = {
-    ...utils,
-    ...platform$1
-  };
-  function toURLEncodedForm(data, options) {
-    return toFormData(data, new platform.classes.URLSearchParams(), Object.assign({
-      visitor: function(value, key, path2, helpers) {
-        if (platform.isNode && utils$1.isBuffer(value)) {
-          this.append(key, value.toString("base64"));
-          return false;
-        }
-        return helpers.defaultVisitor.apply(this, arguments);
-      }
-    }, options));
-  }
-  function parsePropPath(name) {
-    return utils$1.matchAll(/\w+|\[(\w*)]/g, name).map((match) => {
-      return match[0] === "[]" ? "" : match[1] || match[0];
-    });
-  }
-  function arrayToObject(arr) {
-    const obj = {};
-    const keys = Object.keys(arr);
-    let i2;
-    const len = keys.length;
-    let key;
-    for (i2 = 0; i2 < len; i2++) {
-      key = keys[i2];
-      obj[key] = arr[key];
-    }
-    return obj;
-  }
-  function formDataToJSON(formData) {
-    function buildPath(path2, value, target, index) {
-      let name = path2[index++];
-      if (name === "__proto__")
-        return true;
-      const isNumericKey = Number.isFinite(+name);
-      const isLast = index >= path2.length;
-      name = !name && utils$1.isArray(target) ? target.length : name;
-      if (isLast) {
-        if (utils$1.hasOwnProp(target, name)) {
-          target[name] = [target[name], value];
-        } else {
-          target[name] = value;
-        }
-        return !isNumericKey;
-      }
-      if (!target[name] || !utils$1.isObject(target[name])) {
-        target[name] = [];
-      }
-      const result = buildPath(path2, value, target[name], index);
-      if (result && utils$1.isArray(target[name])) {
-        target[name] = arrayToObject(target[name]);
-      }
-      return !isNumericKey;
-    }
-    if (utils$1.isFormData(formData) && utils$1.isFunction(formData.entries)) {
-      const obj = {};
-      utils$1.forEachEntry(formData, (name, value) => {
-        buildPath(parsePropPath(name), value, obj, 0);
-      });
-      return obj;
-    }
-    return null;
-  }
-  function stringifySafely(rawValue, parser, encoder) {
-    if (utils$1.isString(rawValue)) {
-      try {
-        (parser || JSON.parse)(rawValue);
-        return utils$1.trim(rawValue);
-      } catch (e2) {
-        if (e2.name !== "SyntaxError") {
-          throw e2;
-        }
-      }
-    }
-    return (encoder || JSON.stringify)(rawValue);
-  }
-  const defaults = {
-    transitional: transitionalDefaults,
-    adapter: ["xhr", "http", "fetch"],
-    transformRequest: [function transformRequest(data, headers) {
-      const contentType = headers.getContentType() || "";
-      const hasJSONContentType = contentType.indexOf("application/json") > -1;
-      const isObjectPayload = utils$1.isObject(data);
-      if (isObjectPayload && utils$1.isHTMLForm(data)) {
-        data = new FormData(data);
-      }
-      const isFormData2 = utils$1.isFormData(data);
-      if (isFormData2) {
-        return hasJSONContentType ? JSON.stringify(formDataToJSON(data)) : data;
-      }
-      if (utils$1.isArrayBuffer(data) || utils$1.isBuffer(data) || utils$1.isStream(data) || utils$1.isFile(data) || utils$1.isBlob(data) || utils$1.isReadableStream(data)) {
-        return data;
-      }
-      if (utils$1.isArrayBufferView(data)) {
-        return data.buffer;
-      }
-      if (utils$1.isURLSearchParams(data)) {
-        headers.setContentType("application/x-www-form-urlencoded;charset=utf-8", false);
-        return data.toString();
-      }
-      let isFileList2;
-      if (isObjectPayload) {
-        if (contentType.indexOf("application/x-www-form-urlencoded") > -1) {
-          return toURLEncodedForm(data, this.formSerializer).toString();
-        }
-        if ((isFileList2 = utils$1.isFileList(data)) || contentType.indexOf("multipart/form-data") > -1) {
-          const _FormData = this.env && this.env.FormData;
-          return toFormData(
-            isFileList2 ? { "files[]": data } : data,
-            _FormData && new _FormData(),
-            this.formSerializer
-          );
-        }
-      }
-      if (isObjectPayload || hasJSONContentType) {
-        headers.setContentType("application/json", false);
-        return stringifySafely(data);
-      }
-      return data;
-    }],
-    transformResponse: [function transformResponse(data) {
-      const transitional = this.transitional || defaults.transitional;
-      const forcedJSONParsing = transitional && transitional.forcedJSONParsing;
-      const JSONRequested = this.responseType === "json";
-      if (utils$1.isResponse(data) || utils$1.isReadableStream(data)) {
-        return data;
-      }
-      if (data && utils$1.isString(data) && (forcedJSONParsing && !this.responseType || JSONRequested)) {
-        const silentJSONParsing = transitional && transitional.silentJSONParsing;
-        const strictJSONParsing = !silentJSONParsing && JSONRequested;
-        try {
-          return JSON.parse(data);
-        } catch (e2) {
-          if (strictJSONParsing) {
-            if (e2.name === "SyntaxError") {
-              throw AxiosError.from(e2, AxiosError.ERR_BAD_RESPONSE, this, null, this.response);
-            }
-            throw e2;
-          }
-        }
-      }
-      return data;
-    }],
-    /**
-     * A timeout in milliseconds to abort a request. If set to 0 (default) a
-     * timeout is not created.
-     */
-    timeout: 0,
-    xsrfCookieName: "XSRF-TOKEN",
-    xsrfHeaderName: "X-XSRF-TOKEN",
-    maxContentLength: -1,
-    maxBodyLength: -1,
-    env: {
-      FormData: platform.classes.FormData,
-      Blob: platform.classes.Blob
-    },
-    validateStatus: function validateStatus(status) {
-      return status >= 200 && status < 300;
-    },
-    headers: {
-      common: {
-        "Accept": "application/json, text/plain, */*",
-        "Content-Type": void 0
-      }
-    }
-  };
-  utils$1.forEach(["delete", "get", "head", "post", "put", "patch"], (method) => {
-    defaults.headers[method] = {};
-  });
-  const defaults$1 = defaults;
-  const ignoreDuplicateOf = utils$1.toObjectSet([
-    "age",
-    "authorization",
-    "content-length",
-    "content-type",
-    "etag",
-    "expires",
-    "from",
-    "host",
-    "if-modified-since",
-    "if-unmodified-since",
-    "last-modified",
-    "location",
-    "max-forwards",
-    "proxy-authorization",
-    "referer",
-    "retry-after",
-    "user-agent"
-  ]);
-  const parseHeaders = (rawHeaders) => {
-    const parsed = {};
-    let key;
-    let val;
-    let i2;
-    rawHeaders && rawHeaders.split("\n").forEach(function parser(line) {
-      i2 = line.indexOf(":");
-      key = line.substring(0, i2).trim().toLowerCase();
-      val = line.substring(i2 + 1).trim();
-      if (!key || parsed[key] && ignoreDuplicateOf[key]) {
-        return;
-      }
-      if (key === "set-cookie") {
-        if (parsed[key]) {
-          parsed[key].push(val);
-        } else {
-          parsed[key] = [val];
-        }
-      } else {
-        parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
-      }
-    });
-    return parsed;
-  };
-  const $internals = Symbol("internals");
-  function normalizeHeader(header) {
-    return header && String(header).trim().toLowerCase();
-  }
-  function normalizeValue(value) {
-    if (value === false || value == null) {
-      return value;
-    }
-    return utils$1.isArray(value) ? value.map(normalizeValue) : String(value);
-  }
-  function parseTokens(str) {
-    const tokens = /* @__PURE__ */ Object.create(null);
-    const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
-    let match;
-    while (match = tokensRE.exec(str)) {
-      tokens[match[1]] = match[2];
-    }
-    return tokens;
-  }
-  const isValidHeaderName = (str) => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
-  function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
-    if (utils$1.isFunction(filter)) {
-      return filter.call(this, value, header);
-    }
-    if (isHeaderNameFilter) {
-      value = header;
-    }
-    if (!utils$1.isString(value))
-      return;
-    if (utils$1.isString(filter)) {
-      return value.indexOf(filter) !== -1;
-    }
-    if (utils$1.isRegExp(filter)) {
-      return filter.test(value);
-    }
-  }
-  function formatHeader(header) {
-    return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w, char, str) => {
-      return char.toUpperCase() + str;
-    });
-  }
-  function buildAccessors(obj, header) {
-    const accessorName = utils$1.toCamelCase(" " + header);
-    ["get", "set", "has"].forEach((methodName) => {
-      Object.defineProperty(obj, methodName + accessorName, {
-        value: function(arg1, arg2, arg3) {
-          return this[methodName].call(this, header, arg1, arg2, arg3);
-        },
-        configurable: true
-      });
-    });
-  }
-  class AxiosHeaders {
-    constructor(headers) {
-      headers && this.set(headers);
-    }
-    set(header, valueOrRewrite, rewrite) {
-      const self2 = this;
-      function setHeader(_value, _header, _rewrite) {
-        const lHeader = normalizeHeader(_header);
-        if (!lHeader) {
-          throw new Error("header name must be a non-empty string");
-        }
-        const key = utils$1.findKey(self2, lHeader);
-        if (!key || self2[key] === void 0 || _rewrite === true || _rewrite === void 0 && self2[key] !== false) {
-          self2[key || _header] = normalizeValue(_value);
-        }
-      }
-      const setHeaders = (headers, _rewrite) => utils$1.forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
-      if (utils$1.isPlainObject(header) || header instanceof this.constructor) {
-        setHeaders(header, valueOrRewrite);
-      } else if (utils$1.isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
-        setHeaders(parseHeaders(header), valueOrRewrite);
-      } else if (utils$1.isHeaders(header)) {
-        for (const [key, value] of header.entries()) {
-          setHeader(value, key, rewrite);
-        }
-      } else {
-        header != null && setHeader(valueOrRewrite, header, rewrite);
-      }
-      return this;
-    }
-    get(header, parser) {
-      header = normalizeHeader(header);
-      if (header) {
-        const key = utils$1.findKey(this, header);
-        if (key) {
-          const value = this[key];
-          if (!parser) {
-            return value;
-          }
-          if (parser === true) {
-            return parseTokens(value);
-          }
-          if (utils$1.isFunction(parser)) {
-            return parser.call(this, value, key);
-          }
-          if (utils$1.isRegExp(parser)) {
-            return parser.exec(value);
-          }
-          throw new TypeError("parser must be boolean|regexp|function");
-        }
-      }
-    }
-    has(header, matcher) {
-      header = normalizeHeader(header);
-      if (header) {
-        const key = utils$1.findKey(this, header);
-        return !!(key && this[key] !== void 0 && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
-      }
-      return false;
-    }
-    delete(header, matcher) {
-      const self2 = this;
-      let deleted = false;
-      function deleteHeader(_header) {
-        _header = normalizeHeader(_header);
-        if (_header) {
-          const key = utils$1.findKey(self2, _header);
-          if (key && (!matcher || matchHeaderValue(self2, self2[key], key, matcher))) {
-            delete self2[key];
-            deleted = true;
-          }
-        }
-      }
-      if (utils$1.isArray(header)) {
-        header.forEach(deleteHeader);
-      } else {
-        deleteHeader(header);
-      }
-      return deleted;
-    }
-    clear(matcher) {
-      const keys = Object.keys(this);
-      let i2 = keys.length;
-      let deleted = false;
-      while (i2--) {
-        const key = keys[i2];
-        if (!matcher || matchHeaderValue(this, this[key], key, matcher, true)) {
-          delete this[key];
-          deleted = true;
-        }
-      }
-      return deleted;
-    }
-    normalize(format2) {
-      const self2 = this;
-      const headers = {};
-      utils$1.forEach(this, (value, header) => {
-        const key = utils$1.findKey(headers, header);
-        if (key) {
-          self2[key] = normalizeValue(value);
-          delete self2[header];
-          return;
-        }
-        const normalized = format2 ? formatHeader(header) : String(header).trim();
-        if (normalized !== header) {
-          delete self2[header];
-        }
-        self2[normalized] = normalizeValue(value);
-        headers[normalized] = true;
-      });
-      return this;
-    }
-    concat(...targets) {
-      return this.constructor.concat(this, ...targets);
-    }
-    toJSON(asStrings) {
-      const obj = /* @__PURE__ */ Object.create(null);
-      utils$1.forEach(this, (value, header) => {
-        value != null && value !== false && (obj[header] = asStrings && utils$1.isArray(value) ? value.join(", ") : value);
-      });
-      return obj;
-    }
-    [Symbol.iterator]() {
-      return Object.entries(this.toJSON())[Symbol.iterator]();
-    }
-    toString() {
-      return Object.entries(this.toJSON()).map(([header, value]) => header + ": " + value).join("\n");
-    }
-    get [Symbol.toStringTag]() {
-      return "AxiosHeaders";
-    }
-    static from(thing) {
-      return thing instanceof this ? thing : new this(thing);
-    }
-    static concat(first, ...targets) {
-      const computed = new this(first);
-      targets.forEach((target) => computed.set(target));
-      return computed;
-    }
-    static accessor(header) {
-      const internals = this[$internals] = this[$internals] = {
-        accessors: {}
-      };
-      const accessors = internals.accessors;
-      const prototype2 = this.prototype;
-      function defineAccessor(_header) {
-        const lHeader = normalizeHeader(_header);
-        if (!accessors[lHeader]) {
-          buildAccessors(prototype2, _header);
-          accessors[lHeader] = true;
-        }
-      }
-      utils$1.isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
-      return this;
-    }
-  }
-  AxiosHeaders.accessor(["Content-Type", "Content-Length", "Accept", "Accept-Encoding", "User-Agent", "Authorization"]);
-  utils$1.reduceDescriptors(AxiosHeaders.prototype, ({ value }, key) => {
-    let mapped = key[0].toUpperCase() + key.slice(1);
-    return {
-      get: () => value,
-      set(headerValue) {
-        this[mapped] = headerValue;
-      }
-    };
-  });
-  utils$1.freezeMethods(AxiosHeaders);
-  const AxiosHeaders$1 = AxiosHeaders;
-  function transformData(fns, response) {
-    const config2 = this || defaults$1;
-    const context = response || config2;
-    const headers = AxiosHeaders$1.from(context.headers);
-    let data = context.data;
-    utils$1.forEach(fns, function transform(fn) {
-      data = fn.call(config2, data, headers.normalize(), response ? response.status : void 0);
-    });
-    headers.normalize();
-    return data;
-  }
-  function isCancel(value) {
-    return !!(value && value.__CANCEL__);
-  }
-  function CanceledError(message, config2, request2) {
-    AxiosError.call(this, message == null ? "canceled" : message, AxiosError.ERR_CANCELED, config2, request2);
-    this.name = "CanceledError";
-  }
-  utils$1.inherits(CanceledError, AxiosError, {
-    __CANCEL__: true
-  });
-  function settle(resolve, reject, response) {
-    const validateStatus = response.config.validateStatus;
-    if (!response.status || !validateStatus || validateStatus(response.status)) {
-      resolve(response);
-    } else {
-      reject(new AxiosError(
-        "Request failed with status code " + response.status,
-        [AxiosError.ERR_BAD_REQUEST, AxiosError.ERR_BAD_RESPONSE][Math.floor(response.status / 100) - 4],
-        response.config,
-        response.request,
-        response
-      ));
-    }
-  }
-  function parseProtocol(url) {
-    const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
-    return match && match[1] || "";
-  }
-  function speedometer(samplesCount, min) {
-    samplesCount = samplesCount || 10;
-    const bytes = new Array(samplesCount);
-    const timestamps = new Array(samplesCount);
-    let head = 0;
-    let tail = 0;
-    let firstSampleTS;
-    min = min !== void 0 ? min : 1e3;
-    return function push(chunkLength) {
-      const now = Date.now();
-      const startedAt = timestamps[tail];
-      if (!firstSampleTS) {
-        firstSampleTS = now;
-      }
-      bytes[head] = chunkLength;
-      timestamps[head] = now;
-      let i2 = tail;
-      let bytesCount = 0;
-      while (i2 !== head) {
-        bytesCount += bytes[i2++];
-        i2 = i2 % samplesCount;
-      }
-      head = (head + 1) % samplesCount;
-      if (head === tail) {
-        tail = (tail + 1) % samplesCount;
-      }
-      if (now - firstSampleTS < min) {
-        return;
-      }
-      const passed = startedAt && now - startedAt;
-      return passed ? Math.round(bytesCount * 1e3 / passed) : void 0;
-    };
-  }
-  function throttle(fn, freq) {
-    let timestamp = 0;
-    let threshold = 1e3 / freq;
-    let lastArgs;
-    let timer;
-    const invoke = (args, now = Date.now()) => {
-      timestamp = now;
-      lastArgs = null;
-      if (timer) {
-        clearTimeout(timer);
-        timer = null;
-      }
-      fn.apply(null, args);
-    };
-    const throttled = (...args) => {
-      const now = Date.now();
-      const passed = now - timestamp;
-      if (passed >= threshold) {
-        invoke(args, now);
-      } else {
-        lastArgs = args;
-        if (!timer) {
-          timer = setTimeout(() => {
-            timer = null;
-            invoke(lastArgs);
-          }, threshold - passed);
-        }
-      }
-    };
-    const flush = () => lastArgs && invoke(lastArgs);
-    return [throttled, flush];
-  }
-  const progressEventReducer = (listener, isDownloadStream, freq = 3) => {
-    let bytesNotified = 0;
-    const _speedometer = speedometer(50, 250);
-    return throttle((e2) => {
-      const loaded = e2.loaded;
-      const total = e2.lengthComputable ? e2.total : void 0;
-      const progressBytes = loaded - bytesNotified;
-      const rate = _speedometer(progressBytes);
-      const inRange = loaded <= total;
-      bytesNotified = loaded;
-      const data = {
-        loaded,
-        total,
-        progress: total ? loaded / total : void 0,
-        bytes: progressBytes,
-        rate: rate ? rate : void 0,
-        estimated: rate && total && inRange ? (total - loaded) / rate : void 0,
-        event: e2,
-        lengthComputable: total != null,
-        [isDownloadStream ? "download" : "upload"]: true
-      };
-      listener(data);
-    }, freq);
-  };
-  const progressEventDecorator = (total, throttled) => {
-    const lengthComputable = total != null;
-    return [(loaded) => throttled[0]({
-      lengthComputable,
-      total,
-      loaded
-    }), throttled[1]];
-  };
-  const asyncDecorator = (fn) => (...args) => utils$1.asap(() => fn(...args));
-  const isURLSameOrigin = platform.hasStandardBrowserEnv ? (
-    // Standard browser envs have full support of the APIs needed to test
-    // whether the request URL is of the same origin as current location.
-    function standardBrowserEnv() {
-      const msie = platform.navigator && /(msie|trident)/i.test(platform.navigator.userAgent);
-      const urlParsingNode = document.createElement("a");
-      let originURL;
-      function resolveURL(url) {
-        let href = url;
-        if (msie) {
-          urlParsingNode.setAttribute("href", href);
-          href = urlParsingNode.href;
-        }
-        urlParsingNode.setAttribute("href", href);
-        return {
-          href: urlParsingNode.href,
-          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, "") : "",
-          host: urlParsingNode.host,
-          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, "") : "",
-          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, "") : "",
-          hostname: urlParsingNode.hostname,
-          port: urlParsingNode.port,
-          pathname: urlParsingNode.pathname.charAt(0) === "/" ? urlParsingNode.pathname : "/" + urlParsingNode.pathname
-        };
-      }
-      originURL = resolveURL(window.location.href);
-      return function isURLSameOrigin2(requestURL) {
-        const parsed = utils$1.isString(requestURL) ? resolveURL(requestURL) : requestURL;
-        return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
-      };
-    }()
-  ) : (
-    // Non standard browser envs (web workers, react-native) lack needed support.
-    /* @__PURE__ */ function nonStandardBrowserEnv() {
-      return function isURLSameOrigin2() {
-        return true;
-      };
-    }()
-  );
-  const cookies = platform.hasStandardBrowserEnv ? (
-    // Standard browser envs support document.cookie
+  const testUrl = "https://github.com/uioooou/uni-app-testing/tree/test";
+  const gameList = [
     {
-      write(name, value, expires, path2, domain, secure) {
-        const cookie = [name + "=" + encodeURIComponent(value)];
-        utils$1.isNumber(expires) && cookie.push("expires=" + new Date(expires).toGMTString());
-        utils$1.isString(path2) && cookie.push("path=" + path2);
-        utils$1.isString(domain) && cookie.push("domain=" + domain);
-        secure === true && cookie.push("secure");
-        document.cookie = cookie.join("; ");
-      },
-      read(name) {
-        const match = document.cookie.match(new RegExp("(^|;\\s*)(" + name + ")=([^;]*)"));
-        return match ? decodeURIComponent(match[3]) : null;
-      },
-      remove(name) {
-        this.write(name, "", Date.now() - 864e5);
-      }
-    }
-  ) : (
-    // Non-standard browser env (web workers, react-native) lack needed support.
-    {
-      write() {
-      },
-      read() {
-        return null;
-      },
-      remove() {
-      }
-    }
-  );
-  function isAbsoluteURL(url) {
-    return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
-  }
-  function combineURLs(baseURL, relativeURL) {
-    return relativeURL ? baseURL.replace(/\/?\/$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
-  }
-  function buildFullPath(baseURL, requestedURL) {
-    if (baseURL && !isAbsoluteURL(requestedURL)) {
-      return combineURLs(baseURL, requestedURL);
-    }
-    return requestedURL;
-  }
-  const headersToObject = (thing) => thing instanceof AxiosHeaders$1 ? { ...thing } : thing;
-  function mergeConfig(config1, config2) {
-    config2 = config2 || {};
-    const config3 = {};
-    function getMergedValue(target, source, caseless) {
-      if (utils$1.isPlainObject(target) && utils$1.isPlainObject(source)) {
-        return utils$1.merge.call({ caseless }, target, source);
-      } else if (utils$1.isPlainObject(source)) {
-        return utils$1.merge({}, source);
-      } else if (utils$1.isArray(source)) {
-        return source.slice();
-      }
-      return source;
-    }
-    function mergeDeepProperties(a2, b, caseless) {
-      if (!utils$1.isUndefined(b)) {
-        return getMergedValue(a2, b, caseless);
-      } else if (!utils$1.isUndefined(a2)) {
-        return getMergedValue(void 0, a2, caseless);
-      }
-    }
-    function valueFromConfig2(a2, b) {
-      if (!utils$1.isUndefined(b)) {
-        return getMergedValue(void 0, b);
-      }
-    }
-    function defaultToConfig2(a2, b) {
-      if (!utils$1.isUndefined(b)) {
-        return getMergedValue(void 0, b);
-      } else if (!utils$1.isUndefined(a2)) {
-        return getMergedValue(void 0, a2);
-      }
-    }
-    function mergeDirectKeys(a2, b, prop) {
-      if (prop in config2) {
-        return getMergedValue(a2, b);
-      } else if (prop in config1) {
-        return getMergedValue(void 0, a2);
-      }
-    }
-    const mergeMap = {
-      url: valueFromConfig2,
-      method: valueFromConfig2,
-      data: valueFromConfig2,
-      baseURL: defaultToConfig2,
-      transformRequest: defaultToConfig2,
-      transformResponse: defaultToConfig2,
-      paramsSerializer: defaultToConfig2,
-      timeout: defaultToConfig2,
-      timeoutMessage: defaultToConfig2,
-      withCredentials: defaultToConfig2,
-      withXSRFToken: defaultToConfig2,
-      adapter: defaultToConfig2,
-      responseType: defaultToConfig2,
-      xsrfCookieName: defaultToConfig2,
-      xsrfHeaderName: defaultToConfig2,
-      onUploadProgress: defaultToConfig2,
-      onDownloadProgress: defaultToConfig2,
-      decompress: defaultToConfig2,
-      maxContentLength: defaultToConfig2,
-      maxBodyLength: defaultToConfig2,
-      beforeRedirect: defaultToConfig2,
-      transport: defaultToConfig2,
-      httpAgent: defaultToConfig2,
-      httpsAgent: defaultToConfig2,
-      cancelToken: defaultToConfig2,
-      socketPath: defaultToConfig2,
-      responseEncoding: defaultToConfig2,
-      validateStatus: mergeDirectKeys,
-      headers: (a2, b) => mergeDeepProperties(headersToObject(a2), headersToObject(b), true)
-    };
-    utils$1.forEach(Object.keys(Object.assign({}, config1, config2)), function computeConfigValue(prop) {
-      const merge2 = mergeMap[prop] || mergeDeepProperties;
-      const configValue = merge2(config1[prop], config2[prop], prop);
-      utils$1.isUndefined(configValue) && merge2 !== mergeDirectKeys || (config3[prop] = configValue);
-    });
-    return config3;
-  }
-  const resolveConfig = (config2) => {
-    const newConfig = mergeConfig({}, config2);
-    let { data, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers, auth } = newConfig;
-    newConfig.headers = headers = AxiosHeaders$1.from(headers);
-    newConfig.url = buildURL(buildFullPath(newConfig.baseURL, newConfig.url), config2.params, config2.paramsSerializer);
-    if (auth) {
-      headers.set(
-        "Authorization",
-        "Basic " + btoa((auth.username || "") + ":" + (auth.password ? unescape(encodeURIComponent(auth.password)) : ""))
-      );
-    }
-    let contentType;
-    if (utils$1.isFormData(data)) {
-      if (platform.hasStandardBrowserEnv || platform.hasStandardBrowserWebWorkerEnv) {
-        headers.setContentType(void 0);
-      } else if ((contentType = headers.getContentType()) !== false) {
-        const [type, ...tokens] = contentType ? contentType.split(";").map((token) => token.trim()).filter(Boolean) : [];
-        headers.setContentType([type || "multipart/form-data", ...tokens].join("; "));
-      }
-    }
-    if (platform.hasStandardBrowserEnv) {
-      withXSRFToken && utils$1.isFunction(withXSRFToken) && (withXSRFToken = withXSRFToken(newConfig));
-      if (withXSRFToken || withXSRFToken !== false && isURLSameOrigin(newConfig.url)) {
-        const xsrfValue = xsrfHeaderName && xsrfCookieName && cookies.read(xsrfCookieName);
-        if (xsrfValue) {
-          headers.set(xsrfHeaderName, xsrfValue);
-        }
-      }
-    }
-    return newConfig;
-  };
-  const isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
-  const xhrAdapter = isXHRAdapterSupported && function(config2) {
-    return new Promise(function dispatchXhrRequest(resolve, reject) {
-      const _config = resolveConfig(config2);
-      let requestData = _config.data;
-      const requestHeaders = AxiosHeaders$1.from(_config.headers).normalize();
-      let { responseType, onUploadProgress, onDownloadProgress } = _config;
-      let onCanceled;
-      let uploadThrottled, downloadThrottled;
-      let flushUpload, flushDownload;
-      function done() {
-        flushUpload && flushUpload();
-        flushDownload && flushDownload();
-        _config.cancelToken && _config.cancelToken.unsubscribe(onCanceled);
-        _config.signal && _config.signal.removeEventListener("abort", onCanceled);
-      }
-      let request2 = new XMLHttpRequest();
-      request2.open(_config.method.toUpperCase(), _config.url, true);
-      request2.timeout = _config.timeout;
-      function onloadend() {
-        if (!request2) {
-          return;
-        }
-        const responseHeaders = AxiosHeaders$1.from(
-          "getAllResponseHeaders" in request2 && request2.getAllResponseHeaders()
-        );
-        const responseData = !responseType || responseType === "text" || responseType === "json" ? request2.responseText : request2.response;
-        const response = {
-          data: responseData,
-          status: request2.status,
-          statusText: request2.statusText,
-          headers: responseHeaders,
-          config: config2,
-          request: request2
-        };
-        settle(function _resolve(value) {
-          resolve(value);
-          done();
-        }, function _reject(err) {
-          reject(err);
-          done();
-        }, response);
-        request2 = null;
-      }
-      if ("onloadend" in request2) {
-        request2.onloadend = onloadend;
-      } else {
-        request2.onreadystatechange = function handleLoad() {
-          if (!request2 || request2.readyState !== 4) {
-            return;
-          }
-          if (request2.status === 0 && !(request2.responseURL && request2.responseURL.indexOf("file:") === 0)) {
-            return;
-          }
-          setTimeout(onloadend);
-        };
-      }
-      request2.onabort = function handleAbort() {
-        if (!request2) {
-          return;
-        }
-        reject(new AxiosError("Request aborted", AxiosError.ECONNABORTED, config2, request2));
-        request2 = null;
-      };
-      request2.onerror = function handleError() {
-        reject(new AxiosError("Network Error", AxiosError.ERR_NETWORK, config2, request2));
-        request2 = null;
-      };
-      request2.ontimeout = function handleTimeout() {
-        let timeoutErrorMessage = _config.timeout ? "timeout of " + _config.timeout + "ms exceeded" : "timeout exceeded";
-        const transitional = _config.transitional || transitionalDefaults;
-        if (_config.timeoutErrorMessage) {
-          timeoutErrorMessage = _config.timeoutErrorMessage;
-        }
-        reject(new AxiosError(
-          timeoutErrorMessage,
-          transitional.clarifyTimeoutError ? AxiosError.ETIMEDOUT : AxiosError.ECONNABORTED,
-          config2,
-          request2
-        ));
-        request2 = null;
-      };
-      requestData === void 0 && requestHeaders.setContentType(null);
-      if ("setRequestHeader" in request2) {
-        utils$1.forEach(requestHeaders.toJSON(), function setRequestHeader(val, key) {
-          request2.setRequestHeader(key, val);
-        });
-      }
-      if (!utils$1.isUndefined(_config.withCredentials)) {
-        request2.withCredentials = !!_config.withCredentials;
-      }
-      if (responseType && responseType !== "json") {
-        request2.responseType = _config.responseType;
-      }
-      if (onDownloadProgress) {
-        [downloadThrottled, flushDownload] = progressEventReducer(onDownloadProgress, true);
-        request2.addEventListener("progress", downloadThrottled);
-      }
-      if (onUploadProgress && request2.upload) {
-        [uploadThrottled, flushUpload] = progressEventReducer(onUploadProgress);
-        request2.upload.addEventListener("progress", uploadThrottled);
-        request2.upload.addEventListener("loadend", flushUpload);
-      }
-      if (_config.cancelToken || _config.signal) {
-        onCanceled = (cancel) => {
-          if (!request2) {
-            return;
-          }
-          reject(!cancel || cancel.type ? new CanceledError(null, config2, request2) : cancel);
-          request2.abort();
-          request2 = null;
-        };
-        _config.cancelToken && _config.cancelToken.subscribe(onCanceled);
-        if (_config.signal) {
-          _config.signal.aborted ? onCanceled() : _config.signal.addEventListener("abort", onCanceled);
-        }
-      }
-      const protocol = parseProtocol(_config.url);
-      if (protocol && platform.protocols.indexOf(protocol) === -1) {
-        reject(new AxiosError("Unsupported protocol " + protocol + ":", AxiosError.ERR_BAD_REQUEST, config2));
-        return;
-      }
-      request2.send(requestData || null);
-    });
-  };
-  const composeSignals = (signals, timeout) => {
-    const { length } = signals = signals ? signals.filter(Boolean) : [];
-    if (timeout || length) {
-      let controller = new AbortController();
-      let aborted;
-      const onabort = function(reason) {
-        if (!aborted) {
-          aborted = true;
-          unsubscribe();
-          const err = reason instanceof Error ? reason : this.reason;
-          controller.abort(err instanceof AxiosError ? err : new CanceledError(err instanceof Error ? err.message : err));
-        }
-      };
-      let timer = timeout && setTimeout(() => {
-        timer = null;
-        onabort(new AxiosError(`timeout ${timeout} of ms exceeded`, AxiosError.ETIMEDOUT));
-      }, timeout);
-      const unsubscribe = () => {
-        if (signals) {
-          timer && clearTimeout(timer);
-          timer = null;
-          signals.forEach((signal2) => {
-            signal2.unsubscribe ? signal2.unsubscribe(onabort) : signal2.removeEventListener("abort", onabort);
-          });
-          signals = null;
-        }
-      };
-      signals.forEach((signal2) => signal2.addEventListener("abort", onabort));
-      const { signal } = controller;
-      signal.unsubscribe = () => utils$1.asap(unsubscribe);
-      return signal;
-    }
-  };
-  const composeSignals$1 = composeSignals;
-  const streamChunk = function* (chunk, chunkSize) {
-    let len = chunk.byteLength;
-    if (!chunkSize || len < chunkSize) {
-      yield chunk;
-      return;
-    }
-    let pos = 0;
-    let end;
-    while (pos < len) {
-      end = pos + chunkSize;
-      yield chunk.slice(pos, end);
-      pos = end;
-    }
-  };
-  const readBytes = async function* (iterable, chunkSize) {
-    for await (const chunk of readStream(iterable)) {
-      yield* streamChunk(chunk, chunkSize);
-    }
-  };
-  const readStream = async function* (stream) {
-    if (stream[Symbol.asyncIterator]) {
-      yield* stream;
-      return;
-    }
-    const reader = stream.getReader();
-    try {
-      for (; ; ) {
-        const { done, value } = await reader.read();
-        if (done) {
-          break;
-        }
-        yield value;
-      }
-    } finally {
-      await reader.cancel();
-    }
-  };
-  const trackStream = (stream, chunkSize, onProgress, onFinish) => {
-    const iterator = readBytes(stream, chunkSize);
-    let bytes = 0;
-    let done;
-    let _onFinish = (e2) => {
-      if (!done) {
-        done = true;
-        onFinish && onFinish(e2);
-      }
-    };
-    return new ReadableStream({
-      async pull(controller) {
-        try {
-          const { done: done2, value } = await iterator.next();
-          if (done2) {
-            _onFinish();
-            controller.close();
-            return;
-          }
-          let len = value.byteLength;
-          if (onProgress) {
-            let loadedBytes = bytes += len;
-            onProgress(loadedBytes);
-          }
-          controller.enqueue(new Uint8Array(value));
-        } catch (err) {
-          _onFinish(err);
-          throw err;
-        }
-      },
-      cancel(reason) {
-        _onFinish(reason);
-        return iterator.return();
-      }
-    }, {
-      highWaterMark: 2
-    });
-  };
-  const isFetchSupported = typeof fetch === "function" && typeof Request === "function" && typeof Response === "function";
-  const isReadableStreamSupported = isFetchSupported && typeof ReadableStream === "function";
-  const encodeText = isFetchSupported && (typeof TextEncoder === "function" ? /* @__PURE__ */ ((encoder) => (str) => encoder.encode(str))(new TextEncoder()) : async (str) => new Uint8Array(await new Response(str).arrayBuffer()));
-  const test = (fn, ...args) => {
-    try {
-      return !!fn(...args);
-    } catch (e2) {
-      return false;
-    }
-  };
-  const supportsRequestStream = isReadableStreamSupported && test(() => {
-    let duplexAccessed = false;
-    const hasContentType = new Request(platform.origin, {
-      body: new ReadableStream(),
-      method: "POST",
-      get duplex() {
-        duplexAccessed = true;
-        return "half";
-      }
-    }).headers.has("Content-Type");
-    return duplexAccessed && !hasContentType;
-  });
-  const DEFAULT_CHUNK_SIZE = 64 * 1024;
-  const supportsResponseStream = isReadableStreamSupported && test(() => utils$1.isReadableStream(new Response("").body));
-  const resolvers = {
-    stream: supportsResponseStream && ((res) => res.body)
-  };
-  isFetchSupported && ((res) => {
-    ["text", "arrayBuffer", "blob", "formData", "stream"].forEach((type) => {
-      !resolvers[type] && (resolvers[type] = utils$1.isFunction(res[type]) ? (res2) => res2[type]() : (_, config2) => {
-        throw new AxiosError(`Response type '${type}' is not supported`, AxiosError.ERR_NOT_SUPPORT, config2);
-      });
-    });
-  })(new Response());
-  const getBodyLength = async (body) => {
-    if (body == null) {
-      return 0;
-    }
-    if (utils$1.isBlob(body)) {
-      return body.size;
-    }
-    if (utils$1.isSpecCompliantForm(body)) {
-      const _request = new Request(platform.origin, {
-        method: "POST",
-        body
-      });
-      return (await _request.arrayBuffer()).byteLength;
-    }
-    if (utils$1.isArrayBufferView(body) || utils$1.isArrayBuffer(body)) {
-      return body.byteLength;
-    }
-    if (utils$1.isURLSearchParams(body)) {
-      body = body + "";
-    }
-    if (utils$1.isString(body)) {
-      return (await encodeText(body)).byteLength;
-    }
-  };
-  const resolveBodyLength = async (headers, body) => {
-    const length = utils$1.toFiniteNumber(headers.getContentLength());
-    return length == null ? getBodyLength(body) : length;
-  };
-  const fetchAdapter = isFetchSupported && (async (config2) => {
-    let {
-      url,
-      method,
-      data,
-      signal,
-      cancelToken,
-      timeout,
-      onDownloadProgress,
-      onUploadProgress,
-      responseType,
-      headers,
-      withCredentials = "same-origin",
-      fetchOptions
-    } = resolveConfig(config2);
-    responseType = responseType ? (responseType + "").toLowerCase() : "text";
-    let composedSignal = composeSignals$1([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
-    let request2;
-    const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
-      composedSignal.unsubscribe();
-    });
-    let requestContentLength;
-    try {
-      if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
-        let _request = new Request(url, {
-          method: "POST",
-          body: data,
-          duplex: "half"
-        });
-        let contentTypeHeader;
-        if (utils$1.isFormData(data) && (contentTypeHeader = _request.headers.get("content-type"))) {
-          headers.setContentType(contentTypeHeader);
-        }
-        if (_request.body) {
-          const [onProgress, flush] = progressEventDecorator(
-            requestContentLength,
-            progressEventReducer(asyncDecorator(onUploadProgress))
-          );
-          data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
-        }
-      }
-      if (!utils$1.isString(withCredentials)) {
-        withCredentials = withCredentials ? "include" : "omit";
-      }
-      const isCredentialsSupported = "credentials" in Request.prototype;
-      request2 = new Request(url, {
-        ...fetchOptions,
-        signal: composedSignal,
-        method: method.toUpperCase(),
-        headers: headers.normalize().toJSON(),
-        body: data,
-        duplex: "half",
-        credentials: isCredentialsSupported ? withCredentials : void 0
-      });
-      let response = await fetch(request2);
-      const isStreamResponse = supportsResponseStream && (responseType === "stream" || responseType === "response");
-      if (supportsResponseStream && (onDownloadProgress || isStreamResponse && unsubscribe)) {
-        const options = {};
-        ["status", "statusText", "headers"].forEach((prop) => {
-          options[prop] = response[prop];
-        });
-        const responseContentLength = utils$1.toFiniteNumber(response.headers.get("content-length"));
-        const [onProgress, flush] = onDownloadProgress && progressEventDecorator(
-          responseContentLength,
-          progressEventReducer(asyncDecorator(onDownloadProgress), true)
-        ) || [];
-        response = new Response(
-          trackStream(response.body, DEFAULT_CHUNK_SIZE, onProgress, () => {
-            flush && flush();
-            unsubscribe && unsubscribe();
-          }),
-          options
-        );
-      }
-      responseType = responseType || "text";
-      let responseData = await resolvers[utils$1.findKey(resolvers, responseType) || "text"](response, config2);
-      !isStreamResponse && unsubscribe && unsubscribe();
-      return await new Promise((resolve, reject) => {
-        settle(resolve, reject, {
-          data: responseData,
-          headers: AxiosHeaders$1.from(response.headers),
-          status: response.status,
-          statusText: response.statusText,
-          config: config2,
-          request: request2
-        });
-      });
-    } catch (err) {
-      unsubscribe && unsubscribe();
-      if (err && err.name === "TypeError" && /fetch/i.test(err.message)) {
-        throw Object.assign(
-          new AxiosError("Network Error", AxiosError.ERR_NETWORK, config2, request2),
-          {
-            cause: err.cause || err
-          }
-        );
-      }
-      throw AxiosError.from(err, err && err.code, config2, request2);
-    }
-  });
-  const knownAdapters = {
-    http: httpAdapter,
-    xhr: xhrAdapter,
-    fetch: fetchAdapter
-  };
-  utils$1.forEach(knownAdapters, (fn, value) => {
-    if (fn) {
-      try {
-        Object.defineProperty(fn, "name", { value });
-      } catch (e2) {
-      }
-      Object.defineProperty(fn, "adapterName", { value });
-    }
-  });
-  const renderReason = (reason) => `- ${reason}`;
-  const isResolvedHandle = (adapter) => utils$1.isFunction(adapter) || adapter === null || adapter === false;
-  const adapters = {
-    getAdapter: (adapters2) => {
-      adapters2 = utils$1.isArray(adapters2) ? adapters2 : [adapters2];
-      const { length } = adapters2;
-      let nameOrAdapter;
-      let adapter;
-      const rejectedReasons = {};
-      for (let i2 = 0; i2 < length; i2++) {
-        nameOrAdapter = adapters2[i2];
-        let id;
-        adapter = nameOrAdapter;
-        if (!isResolvedHandle(nameOrAdapter)) {
-          adapter = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
-          if (adapter === void 0) {
-            throw new AxiosError(`Unknown adapter '${id}'`);
-          }
-        }
-        if (adapter) {
-          break;
-        }
-        rejectedReasons[id || "#" + i2] = adapter;
-      }
-      if (!adapter) {
-        const reasons = Object.entries(rejectedReasons).map(
-          ([id, state]) => `adapter ${id} ` + (state === false ? "is not supported by the environment" : "is not available in the build")
-        );
-        let s = length ? reasons.length > 1 ? "since :\n" + reasons.map(renderReason).join("\n") : " " + renderReason(reasons[0]) : "as no adapter specified";
-        throw new AxiosError(
-          `There is no suitable adapter to dispatch the request ` + s,
-          "ERR_NOT_SUPPORT"
-        );
-      }
-      return adapter;
+      gameTitle: "miniblox",
+      gameImage: "../../static/rectangle/miniblox.png"
     },
-    adapters: knownAdapters
-  };
-  function throwIfCancellationRequested(config2) {
-    if (config2.cancelToken) {
-      config2.cancelToken.throwIfRequested();
+    {
+      gameTitle: "cubes2048io",
+      gameImage: "../../static/rectangle/cubes2048.io.png"
+    },
+    {
+      gameTitle: "gooberdash",
+      gameImage: "../../static/rectangle/gooberdash.png"
+    },
+    {
+      gameTitle: "space-waves",
+      gameImage: "../../static/rectangle/space-waves.png"
     }
-    if (config2.signal && config2.signal.aborted) {
-      throw new CanceledError(null, config2);
+  ];
+  const tablist = [
+    {
+      tabicon: "vip",
+      tabtitle: "SLOT",
+      index: 1
+    },
+    {
+      tabicon: "contact",
+      tabtitle: "LIVE",
+      index: 2
+    },
+    {
+      tabicon: "map-pin",
+      tabtitle: "FISH",
+      index: 3
+    },
+    {
+      tabicon: "map",
+      tabtitle: "SPORT",
+      index: 4
+    },
+    {
+      tabicon: "heart",
+      tabtitle: "HOT",
+      index: 5
     }
-  }
-  function dispatchRequest(config2) {
-    throwIfCancellationRequested(config2);
-    config2.headers = AxiosHeaders$1.from(config2.headers);
-    config2.data = transformData.call(
-      config2,
-      config2.transformRequest
-    );
-    if (["post", "put", "patch"].indexOf(config2.method) !== -1) {
-      config2.headers.setContentType("application/x-www-form-urlencoded", false);
-    }
-    const adapter = adapters.getAdapter(config2.adapter || defaults$1.adapter);
-    return adapter(config2).then(function onAdapterResolution(response) {
-      throwIfCancellationRequested(config2);
-      response.data = transformData.call(
-        config2,
-        config2.transformResponse,
-        response
-      );
-      response.headers = AxiosHeaders$1.from(response.headers);
-      return response;
-    }, function onAdapterRejection(reason) {
-      if (!isCancel(reason)) {
-        throwIfCancellationRequested(config2);
-        if (reason && reason.response) {
-          reason.response.data = transformData.call(
-            config2,
-            config2.transformResponse,
-            reason.response
-          );
-          reason.response.headers = AxiosHeaders$1.from(reason.response.headers);
-        }
-      }
-      return Promise.reject(reason);
-    });
-  }
-  const VERSION = "1.7.7";
-  const validators$1 = {};
-  ["object", "boolean", "number", "function", "string", "symbol"].forEach((type, i2) => {
-    validators$1[type] = function validator2(thing) {
-      return typeof thing === type || "a" + (i2 < 1 ? "n " : " ") + type;
-    };
-  });
-  const deprecatedWarnings = {};
-  validators$1.transitional = function transitional(validator2, version, message) {
-    function formatMessage2(opt, desc) {
-      return "[Axios v" + VERSION + "] Transitional option '" + opt + "'" + desc + (message ? ". " + message : "");
-    }
-    return (value, opt, opts) => {
-      if (validator2 === false) {
-        throw new AxiosError(
-          formatMessage2(opt, " has been removed" + (version ? " in " + version : "")),
-          AxiosError.ERR_DEPRECATED
-        );
-      }
-      if (version && !deprecatedWarnings[opt]) {
-        deprecatedWarnings[opt] = true;
-        formatAppLog(
-          "warn",
-          "at node_modules/axios/lib/helpers/validator.js:43",
-          formatMessage2(
-            opt,
-            " has been deprecated since v" + version + " and will be removed in the near future"
-          )
-        );
-      }
-      return validator2 ? validator2(value, opt, opts) : true;
-    };
-  };
-  function assertOptions(options, schema, allowUnknown) {
-    if (typeof options !== "object") {
-      throw new AxiosError("options must be an object", AxiosError.ERR_BAD_OPTION_VALUE);
-    }
-    const keys = Object.keys(options);
-    let i2 = keys.length;
-    while (i2-- > 0) {
-      const opt = keys[i2];
-      const validator2 = schema[opt];
-      if (validator2) {
-        const value = options[opt];
-        const result = value === void 0 || validator2(value, opt, options);
-        if (result !== true) {
-          throw new AxiosError("option " + opt + " must be " + result, AxiosError.ERR_BAD_OPTION_VALUE);
-        }
-        continue;
-      }
-      if (allowUnknown !== true) {
-        throw new AxiosError("Unknown option " + opt, AxiosError.ERR_BAD_OPTION);
-      }
-    }
-  }
-  const validator = {
-    assertOptions,
-    validators: validators$1
-  };
-  const validators = validator.validators;
-  class Axios {
-    constructor(instanceConfig) {
-      this.defaults = instanceConfig;
-      this.interceptors = {
-        request: new InterceptorManager(),
-        response: new InterceptorManager()
-      };
-    }
-    /**
-     * Dispatch a request
-     *
-     * @param {String|Object} configOrUrl The config specific for this request (merged with this.defaults)
-     * @param {?Object} config
-     *
-     * @returns {Promise} The Promise to be fulfilled
-     */
-    async request(configOrUrl, config2) {
-      try {
-        return await this._request(configOrUrl, config2);
-      } catch (err) {
-        if (err instanceof Error) {
-          let dummy;
-          Error.captureStackTrace ? Error.captureStackTrace(dummy = {}) : dummy = new Error();
-          const stack = dummy.stack ? dummy.stack.replace(/^.+\n/, "") : "";
-          try {
-            if (!err.stack) {
-              err.stack = stack;
-            } else if (stack && !String(err.stack).endsWith(stack.replace(/^.+\n.+\n/, ""))) {
-              err.stack += "\n" + stack;
-            }
-          } catch (e2) {
-          }
-        }
-        throw err;
-      }
-    }
-    _request(configOrUrl, config2) {
-      if (typeof configOrUrl === "string") {
-        config2 = config2 || {};
-        config2.url = configOrUrl;
-      } else {
-        config2 = configOrUrl || {};
-      }
-      config2 = mergeConfig(this.defaults, config2);
-      const { transitional, paramsSerializer, headers } = config2;
-      if (transitional !== void 0) {
-        validator.assertOptions(transitional, {
-          silentJSONParsing: validators.transitional(validators.boolean),
-          forcedJSONParsing: validators.transitional(validators.boolean),
-          clarifyTimeoutError: validators.transitional(validators.boolean)
-        }, false);
-      }
-      if (paramsSerializer != null) {
-        if (utils$1.isFunction(paramsSerializer)) {
-          config2.paramsSerializer = {
-            serialize: paramsSerializer
-          };
-        } else {
-          validator.assertOptions(paramsSerializer, {
-            encode: validators.function,
-            serialize: validators.function
-          }, true);
-        }
-      }
-      config2.method = (config2.method || this.defaults.method || "get").toLowerCase();
-      let contextHeaders = headers && utils$1.merge(
-        headers.common,
-        headers[config2.method]
-      );
-      headers && utils$1.forEach(
-        ["delete", "get", "head", "post", "put", "patch", "common"],
-        (method) => {
-          delete headers[method];
-        }
-      );
-      config2.headers = AxiosHeaders$1.concat(contextHeaders, headers);
-      const requestInterceptorChain = [];
-      let synchronousRequestInterceptors = true;
-      this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-        if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config2) === false) {
-          return;
-        }
-        synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
-        requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
-      });
-      const responseInterceptorChain = [];
-      this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-        responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
-      });
-      let promise;
-      let i2 = 0;
-      let len;
-      if (!synchronousRequestInterceptors) {
-        const chain = [dispatchRequest.bind(this), void 0];
-        chain.unshift.apply(chain, requestInterceptorChain);
-        chain.push.apply(chain, responseInterceptorChain);
-        len = chain.length;
-        promise = Promise.resolve(config2);
-        while (i2 < len) {
-          promise = promise.then(chain[i2++], chain[i2++]);
-        }
-        return promise;
-      }
-      len = requestInterceptorChain.length;
-      let newConfig = config2;
-      i2 = 0;
-      while (i2 < len) {
-        const onFulfilled = requestInterceptorChain[i2++];
-        const onRejected = requestInterceptorChain[i2++];
-        try {
-          newConfig = onFulfilled(newConfig);
-        } catch (error) {
-          onRejected.call(this, error);
-          break;
-        }
-      }
-      try {
-        promise = dispatchRequest.call(this, newConfig);
-      } catch (error) {
-        return Promise.reject(error);
-      }
-      i2 = 0;
-      len = responseInterceptorChain.length;
-      while (i2 < len) {
-        promise = promise.then(responseInterceptorChain[i2++], responseInterceptorChain[i2++]);
-      }
-      return promise;
-    }
-    getUri(config2) {
-      config2 = mergeConfig(this.defaults, config2);
-      const fullPath = buildFullPath(config2.baseURL, config2.url);
-      return buildURL(fullPath, config2.params, config2.paramsSerializer);
-    }
-  }
-  utils$1.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
-    Axios.prototype[method] = function(url, config2) {
-      return this.request(mergeConfig(config2 || {}, {
-        method,
-        url,
-        data: (config2 || {}).data
-      }));
-    };
-  });
-  utils$1.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
-    function generateHTTPMethod(isForm) {
-      return function httpMethod(url, data, config2) {
-        return this.request(mergeConfig(config2 || {}, {
-          method,
-          headers: isForm ? {
-            "Content-Type": "multipart/form-data"
-          } : {},
-          url,
-          data
-        }));
-      };
-    }
-    Axios.prototype[method] = generateHTTPMethod();
-    Axios.prototype[method + "Form"] = generateHTTPMethod(true);
-  });
-  const Axios$1 = Axios;
-  class CancelToken {
-    constructor(executor) {
-      if (typeof executor !== "function") {
-        throw new TypeError("executor must be a function.");
-      }
-      let resolvePromise;
-      this.promise = new Promise(function promiseExecutor(resolve) {
-        resolvePromise = resolve;
-      });
-      const token = this;
-      this.promise.then((cancel) => {
-        if (!token._listeners)
-          return;
-        let i2 = token._listeners.length;
-        while (i2-- > 0) {
-          token._listeners[i2](cancel);
-        }
-        token._listeners = null;
-      });
-      this.promise.then = (onfulfilled) => {
-        let _resolve;
-        const promise = new Promise((resolve) => {
-          token.subscribe(resolve);
-          _resolve = resolve;
-        }).then(onfulfilled);
-        promise.cancel = function reject() {
-          token.unsubscribe(_resolve);
-        };
-        return promise;
-      };
-      executor(function cancel(message, config2, request2) {
-        if (token.reason) {
-          return;
-        }
-        token.reason = new CanceledError(message, config2, request2);
-        resolvePromise(token.reason);
-      });
-    }
-    /**
-     * Throws a `CanceledError` if cancellation has been requested.
-     */
-    throwIfRequested() {
-      if (this.reason) {
-        throw this.reason;
-      }
-    }
-    /**
-     * Subscribe to the cancel signal
-     */
-    subscribe(listener) {
-      if (this.reason) {
-        listener(this.reason);
-        return;
-      }
-      if (this._listeners) {
-        this._listeners.push(listener);
-      } else {
-        this._listeners = [listener];
-      }
-    }
-    /**
-     * Unsubscribe from the cancel signal
-     */
-    unsubscribe(listener) {
-      if (!this._listeners) {
-        return;
-      }
-      const index = this._listeners.indexOf(listener);
-      if (index !== -1) {
-        this._listeners.splice(index, 1);
-      }
-    }
-    toAbortSignal() {
-      const controller = new AbortController();
-      const abort = (err) => {
-        controller.abort(err);
-      };
-      this.subscribe(abort);
-      controller.signal.unsubscribe = () => this.unsubscribe(abort);
-      return controller.signal;
-    }
-    /**
-     * Returns an object that contains a new `CancelToken` and a function that, when called,
-     * cancels the `CancelToken`.
-     */
-    static source() {
-      let cancel;
-      const token = new CancelToken(function executor(c2) {
-        cancel = c2;
-      });
-      return {
-        token,
-        cancel
-      };
-    }
-  }
-  const CancelToken$1 = CancelToken;
-  function spread(callback) {
-    return function wrap(arr) {
-      return callback.apply(null, arr);
-    };
-  }
-  function isAxiosError(payload) {
-    return utils$1.isObject(payload) && payload.isAxiosError === true;
-  }
-  const HttpStatusCode = {
-    Continue: 100,
-    SwitchingProtocols: 101,
-    Processing: 102,
-    EarlyHints: 103,
-    Ok: 200,
-    Created: 201,
-    Accepted: 202,
-    NonAuthoritativeInformation: 203,
-    NoContent: 204,
-    ResetContent: 205,
-    PartialContent: 206,
-    MultiStatus: 207,
-    AlreadyReported: 208,
-    ImUsed: 226,
-    MultipleChoices: 300,
-    MovedPermanently: 301,
-    Found: 302,
-    SeeOther: 303,
-    NotModified: 304,
-    UseProxy: 305,
-    Unused: 306,
-    TemporaryRedirect: 307,
-    PermanentRedirect: 308,
-    BadRequest: 400,
-    Unauthorized: 401,
-    PaymentRequired: 402,
-    Forbidden: 403,
-    NotFound: 404,
-    MethodNotAllowed: 405,
-    NotAcceptable: 406,
-    ProxyAuthenticationRequired: 407,
-    RequestTimeout: 408,
-    Conflict: 409,
-    Gone: 410,
-    LengthRequired: 411,
-    PreconditionFailed: 412,
-    PayloadTooLarge: 413,
-    UriTooLong: 414,
-    UnsupportedMediaType: 415,
-    RangeNotSatisfiable: 416,
-    ExpectationFailed: 417,
-    ImATeapot: 418,
-    MisdirectedRequest: 421,
-    UnprocessableEntity: 422,
-    Locked: 423,
-    FailedDependency: 424,
-    TooEarly: 425,
-    UpgradeRequired: 426,
-    PreconditionRequired: 428,
-    TooManyRequests: 429,
-    RequestHeaderFieldsTooLarge: 431,
-    UnavailableForLegalReasons: 451,
-    InternalServerError: 500,
-    NotImplemented: 501,
-    BadGateway: 502,
-    ServiceUnavailable: 503,
-    GatewayTimeout: 504,
-    HttpVersionNotSupported: 505,
-    VariantAlsoNegotiates: 506,
-    InsufficientStorage: 507,
-    LoopDetected: 508,
-    NotExtended: 510,
-    NetworkAuthenticationRequired: 511
-  };
-  Object.entries(HttpStatusCode).forEach(([key, value]) => {
-    HttpStatusCode[value] = key;
-  });
-  const HttpStatusCode$1 = HttpStatusCode;
-  function createInstance(defaultConfig) {
-    const context = new Axios$1(defaultConfig);
-    const instance = bind(Axios$1.prototype.request, context);
-    utils$1.extend(instance, Axios$1.prototype, context, { allOwnKeys: true });
-    utils$1.extend(instance, context, null, { allOwnKeys: true });
-    instance.create = function create(instanceConfig) {
-      return createInstance(mergeConfig(defaultConfig, instanceConfig));
-    };
-    return instance;
-  }
-  const axios = createInstance(defaults$1);
-  axios.Axios = Axios$1;
-  axios.CanceledError = CanceledError;
-  axios.CancelToken = CancelToken$1;
-  axios.isCancel = isCancel;
-  axios.VERSION = VERSION;
-  axios.toFormData = toFormData;
-  axios.AxiosError = AxiosError;
-  axios.Cancel = axios.CanceledError;
-  axios.all = function all(promises) {
-    return Promise.all(promises);
-  };
-  axios.spread = spread;
-  axios.isAxiosError = isAxiosError;
-  axios.mergeConfig = mergeConfig;
-  axios.AxiosHeaders = AxiosHeaders$1;
-  axios.formToJSON = (thing) => formDataToJSON(utils$1.isHTMLForm(thing) ? new FormData(thing) : thing);
-  axios.getAdapter = adapters.getAdapter;
-  axios.HttpStatusCode = HttpStatusCode$1;
-  axios.default = axios;
-  const config = {
-    ossLink: "https://lienheng-sit.oss-ap-southeast-1.aliyuncs.com/",
-    apiURL: "http://192.168.1.95:8001/api"
-  };
-  axios.defaults.baseURL = config.apiURL;
-  let path = "product";
-  let apiURL = config.apiURL;
-  const getApiData = (params) => {
-    return request({
-      url: `https://dummyjson.com/${path}`
-      // method:"GET",
-      // params
-    });
-  };
-  const getApiData2 = (params) => {
-    return request({
-      url: `${apiURL}/public/getTop10Token`,
-      method: "POST"
-      // params
-    });
-  };
+  ];
   useStore();
   const _sfc_main$7 = {
     data() {
@@ -11984,55 +9731,13 @@ ${codeFrame}` : message);
         title: "Hello",
         apiData2: {},
         onOpenOnce: false,
+        widthSpan: global$1.widthSpan,
         popUpText: "",
         isLoginOpen: false,
-        testURL: "https://github.com/uioooou/uni-app-testing/tree/test",
+        testURL: testUrl,
         apiData: {},
-        gamelist: [
-          {
-            gameTitle: "miniblox",
-            gameImage: "../../static/rectangle/miniblox.png"
-          },
-          {
-            gameTitle: "cubes2048io",
-            gameImage: "../../static/rectangle/cubes2048.io.png"
-          },
-          {
-            gameTitle: "gooberdash",
-            gameImage: "../../static/rectangle/gooberdash.png"
-          },
-          {
-            gameTitle: "space-waves",
-            gameImage: "../../static/rectangle/space-waves.png"
-          }
-        ],
-        tablist: [
-          {
-            tabicon: "vip",
-            tabtitle: "SLOT",
-            index: 1
-          },
-          {
-            tabicon: "contact",
-            tabtitle: "LIVE",
-            index: 2
-          },
-          {
-            tabicon: "map-pin",
-            tabtitle: "FISH",
-            index: 3
-          },
-          {
-            tabicon: "map",
-            tabtitle: "SPORT",
-            index: 4
-          },
-          {
-            tabicon: "heart",
-            tabtitle: "HOT",
-            index: 5
-          }
-        ],
+        gamelist: gameList,
+        tablist,
         ossLink: config.ossLink,
         tab: 1
       };
@@ -12042,9 +9747,9 @@ ${codeFrame}` : message);
       this.apiData = await getApiData();
       this.onOpenOnce = true;
       this.popUpText = this.apiData;
-      formatAppLog("log", "at pages/home/index.vue:117", "return API data on load", this.apiData);
+      formatAppLog("log", "at pages/home/index.vue:65", "return API data on load", this.apiData);
       let result = await getApiData2();
-      formatAppLog("log", "at pages/home/index.vue:120", "top10token", result.data);
+      formatAppLog("log", "at pages/home/index.vue:67", "top10token", result.data);
     },
     components: {
       layout,
@@ -12065,7 +9770,7 @@ ${codeFrame}` : message);
     methods: {
       handleTabClick(index) {
         this.tab = index;
-        formatAppLog("log", "at pages/home/index.vue:143", "userInfo", this.userInfo);
+        formatAppLog("log", "at pages/home/index.vue:89", "userInfo", this.userInfo);
       },
       handleGameClick() {
         if (this.getLoginStatus === false) {
@@ -12081,13 +9786,13 @@ ${codeFrame}` : message);
       },
       async handleUpdateAPI() {
         let result = await getApiData();
-        formatAppLog("log", "at pages/home/index.vue:160", "update everytime", result);
+        formatAppLog("log", "at pages/home/index.vue:105", "update everytime", result);
         return result;
       }
     },
     watch: {
       tab(newValue, oldValue) {
-        formatAppLog("log", "at pages/home/index.vue:166", `${oldValue} changed to ${newValue}`);
+        formatAppLog("log", "at pages/home/index.vue:111", `${oldValue} changed to ${newValue}`);
         this.handleUpdateAPI();
         if (newValue === 5) {
           this.gamelist = [
@@ -12186,40 +9891,34 @@ ${codeFrame}` : message);
                     vue.Fragment,
                     null,
                     vue.renderList($data.gamelist, (item, index) => {
-                      return vue.openBlock(), vue.createBlock(
-                        _component_uni_col,
-                        {
-                          span: 8,
-                          key: index,
-                          class: "gameContentWrapper"
-                        },
-                        {
-                          default: vue.withCtx(() => [
-                            vue.createElementVNode("view", {
-                              class: "gameContent",
-                              onClick: _cache[0] || (_cache[0] = ($event) => $options.handleGameClick())
-                            }, [
-                              vue.createElementVNode("image", {
-                                src: item.gameImage,
-                                alt: item.gameTitle,
-                                class: "gameContent"
-                              }, null, 8, ["src", "alt"])
-                            ])
-                          ]),
-                          _: 2
-                          /* DYNAMIC */
-                        },
-                        1024
-                        /* DYNAMIC_SLOTS */
-                      );
+                      return vue.openBlock(), vue.createBlock(_component_uni_col, {
+                        span: $data.widthSpan,
+                        key: index,
+                        class: "gameContentWrapper"
+                      }, {
+                        default: vue.withCtx(() => [
+                          vue.createElementVNode("view", {
+                            class: "gameContent",
+                            onClick: _cache[0] || (_cache[0] = ($event) => $options.handleGameClick())
+                          }, [
+                            vue.createElementVNode("image", {
+                              src: item.gameImage,
+                              alt: item.gameTitle,
+                              class: "gameContent"
+                            }, null, 8, ["src", "alt"])
+                          ])
+                        ]),
+                        _: 2
+                        /* DYNAMIC */
+                      }, 1032, ["span"]);
                     }),
                     128
                     /* KEYED_FRAGMENT */
                   )),
                   $data.gamelist.length === 0 ? (vue.openBlock(), vue.createElementBlock("view", {
                     key: 0,
-                    class: "noData"
-                  }, " No Data ")) : vue.createCommentVNode("v-if", true)
+                    class: "noDataHome"
+                  }, "No Data")) : vue.createCommentVNode("v-if", true)
                 ]),
                 _: 1
                 /* STABLE */
@@ -12241,28 +9940,30 @@ ${codeFrame}` : message);
     });
   }
   const PagesHomeIndex = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/home/index.vue"]]);
+  const gameContentList = [
+    {
+      gameTitle: "a",
+      gameImage: "../../static/square/a.png"
+    },
+    {
+      gameTitle: "b",
+      gameImage: "../../static/square/b.png"
+    },
+    {
+      gameTitle: "c",
+      gameImage: "../../static/square/c.png"
+    },
+    {
+      gameTitle: "d",
+      gameImage: "../../static/square/d.png"
+    }
+  ];
+  const gameUrl = "https://github.com/uioooou/uni-app-testing/tree/test";
   const _sfc_main$6 = {
     data() {
       return {
-        url: "https://github.com/uioooou/uni-app-testing/tree/test",
-        gamelist: [
-          {
-            gameTitle: "a",
-            gameImage: "../../static/square/a.png"
-          },
-          {
-            gameTitle: "b",
-            gameImage: "../../static/square/b.png"
-          },
-          {
-            gameTitle: "c",
-            gameImage: "../../static/square/c.png"
-          },
-          {
-            gameTitle: "d",
-            gameImage: "../../static/square/d.png"
-          }
-        ]
+        url: gameUrl,
+        gamelist: gameContentList
       };
     },
     onLoad() {
@@ -12273,7 +9974,6 @@ ${codeFrame}` : message);
     },
     methods: {
       navigateLink() {
-        formatAppLog("log", "at pages/download/index.vue:55", "hihi");
         uni.navigateTo({
           url: `/pages/webview/index?url=${this.url}`
         });
@@ -12438,53 +10138,54 @@ ${codeFrame}` : message);
     ]);
   }
   const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-2f492593"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/imageCollapse/imageCollapse.vue"]]);
+  const cardData = [
+    {
+      img: "../../static/logo.png",
+      cardTitle: "hhi",
+      cardDescEN: "iaasdasdasdsa",
+      cardDescCH: "爱的还u厚道厚道厚道回答"
+    },
+    {
+      img: "../../static/logo.png",
+      cardTitle: "hhiasdasd",
+      cardDescEN: "iaasdasdasdsa",
+      cardDescCH: "爱的还"
+    },
+    {
+      img: "../../static/logo.png",
+      cardTitle: "hhiasdad",
+      cardDescEN: "iaasdasdasdsa",
+      cardDescCH: "爱的还"
+    },
+    {
+      img: "../../static/logo.png",
+      cardTitle: "hhiasdad",
+      cardDescEN: "iaasdasdasdsa",
+      cardDescCH: "爱的还"
+    },
+    {
+      img: "../../static/logo.png",
+      cardTitle: "hhiasdad",
+      cardDescEN: "iaasdasdasdsa",
+      cardDescCH: "爱的还"
+    }
+  ];
   const _sfc_main$4 = {
     data() {
       return {
         open: 0,
         langUse: this.lang,
-        cardData: [
-          {
-            img: "../../static/logo.png",
-            cardTitle: "hhi",
-            cardDescEN: "iaasdasdasdsa",
-            cardDescCH: "爱的还u厚道厚道厚道回答"
-          },
-          {
-            img: "../../static/logo.png",
-            cardTitle: "hhiasdasd",
-            cardDescEN: "iaasdasdasdsa",
-            cardDescCH: "爱的还"
-          },
-          {
-            img: "../../static/logo.png",
-            cardTitle: "hhiasdad",
-            cardDescEN: "iaasdasdasdsa",
-            cardDescCH: "爱的还"
-          },
-          {
-            img: "../../static/logo.png",
-            cardTitle: "hhiasdad",
-            cardDescEN: "iaasdasdasdsa",
-            cardDescCH: "爱的还"
-          },
-          {
-            img: "../../static/logo.png",
-            cardTitle: "hhiasdad",
-            cardDescEN: "iaasdasdasdsa",
-            cardDescCH: "爱的还"
-          }
-        ]
+        cardData
       };
     },
     onLoad() {
       uni.hideTabBar();
-      formatAppLog("log", "at pages/promotion/index.vue:60", "lang", this.langUse);
+      formatAppLog("log", "at pages/promotion/index.vue:31", "lang", this.langUse);
     },
     methods: {
       handleOpenPromotion() {
         this.open = this.open === 1 ? 0 : 1;
-        formatAppLog("log", "at pages/promotion/index.vue:65", this.open);
+        formatAppLog("log", "at pages/promotion/index.vue:36", this.open);
       }
     },
     setup() {
@@ -12501,7 +10202,7 @@ ${codeFrame}` : message);
     watch: {
       lang: {
         handler(newVal) {
-          formatAppLog("log", "at pages/promotion/index.vue:83", "changed lang", newVal);
+          formatAppLog("log", "at pages/promotion/index.vue:54", "changed lang", newVal);
           this.langUse = newVal;
         },
         deep: true
@@ -12517,7 +10218,10 @@ ${codeFrame}` : message);
           vue.Fragment,
           null,
           vue.renderList($data.cardData, (item, index) => {
-            return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
+            return vue.openBlock(), vue.createElementBlock("view", {
+              key: index,
+              class: "promotion-card"
+            }, [
               vue.createVNode(_component_imageCollapse, {
                 img: item.img,
                 cardDesc: $data.langUse === "en" ? item.cardDescEN : item.cardDescCH,
@@ -12676,36 +10380,51 @@ ${codeFrame}` : message);
     ]);
   }
   const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__scopeId", "data-v-637fd36b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const loginForm = [
+    {
+      fieldName: "name",
+      fieldType: "text",
+      placeholder: "Please enter your Name"
+    },
+    {
+      fieldName: "password",
+      fieldType: "password",
+      placeholder: "Please Enter your Password"
+    }
+  ];
   const _sfc_main$1 = {
     data() {
       return {
-        valiFormData: {
+        validFormData: {
           name: "",
           password: ""
         },
         validLoginData: {
           name: "LYP",
           password: "admin"
-        }
+        },
+        formField: loginForm
       };
     },
     setup() {
-      const {
-        t: t2
-      } = i18n.global;
+      const { t: t2 } = i18n.global;
       const store2 = useStore();
       const rules = vue.computed(() => ({
         name: {
-          rules: [{
-            required: true,
-            errorMessage: t2("Name cannot be empty")
-          }]
+          rules: [
+            {
+              required: true,
+              errorMessage: t2("Name cannot be empty")
+            }
+          ]
         },
         password: {
-          rules: [{
-            required: true,
-            errorMessage: t2("Password cannot be empty")
-          }]
+          rules: [
+            {
+              required: true,
+              errorMessage: t2("Password cannot be empty")
+            }
+          ]
         }
       }));
       return {
@@ -12716,9 +10435,9 @@ ${codeFrame}` : message);
     methods: {
       handleLogin() {
         this.$refs.valiForm.validate().then((res) => {
-          if (this.valiFormData.name === this.validLoginData.name && this.valiFormData.password === this.validLoginData.password) {
-            formatAppLog("log", "at pages/login/index.vue:72", "login success");
-            this.loginAction(this.valiFormData);
+          if (this.validFormData.name === this.validLoginData.name && this.validFormData.password === this.validLoginData.password) {
+            formatAppLog("log", "at pages/login/index.vue:73", "login success");
+            this.loginAction(this.validFormData);
             uni.showToast({
               title: "登陆成功",
               icon: "success",
@@ -12728,7 +10447,7 @@ ${codeFrame}` : message);
               uni.navigateBack();
             }, 2e3);
           } else {
-            formatAppLog("log", "at pages/login/index.vue:83", "wrong");
+            formatAppLog("log", "at pages/login/index.vue:84", "wrong");
           }
         });
       },
@@ -12755,44 +10474,38 @@ ${codeFrame}` : message);
           ref: "valiForm",
           rules: $setup.rules,
           "label-position": "top",
-          modelValue: $data.valiFormData
+          modelValue: $data.validFormData
         }, {
           default: vue.withCtx(() => [
-            vue.createVNode(_component_uni_forms_item, {
-              label: _ctx.$i18n.t("Name"),
-              name: "name"
-            }, {
-              default: vue.withCtx(() => [
-                vue.createVNode(_component_uni_easyinput, {
-                  modelValue: $data.valiFormData.name,
-                  "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.valiFormData.name = $event),
-                  placeholder: _ctx.$i18n.t("Please enter your Name")
-                }, null, 8, ["modelValue", "placeholder"])
-              ]),
-              _: 1
-              /* STABLE */
-            }, 8, ["label"]),
-            vue.createVNode(_component_uni_forms_item, {
-              label: _ctx.$i18n.t("Password"),
-              name: "password"
-            }, {
-              default: vue.withCtx(() => [
-                vue.createVNode(_component_uni_easyinput, {
-                  modelValue: $data.valiFormData.password,
-                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.valiFormData.password = $event),
-                  type: "password",
-                  placeholder: _ctx.$i18n.t("Please Enter your Password")
-                }, null, 8, ["modelValue", "placeholder"])
-              ]),
-              _: 1
-              /* STABLE */
-            }, 8, ["label"]),
+            vue.createCommentVNode(" //v-model does not support dynamic binding "),
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.formField, (item, index) => {
+                return vue.openBlock(), vue.createBlock(_component_uni_forms_item, {
+                  label: _ctx.$i18n.t(item.fieldName),
+                  name: item.fieldName
+                }, {
+                  default: vue.withCtx(() => [
+                    vue.createVNode(_component_uni_easyinput, {
+                      value: $data.validFormData[item.fieldName],
+                      onInput: (value) => $data.validFormData[item.fieldName] = value,
+                      type: item.fieldType,
+                      placeholder: _ctx.$i18n.t(item.placeholder)
+                    }, null, 8, ["value", "onInput", "type", "placeholder"])
+                  ]),
+                  _: 2
+                  /* DYNAMIC */
+                }, 1032, ["label", "name"]);
+              }),
+              256
+              /* UNKEYED_FRAGMENT */
+            )),
             vue.createElementVNode(
               "button",
               {
                 type: "primary",
-                class: "form-button",
-                onClick: _cache[2] || (_cache[2] = (...args) => $options.handleLogin && $options.handleLogin(...args))
+                onClick: _cache[0] || (_cache[0] = (...args) => $options.handleLogin && $options.handleLogin(...args))
               },
               vue.toDisplayString(_ctx.$i18n.t("Login")),
               1
@@ -12997,14 +10710,32 @@ ${codeFrame}` : message);
       }
     }
   };
+  const theme = {
+    state: {
+      theme: uni.getStorageSync("theme") || "dark"
+    },
+    mutations: {
+      setTheme(state, data) {
+        let currentTheme = state.theme === "dark" ? "light" : "dark";
+        uni.setStorageSync("theme", currentTheme);
+        state.theme = currentTheme;
+      }
+    },
+    getters: {
+      getTheme(state) {
+        return state.theme;
+      }
+    }
+  };
   const store = createStore({
     modules: {
       user,
-      language
+      language,
+      theme
     },
     plugins: [
       a({
-        paths: ["user"],
+        paths: ["user", "language", "theme"],
         storage: {
           getItem: (key) => uni.getStorageSync(key),
           setItem: (key, value) => uni.setStorageSync(key, value),

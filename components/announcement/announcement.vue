@@ -3,7 +3,7 @@
 		<view class="">
 			<uni-notice-bar scrollable text="NETPLAY.NET" class="noticebar" background-color="white" color="blue" :fontSize="30" />
 		</view>
-		<view class="announcement-wrapper adb">
+		<view class="announcement-wrapper">
 			<image src="../../uni_modules/uni-upgrade-center-app/images/bg_top.png" mode="aspectFit" class="announcement-img"></image>
 		</view>
 		<view class="announcement-text">
