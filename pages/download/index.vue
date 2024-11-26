@@ -15,7 +15,7 @@
 				</uni-col>
 			</uni-row>
 		</view>
-		<view v-if="gamelist.length === 0" class="noData">hi</view>
+		<view v-if="gamelist.length === 0" class="noData">hiudhashd</view>
 	</layout>
 </template>
 
