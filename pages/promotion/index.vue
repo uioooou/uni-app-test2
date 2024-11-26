@@ -4,7 +4,7 @@
 			<imageCollapse :img="item.img" :cardDesc="langUse === 'en'? item.cardDescEN : item.cardDescCH"
 				:cardTitle="item.cardTitle" />
 		</view>
-		<view v-if="cardData.length === 0" class="noData">No Data</view>
+		<view v-if="cardData.length === 0" class="noData">Naadad</view>
 	</layout>
 </template>
 
