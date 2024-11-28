@@ -1,19 +1,13 @@
 {
-  "hash": "ac7927bf",
+  "hash": "48bad927",
   "configHash": "ae46a418",
-  "lockfileHash": "82628145",
-  "browserHash": "f0e64714",
+  "lockfileHash": "2c0392c2",
+  "browserHash": "2e09d696",
   "optimized": {
-    "bootstrap-vue-next": {
-      "src": "../../../../../node_modules/bootstrap-vue-next/dist/bootstrap-vue-next.mjs",
-      "file": "bootstrap-vue-next.js",
-      "fileHash": "7fd5f3ff",
-      "needsInterop": false
-    },
     "vuex-persistedstate": {
       "src": "../../../../../node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js",
       "file": "vuex-persistedstate.js",
-      "fileHash": "35f45b0f",
+      "fileHash": "050be55d",
       "needsInterop": false
     }
   },
