@@ -1223,7 +1223,7 @@ if (uni.restoreGlobal) {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "rpx" : val;
   };
-  const _sfc_main$m = {
+  const _sfc_main$l = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -1267,7 +1267,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -1280,8 +1280,8 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_4$2 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$l], ["__scopeId", "data-v-d31e1c47"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
-  const _sfc_main$l = {
+  const __easycom_4$2 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$k], ["__scopeId", "data-v-d31e1c47"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const _sfc_main$k = {
     name: "UniNoticeBar",
     emits: ["click", "getmore", "close"],
     props: {
@@ -1419,7 +1419,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_4$2);
     return $data.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
@@ -1517,15 +1517,15 @@ if (uni.restoreGlobal) {
       /* STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$k], ["__scopeId", "data-v-c3453ea3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$j], ["__scopeId", "data-v-c3453ea3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
   const _imports_0 = "/assets/bg_top.84172c45.png";
-  const _sfc_main$k = {
+  const _sfc_main$j = {
     data() {
       return {};
     }
   };
-  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_notice_bar = resolveEasycom(vue.resolveDynamicComponent("uni-notice-bar"), __easycom_0$4);
+  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_notice_bar = resolveEasycom(vue.resolveDynamicComponent("uni-notice-bar"), __easycom_0$3);
     return vue.openBlock(), vue.createElementBlock("view", { class: "announcement" }, [
       vue.createElementVNode("view", { class: "" }, [
         vue.createVNode(_component_uni_notice_bar, {
@@ -1549,9 +1549,9 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$j], ["__scopeId", "data-v-db9577a6"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/announcement/announcement.vue"]]);
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__scopeId", "data-v-db9577a6"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/announcement/announcement.vue"]]);
   const ComponentClass$1 = "uni-col";
-  const _sfc_main$j = {
+  const _sfc_main$i = {
     name: "uniCol",
     props: {
       span: {
@@ -1655,7 +1655,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -1672,10 +1672,10 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$i], ["__scopeId", "data-v-28ff6624"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-row/components/uni-col/uni-col.vue"]]);
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-28ff6624"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-row/components/uni-col/uni-col.vue"]]);
   const ComponentClass = "uni-row";
   const modifierSeparator = "--";
-  const _sfc_main$i = {
+  const _sfc_main$h = {
     name: "uniRow",
     componentName: "uniRow",
     props: {
@@ -1715,7 +1715,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -1732,7 +1732,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-097353af"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-row/components/uni-row/uni-row.vue"]]);
+  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__scopeId", "data-v-097353af"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-row/components/uni-row/uni-row.vue"]]);
   class MPAnimation {
     constructor(options, _this) {
       this.options = options;
@@ -1843,7 +1843,7 @@ if (uni.restoreGlobal) {
     clearTimeout(_this.timer);
     return new MPAnimation(option2, _this);
   }
-  const _sfc_main$h = {
+  const _sfc_main$g = {
     name: "uniTransition",
     emits: ["click", "change"],
     props: {
@@ -2090,7 +2090,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.isShow ? (vue.openBlock(), vue.createElementBlock("view", {
       key: 0,
       ref: "ani",
@@ -2102,8 +2102,8 @@ if (uni.restoreGlobal) {
       vue.renderSlot(_ctx.$slots, "default")
     ], 14, ["animation"])) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
-  const _sfc_main$g = {
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+  const _sfc_main$f = {
     name: "uniPopup",
     components: {},
     emits: ["change", "maskClick"],
@@ -2431,8 +2431,8 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_transition = resolveEasycom(vue.resolveDynamicComponent("uni-transition"), __easycom_0$2);
+  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_transition = resolveEasycom(vue.resolveDynamicComponent("uni-transition"), __easycom_0$1);
     return $data.showPopup ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -2491,8 +2491,8 @@ if (uni.restoreGlobal) {
       /* CLASS */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_4$1 = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__scopeId", "data-v-4dd3c44b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
-  const _sfc_main$f = {
+  const __easycom_4$1 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__scopeId", "data-v-4dd3c44b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
+  const _sfc_main$e = {
     props: ["open", "popuptext"],
     methods: {
       handlePopUpOpen() {
@@ -2515,7 +2515,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_col = resolveEasycom(vue.resolveDynamicComponent("uni-col"), __easycom_1$1);
     const _component_uni_row = resolveEasycom(vue.resolveDynamicComponent("uni-row"), __easycom_2$1);
     const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_4$1);
@@ -2553,7 +2553,7 @@ if (uni.restoreGlobal) {
       /* NEED_PATCH */
     );
   }
-  const __easycom_4 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__scopeId", "data-v-0ff762a3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/customPopUp/customPopUp.vue"]]);
+  const __easycom_4 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__scopeId", "data-v-0ff762a3"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/customPopUp/customPopUp.vue"]]);
   function obj2strClass(obj) {
     let classess = "";
     for (let key in obj) {
@@ -2572,7 +2572,7 @@ if (uni.restoreGlobal) {
     }
     return style;
   }
-  const _sfc_main$e = {
+  const _sfc_main$d = {
     name: "uni-easyinput",
     emits: ["click", "iconClick", "update:modelValue", "input", "focus", "blur", "confirm", "clear", "eyes", "change"],
     model: {
@@ -2893,7 +2893,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_4$2);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -3010,8 +3010,8 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__scopeId", "data-v-09fd5285"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
-  const _sfc_main$d = {
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-09fd5285"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
+  const _sfc_main$c = {
     name: "uniFormsItem",
     options: {
       virtualHost: true
@@ -3346,7 +3346,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -3402,7 +3402,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-462874dd"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue"]]);
+  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__scopeId", "data-v-462874dd"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue"]]);
   var pattern = {
     email: /^\S+?@\S+?\.\S+?$/,
     idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
@@ -3966,7 +3966,7 @@ if (uni.restoreGlobal) {
       return false;
     }
   };
-  const _sfc_main$c = {
+  const _sfc_main$b = {
     name: "uniForms",
     emits: ["validate", "submit"],
     options: {
@@ -4263,14 +4263,14 @@ if (uni.restoreGlobal) {
       _isEqual: isEqual
     }
   };
-  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-forms" }, [
       vue.createElementVNode("form", null, [
         vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
       ])
     ]);
   }
-  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__scopeId", "data-v-9a1e3c32"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-forms/components/uni-forms/uni-forms.vue"]]);
+  const __easycom_3$1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__scopeId", "data-v-9a1e3c32"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-forms/components/uni-forms/uni-forms.vue"]]);
   function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
   }
@@ -8869,7 +8869,7 @@ ${codeFrame}` : message);
       placeholder: "Please Enter your Password"
     }
   ];
-  const _sfc_main$b = {
+  const _sfc_main$a = {
     props: ["setOpenLogin"],
     data() {
       return {
@@ -8942,7 +8942,7 @@ ${codeFrame}` : message);
       }
     }
   };
-  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_col = resolveEasycom(vue.resolveDynamicComponent("uni-col"), __easycom_1$1);
     const _component_uni_easyinput = resolveEasycom(vue.resolveDynamicComponent("uni-easyinput"), __easycom_1);
     const _component_uni_forms_item = resolveEasycom(vue.resolveDynamicComponent("uni-forms-item"), __easycom_2);
@@ -9039,8 +9039,8 @@ ${codeFrame}` : message);
       }, 8, ["onMaskClick"])
     ]);
   }
-  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__scopeId", "data-v-f57cd194"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/loginPopUp/loginPopUp.vue"]]);
-  const _sfc_main$a = {
+  const __easycom_5$1 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__scopeId", "data-v-f57cd194"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/loginPopUp/loginPopUp.vue"]]);
+  const _sfc_main$9 = {
     name: "UniDrawer",
     components: {},
     emits: ["change"],
@@ -9112,7 +9112,7 @@ ${codeFrame}` : message);
       }
     }
   };
-  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.visibleSync ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9148,7 +9148,7 @@ ${codeFrame}` : message);
       /* CLASS, NEED_HYDRATION */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__scopeId", "data-v-f7c32d22"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue"]]);
+  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__scopeId", "data-v-f7c32d22"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue"]]);
   const route = [
     {
       route: "/pages/home/index",
@@ -9166,7 +9166,7 @@ ${codeFrame}` : message);
       icon: "download"
     }
   ];
-  const _sfc_main$9 = {
+  const _sfc_main$8 = {
     data() {
       return {
         sharedColor: "#007aff",
@@ -9210,7 +9210,7 @@ ${codeFrame}` : message);
       }
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_4$2);
     const _component_uni_col = resolveEasycom(vue.resolveDynamicComponent("uni-col"), __easycom_1$1);
     const _component_uni_row = resolveEasycom(vue.resolveDynamicComponent("uni-row"), __easycom_2$1);
@@ -9321,7 +9321,7 @@ ${codeFrame}` : message);
       ])
     ]);
   }
-  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__scopeId", "data-v-9bb2cc18"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/customTabBar/customTabBar.vue"]]);
+  const __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-9bb2cc18"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/customTabBar/customTabBar.vue"]]);
   const language$1 = [
     {
       name: "English",
@@ -9391,9 +9391,9 @@ ${codeFrame}` : message);
       // params
     });
   };
-  const _sfc_main$8 = {
+  const _sfc_main$7 = {
     components: {
-      Announcement: __easycom_0$3,
+      Announcement: __easycom_0$2,
       CustomTabBar: __easycom_5
     },
     data() {
@@ -9470,7 +9470,7 @@ ${codeFrame}` : message);
       }
     }
   };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_4$2);
     const _component_uni_col = resolveEasycom(vue.resolveDynamicComponent("uni-col"), __easycom_1$1);
     const _component_uni_row = resolveEasycom(vue.resolveDynamicComponent("uni-row"), __easycom_2$1);
@@ -9674,7 +9674,7 @@ ${codeFrame}` : message);
       vue.createVNode(_component_customTabBar)
     ]);
   }
-  const layout = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/layout/layout.vue"]]);
+  const layout = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/layout/layout.vue"]]);
   const global$1 = {
     widthSpan: 8
   };
@@ -9725,7 +9725,7 @@ ${codeFrame}` : message);
     }
   ];
   useStore();
-  const _sfc_main$7 = {
+  const _sfc_main$6 = {
     data() {
       return {
         title: "Hello",
@@ -9753,7 +9753,7 @@ ${codeFrame}` : message);
     },
     components: {
       layout,
-      announcement: __easycom_0$3,
+      announcement: __easycom_0$2,
       loginPopUp: __easycom_5$1,
       customPopUp: __easycom_4
     },
@@ -9793,7 +9793,12 @@ ${codeFrame}` : message);
     watch: {
       tab(newValue, oldValue) {
         formatAppLog("log", "at pages/home/index.vue:111", `${oldValue} changed to ${newValue}`);
-        this.handleUpdateAPI();
+        this.handleUpdateAPI().then((result) => {
+          this.apiData2 = result.products;
+          formatAppLog("log", "at pages/home/index.vue:114", "test apoi", this.apiData2[0].title);
+        }).catch((error) => {
+          formatAppLog("log", "at pages/home/index.vue:116", error);
+        });
         if (newValue === 5) {
           this.gamelist = [
             {
@@ -9833,8 +9838,8 @@ ${codeFrame}` : message);
       }
     }
   };
-  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_announcement = resolveEasycom(vue.resolveDynamicComponent("announcement"), __easycom_0$3);
+  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_announcement = resolveEasycom(vue.resolveDynamicComponent("announcement"), __easycom_0$2);
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_4$2);
     const _component_uni_col = resolveEasycom(vue.resolveDynamicComponent("uni-col"), __easycom_1$1);
     const _component_uni_row = resolveEasycom(vue.resolveDynamicComponent("uni-row"), __easycom_2$1);
@@ -9939,7 +9944,7 @@ ${codeFrame}` : message);
       /* STABLE */
     });
   }
-  const PagesHomeIndex = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/home/index.vue"]]);
+  const PagesHomeIndex = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/home/index.vue"]]);
   const gameContentList = [
     {
       gameTitle: "a",
@@ -9959,7 +9964,7 @@ ${codeFrame}` : message);
     }
   ];
   const gameUrl = "https://github.com/uioooou/uni-app-testing/tree/test";
-  const _sfc_main$6 = {
+  const _sfc_main$5 = {
     data() {
       return {
         url: gameUrl,
@@ -9980,7 +9985,7 @@ ${codeFrame}` : message);
       }
     }
   };
-  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_4$2);
     const _component_uni_col = resolveEasycom(vue.resolveDynamicComponent("uni-col"), __easycom_1$1);
     const _component_uni_row = resolveEasycom(vue.resolveDynamicComponent("uni-row"), __easycom_2$1);
@@ -10049,221 +10054,14 @@ ${codeFrame}` : message);
         $data.gamelist.length === 0 ? (vue.openBlock(), vue.createElementBlock("view", {
           key: 0,
           class: "noData"
-        }, "No Data")) : vue.createCommentVNode("v-if", true)
+        }, "hiudhashd")) : vue.createCommentVNode("v-if", true)
       ]),
       _: 1
       /* STABLE */
     });
   }
-  const PagesDownloadIndex = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/download/index.vue"]]);
-  const _sfc_main$5 = {
-    data() {
-      return {
-        open: 0
-      };
-    },
-    props: {
-      img: {
-        type: String,
-        required: true
-      },
-      cardTitle: {
-        type: String,
-        required: true
-      },
-      cardDesc: {
-        type: String,
-        required: true
-      }
-    },
-    methods: {
-      handleOpenPromotion() {
-        this.open = this.open === 1 ? 0 : 1;
-        formatAppLog("log", "at components/imageCollapse/imageCollapse.vue:41", this.open);
-      }
-    },
-    components: {
-      layout
-    }
-  };
-  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_4$2);
-    return vue.openBlock(), vue.createElementBlock("view", { class: "promotion" }, [
-      vue.createElementVNode(
-        "view",
-        {
-          class: vue.normalizeClass($data.open === 1 ? "promotion-img-wrapper bg-show" : "promotion-img-wrapper"),
-          onClick: _cache[0] || (_cache[0] = ($event) => $options.handleOpenPromotion())
-        },
-        [
-          vue.createElementVNode("image", {
-            src: $props.img,
-            mode: "aspectFit",
-            class: "promotion-img"
-          }, null, 8, ["src"]),
-          vue.createVNode(_component_uni_icons, {
-            type: $data.open === 1 ? "arrowup" : "arrowdown",
-            size: "50",
-            color: "white",
-            class: "promotion-icon"
-          }, null, 8, ["type"])
-        ],
-        2
-        /* CLASS */
-      ),
-      vue.createElementVNode(
-        "view",
-        {
-          class: vue.normalizeClass($data.open === 1 ? "show promotion-desc" : "hidden promotion-desc")
-        },
-        [
-          vue.createElementVNode(
-            "h3",
-            null,
-            vue.toDisplayString($props.cardTitle),
-            1
-            /* TEXT */
-          ),
-          vue.createElementVNode(
-            "text",
-            null,
-            vue.toDisplayString($props.cardDesc),
-            1
-            /* TEXT */
-          )
-        ],
-        2
-        /* CLASS */
-      )
-    ]);
-  }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-2f492593"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/components/imageCollapse/imageCollapse.vue"]]);
-  const cardData = [
-    {
-      img: "../../static/logo.png",
-      cardTitle: "hhi",
-      cardDescEN: "iaasdasdasdsa",
-      cardDescCH: "爱的还u厚道厚道厚道回答"
-    },
-    {
-      img: "../../static/logo.png",
-      cardTitle: "hhiasdasd",
-      cardDescEN: "iaasdasdasdsa",
-      cardDescCH: "爱的还"
-    },
-    {
-      img: "../../static/logo.png",
-      cardTitle: "hhiasdad",
-      cardDescEN: "iaasdasdasdsa",
-      cardDescCH: "爱的还"
-    },
-    {
-      img: "../../static/logo.png",
-      cardTitle: "hhiasdad",
-      cardDescEN: "iaasdasdasdsa",
-      cardDescCH: "爱的还"
-    },
-    {
-      img: "../../static/logo.png",
-      cardTitle: "hhiasdad",
-      cardDescEN: "iaasdasdasdsa",
-      cardDescCH: "爱的还"
-    }
-  ];
+  const PagesDownloadIndex = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/download/index.vue"]]);
   const _sfc_main$4 = {
-    data() {
-      return {
-        open: 0,
-        langUse: this.lang,
-        cardData
-      };
-    },
-    onLoad() {
-      uni.hideTabBar();
-      formatAppLog("log", "at pages/promotion/index.vue:31", "lang", this.langUse);
-    },
-    methods: {
-      handleOpenPromotion() {
-        this.open = this.open === 1 ? 0 : 1;
-        formatAppLog("log", "at pages/promotion/index.vue:36", this.open);
-      }
-    },
-    setup() {
-      const store2 = useStore();
-      const lang = vue.computed(() => store2.state.language.languages);
-      return {
-        lang
-      };
-    },
-    components: {
-      layout,
-      imageCollapse: __easycom_0$1
-    },
-    watch: {
-      lang: {
-        handler(newVal) {
-          formatAppLog("log", "at pages/promotion/index.vue:54", "changed lang", newVal);
-          this.langUse = newVal;
-        },
-        deep: true
-      }
-    }
-  };
-  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_imageCollapse = resolveEasycom(vue.resolveDynamicComponent("imageCollapse"), __easycom_0$1);
-    const _component_layout = vue.resolveComponent("layout");
-    return vue.openBlock(), vue.createBlock(_component_layout, null, {
-      default: vue.withCtx(() => [
-        (vue.openBlock(true), vue.createElementBlock(
-          vue.Fragment,
-          null,
-          vue.renderList($data.cardData, (item, index) => {
-            return vue.openBlock(), vue.createElementBlock("view", {
-              key: index,
-              class: "promotion-card"
-            }, [
-              vue.createVNode(_component_imageCollapse, {
-                img: item.img,
-                cardDesc: $data.langUse === "en" ? item.cardDescEN : item.cardDescCH,
-                cardTitle: item.cardTitle
-              }, null, 8, ["img", "cardDesc", "cardTitle"])
-            ]);
-          }),
-          128
-          /* KEYED_FRAGMENT */
-        )),
-        $data.cardData.length === 0 ? (vue.openBlock(), vue.createElementBlock("view", {
-          key: 0,
-          class: "noData"
-        }, "No Data")) : vue.createCommentVNode("v-if", true)
-      ]),
-      _: 1
-      /* STABLE */
-    });
-  }
-  const PagesPromotionIndex = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/promotion/index.vue"]]);
-  const _sfc_main$3 = {
-    data() {
-      return {
-        url: ""
-      };
-    },
-    onLoad(e2) {
-      this.url = e2.url;
-    },
-    methods: {
-      backToPrevious() {
-        uni.navigateBack();
-      }
-    }
-  };
-  function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", null, [
-      vue.createElementVNode("web-view", { src: $data.url }, null, 8, ["src"])
-    ]);
-  }
-  const PagesWebviewIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/webview/index.vue"]]);
-  const _sfc_main$2 = {
     name: "UniSection",
     emits: ["click"],
     props: {
@@ -10322,7 +10120,7 @@ ${codeFrame}` : message);
       }
     }
   };
-  function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-section" }, [
       vue.createElementVNode("view", {
         class: "uni-section-header",
@@ -10379,7 +10177,140 @@ ${codeFrame}` : message);
       )
     ]);
   }
-  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__scopeId", "data-v-637fd36b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__scopeId", "data-v-637fd36b"], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const _sfc_main$3 = {
+    data() {
+      return {
+        apiData: [],
+        apiData2: "no data",
+        value: 0,
+        title: "",
+        check: 0
+      };
+    },
+    //when page start to load, run the code inside it 
+    async onLoad() {
+      let result = await getApiData();
+      formatAppLog("log", "at pages/promotion/index.vue:36", "return API data on load =", result.products[0].title);
+    },
+    //custom functions declared
+    methods: {
+      //function to get api data and set apiData2 to contain the api data
+      async handleGetApiData() {
+        let result = await getApiData();
+        this.apiData2 = result.products[0].title;
+      },
+      //function to get and return api data
+      async handleGetApiData2() {
+        let result = await getApiData();
+        return result;
+      },
+      //function to increase <check> by 1 
+      handleAddNumber() {
+        this.check += 1;
+      }
+    },
+    setup() {
+    },
+    //custom components to be register and use inside this file
+    components: {
+      layout
+    },
+    //check for change of the value of variable in data(), and behave accordingly 
+    watch: {
+      //<check> variable is being check for change 
+      //every time <check> value increase by 1, call the api function 
+      //and set new value to <value> and <title>
+      check(oldVal, newVal) {
+        formatAppLog("log", "at pages/promotion/index.vue:67", "changed", newVal);
+        this.handleGetApiData2().then((result) => {
+          this.value = Number(result.products[newVal].id);
+          this.title = result.products[newVal].title;
+        }).catch((error) => {
+          formatAppLog("log", "at pages/promotion/index.vue:76", error);
+        });
+      }
+    }
+  };
+  function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0);
+    const _component_layout = vue.resolveComponent("layout");
+    return vue.openBlock(), vue.createBlock(_component_layout, null, {
+      default: vue.withCtx(() => [
+        vue.createCommentVNode(" get api data when page start to load  "),
+        vue.createVNode(_component_uni_section, {
+          title: "test api when page load successfully",
+          type: "circle",
+          class: "margin-top"
+        }),
+        vue.createElementVNode(
+          "view",
+          null,
+          vue.toDisplayString($data.apiData),
+          1
+          /* TEXT */
+        ),
+        vue.createCommentVNode(" get api data when button clicked  "),
+        vue.createVNode(_component_uni_section, {
+          title: "test api when button clicked",
+          type: "circle",
+          class: "margin-top"
+        }),
+        vue.createElementVNode(
+          "view",
+          null,
+          vue.toDisplayString($data.apiData2),
+          1
+          /* TEXT */
+        ),
+        vue.createElementVNode("button", {
+          type: "primary",
+          onClick: _cache[0] || (_cache[0] = ($event) => $options.handleGetApiData())
+        }, "click"),
+        vue.createCommentVNode(" call api to get diff api data everytime the button is clicked "),
+        vue.createVNode(_component_uni_section, {
+          title: "test api whether call when dynamic changed",
+          type: "circle",
+          class: "margin-top"
+        }),
+        vue.createElementVNode(
+          "view",
+          { class: "" },
+          "id: " + vue.toDisplayString($data.value) + " is " + vue.toDisplayString($data.title),
+          1
+          /* TEXT */
+        ),
+        vue.createElementVNode("button", {
+          type: "primary",
+          onClick: _cache[1] || (_cache[1] = ($event) => $options.handleAddNumber())
+        }, "add number")
+      ]),
+      _: 1
+      /* STABLE */
+    });
+  }
+  const PagesPromotionIndex = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/promotion/index.vue"]]);
+  const _sfc_main$2 = {
+    data() {
+      return {
+        url: ""
+      };
+    },
+    onLoad(e2) {
+      this.url = e2.url;
+    },
+    methods: {
+      backToPrevious() {
+        uni.navigateBack();
+      }
+    }
+  };
+  function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode("web-view", { src: $data.url }, null, 8, ["src"])
+    ]);
+  }
+  const PagesWebviewIndex = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "C:/Users/ROG G513RW-HF224W/Documents/HBuilderProjects/uni-app-test2/pages/webview/index.vue"]]);
   const loginForm = [
     {
       fieldName: "name",

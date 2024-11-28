@@ -109,7 +109,12 @@ export default {
 	watch: {
 		tab(newValue, oldValue) {
 			console.log(`${oldValue} changed to ${newValue}`);
-			const result = this.handleUpdateAPI();
+			this.handleUpdateAPI().then((result)=>{
+				this.apiData2 = result.products
+				console.log("test apoi",this.apiData2[0].title)
+			}).catch((error)=>{
+				console.log(error)
+			})
 			if (newValue === 5) {
 				this.gamelist = [
 					{
